@@ -9,7 +9,7 @@ export const Inventory: React.FC = () => {
       <div className="relative w-full max-w-[1300px] mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-16 z-10">
         {/* LEFT SIDE CONTENT */}
         <div className="space-y-8 text-center lg:text-left">
-          <h2 className="text-[42px] sm:text-[48px] md:text-[54px] font-bold leading-[110%] text-[#5CC6D0] drop-shadow-[0_0_25px_rgba(92,198,208,0.4)]">
+          <h2 className="text-[42px] sm:text-[48px] md:text-[54px] font-bold leading-[110%] text-[#5CC6D0]">
             Broad Inventory
           </h2>
 
@@ -49,7 +49,7 @@ export const Inventory: React.FC = () => {
           <img
             src="/RDINVENT.png"
             alt="Broad Inventory Illustration"
-            className="w-[80%] sm:w-[70%] md:w-[85%] lg:w-full max-w-[500px] h-auto object-contain transition-transform duration-700 ease-in-out hover:scale-110 hover:drop-shadow-[0_0_30px_rgba(92,198,208,0.6)]"
+            className="w-[80%] sm:w-[70%] md:w-[85%] lg:w-full max-w-[500px] h-auto object-contain transition-transform duration-700 ease-in-out hover:scale-110"
           />
         </div>
       </div>

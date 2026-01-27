@@ -7,16 +7,16 @@ import { Link } from "react-router-dom";
 export const Footer: React.FC = () => {
   return (
     <footer
-      className="w-full text-black font-[Inter] text-[15px] md:text-[17px] leading-snug"
+      className="w-full text-black font-[Poppins] text-[15px] md:text-[17px] leading-snug"
       style={{
         background: "linear-gradient(180deg, #5CC6D0 0%, #3EA3AB 100%)",
         fontWeight: 400,
       }}
     >
       {/* MAIN FOOTER CONTENT */}
-  <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 py-8 md:py-10 flex flex-col md:flex-row justify-between items-start gap-8 md:gap-10 border-b border-[#3EA3AB]/30">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 py-8 md:py-10 flex flex-col md:flex-row justify-between items-start gap-8 md:gap-10 border-b border-[#3EA3AB]/30">
         {/* LEFT SECTION - LOGO + CERTIFICATIONS */}
-  <div className="flex flex-col gap-3 md:gap-4 items-start min-w-[180px] w-full">
+        <div className="flex flex-col gap-3 md:gap-4 items-start min-w-[180px] w-full">
           <Link to="/">
             <img
               src="https://c.animaapp.com/mh6p7bc3N6zmh3/img/rda-black-logo.png"
@@ -24,6 +24,10 @@ export const Footer: React.FC = () => {
               className="w-48 object-contain hover:opacity-80 transition"
             />
           </Link>
+
+          <p className="font-[Poppins] text-black/70 text-[14px] leading-relaxed max-w-[300px] mt-2">
+            At Rockdove Aviation, we deliver fast, reliable parts and tailored support to keep your aircraft soaring without interruption.
+          </p>
 
           {/* CERTIFICATION LOGOS */}
           <div className="flex flex-wrap items-center gap-2 md:gap-4 justify-start w-full">
@@ -46,11 +50,11 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* SERVICES SECTION */}
-  <div className="mt-8 md:mt-0 min-w-[140px] w-full flex flex-col items-start">
-          <h3 className="font-[Poppins] font-semibold text-[15px] md:text-[17px] mb-2 text-left">
+        <div className="mt-8 md:mt-0 min-w-[140px] w-full flex flex-col items-start">
+          <h3 className="font-[Poppins] font-semibold text-[15px] md:text-[17px] mb-4 text-left">
             Services
           </h3>
-          <ul className="space-y-1 text-left w-full">
+          <ul className="space-y-3 text-left w-full">
             <li>
               <Link
                 to="/asset-management"
@@ -87,11 +91,11 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* COMPANY SECTION */}
-  <div className="mt-8 md:mt-0 min-w-[140px] w-full flex flex-col items-start">
-          <h3 className="font-[Poppins] font-semibold text-[15px] md:text-[17px] mb-2 text-left">
+        <div className="mt-8 md:mt-0 min-w-[140px] w-full flex flex-col items-start">
+          <h3 className="font-[Poppins] font-semibold text-[15px] md:text-[17px] mb-4 text-left">
             The Company
           </h3>
-          <ul className="space-y-1 text-left w-full">
+          <ul className="space-y-3 text-left w-full">
             <li>
               <Link
                 to="/the-story"
@@ -128,7 +132,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* CONTACT SECTION */}
-  <div className="flex flex-col gap-2 md:gap-3 text-[13px] md:text-[15px] leading-relaxed mt-8 md:mt-0 min-w-[180px] w-full items-start">
+        <div className="flex flex-col gap-4 md:gap-6 text-[13px] md:text-[15px] leading-relaxed mt-8 md:mt-0 min-w-[180px] w-full items-start">
           <div className="flex items-start gap-3">
             <img src="/building.png" alt="Address" className="w-5 h-5 mt-1" />
             <p>
@@ -164,7 +168,7 @@ export const Footer: React.FC = () => {
       </div>
 
       {/* BOTTOM BAR */}
-  <div className="flex flex-col md:flex-row justify-between items-center md:items-start px-4 sm:px-8 md:px-12 py-3 md:py-4 text-[12px] md:text-[14px] text-black gap-2 md:gap-0 text-left">
+      <div className="flex flex-col md:flex-row justify-between items-center md:items-start px-4 sm:px-8 md:px-12 py-3 md:py-4 text-[12px] md:text-[14px] text-black gap-2 md:gap-0 text-left">
         <p>Copyright © 2025 | All Rights Reserved</p>
 
         {/* SOCIALS */}
