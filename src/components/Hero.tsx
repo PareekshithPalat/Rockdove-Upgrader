@@ -322,7 +322,7 @@ export const Hero: React.FC = () => {
         </p>
 
         <Button
-          className="mt-[67px] h-[48px] px-8 rounded-full border-0 transition-all duration-300 ease-out hover:scale-105 active:scale-[0.98] shadow-[0_4px_14px_rgba(92,198,208,0.4)] hover:shadow-[0_6px_20px_rgba(92,198,208,0.6)] text-white font-semibold text-lg min-w-[160px]"
+          className="mt-[20px] h-[48px] px-8 rounded-xl border-0 transition-all duration-300 ease-out hover:scale-105 active:scale-[0.98] shadow-[0_4px_14px_rgba(92,198,208,0.4)] hover:shadow-[0_6px_20px_rgba(92,198,208,0.6)] text-white font-semibold text-lg min-w-[160px]"
           style={{
             background: "linear-gradient(180deg, #5CC6D0 0%, #05848E 100%)",
           }}
