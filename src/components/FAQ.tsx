@@ -38,8 +38,7 @@ export const FAQ: React.FC = () => {
   return (
     <section
       className="
-        bg-black text-white py-20 -mt-24 
-        sm:pb-20 pb-32    /* extra bottom padding for mobile */
+        bg-black text-white py-24
       "
     >
       {/* Container with same width & side gaps as other sections */}

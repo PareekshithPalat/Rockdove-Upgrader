@@ -45,7 +45,7 @@ export const Inventory: React.FC = () => {
 
         {/* RIGHT SIDE IMAGE */}
         <div className="flex justify-center lg:justify-end relative">
-          <div className="absolute w-[250px] h-[250px] bg-[#5CC6D0] rounded-full blur-[100px] opacity-30 top-10 right-0 animate-pulse"></div>
+
           <img
             src="/RDINVENT.png"
             alt="Broad Inventory Illustration"

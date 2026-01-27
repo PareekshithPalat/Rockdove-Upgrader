@@ -62,7 +62,7 @@ const Features: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[230vh] bg-black text-white flex flex-col items-center justify-start py-24 font-[Poppins] -mt-8"
+      className="relative min-h-[120vh] bg-black text-white flex flex-col items-center justify-start py-24 font-[Poppins]"
     >
       {/* Title */}
       <h2 className="text-[48px] font-semibold text-center leading-[100%] text-white mb-32">
@@ -90,7 +90,7 @@ const Features: React.FC = () => {
       />
 
       {/* Feature Blocks */}
-      <div className="mt-[-100px] flex flex-col gap-[120px] w-full max-w-[1200px]">
+      <div className="mt-20 flex flex-col gap-[120px] w-full max-w-[1200px]">
         {/* 01 - Left */}
         <div className="feature-block flex justify-start ml-[5vw] mt-[20vh]">
           <div className="max-w-[440px] text-left space-y-3">

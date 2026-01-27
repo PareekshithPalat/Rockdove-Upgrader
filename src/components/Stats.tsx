@@ -2,7 +2,7 @@ import React from "react";
 
 export const Stats: React.FC = () => {
   return (
-    <section className="py-16 md:py-24 px-4 md:px-8 -mt-12">
+    <section className="bg-black text-white py-24 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         <h2 className="[font-family:'Poppins',Helvetica] font-semibold text-3xl md:text-5xl text-center tracking-[0] leading-[normal] animate-fade-up">
           <span className="text-[#5cc6d0]">
