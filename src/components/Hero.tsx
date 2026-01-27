@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { GLTFLoader, GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { Button } from "./ui/button";
 // @ts-ignore
 import CLOUDS from "./vanta/vanta.clouds.js";
 
@@ -308,9 +309,8 @@ export const Hero: React.FC = () => {
 
       {/* TEXT */}
       <div
-        className={`relative z-20 text-center px-4 sm:px-8 md:px-12 mt-[300px] sm:mt-[320px] md:mt-[350px] transition-opacity duration-1000 ${
-          isHeroReady ? "opacity-100" : "opacity-0"
-        }`}
+        className={`relative z-20 text-center px-4 sm:px-8 md:px-12 mt-[300px] sm:mt-[320px] md:mt-[350px] transition-opacity duration-1000 ${isHeroReady ? "opacity-100" : "opacity-0"
+          }`}
       >
         <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-4 leading-tight">
           Parts, Service and <span className="text-cyan-400">Solution</span>
@@ -321,9 +321,11 @@ export const Hero: React.FC = () => {
           servicing for a safe flight.
         </p>
 
-        <button className="px-6 sm:px-8 py-3 bg-cyan-500 hover:bg-cyan-600 text-black font-semibold rounded-full shadow-lg transition-all duration-300">
-          Know more
-        </button>
+        <Button className="mt-[60px] h-auto bg-[#5cc6d0] rounded-[40px] border-0 px-8 py-3 transition-all duration-300 hover:bg-[#4ab5bf] hover:scale-110 hover:shadow-lg hover:shadow-[#5cc6d0]/50">
+          <span className="[font-family:'Poppins',Helvetica] font-semibold text-white text-[15px] tracking-[0] leading-[normal]">
+            Know more
+          </span>
+        </Button>
       </div>
     </section>
   );

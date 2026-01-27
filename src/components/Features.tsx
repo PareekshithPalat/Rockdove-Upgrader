@@ -17,6 +17,9 @@ const Features: React.FC = () => {
 
     if (!section || !plane || !blueLine) return;
 
+    const isMobile = window.innerWidth < 768;
+    const distance = isMobile ? 1300 : 900;
+
     // Scroll animation for plane and blue line growth
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -28,7 +31,7 @@ const Features: React.FC = () => {
     });
 
     // Plane movement along the line
-    tl.fromTo(plane, { y: 0 }, { y: 900, ease: "none" }, 0);
+    tl.fromTo(plane, { y: 0 }, { y: distance, ease: "none" }, 0);
 
     // Line growth animation
     tl.fromTo(
@@ -72,13 +75,13 @@ const Features: React.FC = () => {
       {/* Static White Line */}
       <div
         ref={whiteLineRef}
-        className="absolute top-[280px] left-[20px] md:left-1/2 w-[4px] md:w-[10px] h-[900px] bg-white rounded-full -translate-x-1/2"
+        className="absolute top-[280px] left-[20px] md:left-1/2 w-[4px] md:w-[10px] h-[1300px] md:h-[900px] bg-white rounded-full -translate-x-1/2"
       ></div>
 
       {/* Glowing Cyan Line (grows + glows continuously) */}
       <div
         ref={blueLineRef}
-        className="absolute top-[280px] left-[20px] md:left-1/2 w-[4px] md:w-[10px] h-[900px] bg-[#5CC6D0] rounded-full -translate-x-1/2 scale-y-0 glow-line"
+        className="absolute top-[280px] left-[20px] md:left-1/2 w-[4px] md:w-[10px] h-[1300px] md:h-[900px] bg-[#5CC6D0] rounded-full -translate-x-1/2 scale-y-0 glow-line"
       ></div>
 
       {/* Plane (scrolls with GSAP) */}
@@ -91,9 +94,9 @@ const Features: React.FC = () => {
 
       {/* Feature Blocks */}
       {/* Feature Blocks */}
-      <div className="mt-10 md:mt-20 flex flex-col gap-12 md:gap-[150px] w-full max-w-[1200px] px-6 sm:px-10 z-20">
+      <div className="mt-0 md:mt-20 flex flex-col gap-24 md:gap-[150px] w-full max-w-[1400px] px-6 sm:px-10 z-20">
         {/* 01 - Mobile: Right of line, Desktop: Left */}
-        <div className="feature-block flex justify-end md:justify-start md:ml-[5vw]">
+        <div className="feature-block flex justify-end md:justify-start md:ml-0">
           <div className="w-full pl-12 md:pl-0 max-w-none md:max-w-[480px] text-left space-y-3">
             <div className="text-[#5CC6D0] font-bold text-[32px] md:text-[40px] leading-[100%]">
               01
@@ -112,7 +115,7 @@ const Features: React.FC = () => {
 
         {/* 02 - Mobile: Right of line, Desktop: Right */}
         <div className="feature-block flex justify-end">
-          <div className="w-full pl-12 md:pl-0 max-w-none md:max-w-[480px] md:mr-[4vw] md:mt-[-15vh] text-left md:text-right space-y-3">
+          <div className="w-full pl-12 md:pl-0 max-w-none md:max-w-[480px] md:mt-[-15vh] text-left md:text-right space-y-3">
             <div className="text-[#5CC6D0] font-bold text-[32px] md:text-[40px] leading-[100%]">
               02
             </div>
@@ -130,7 +133,7 @@ const Features: React.FC = () => {
 
         {/* 03 - Mobile: Right of line, Desktop: Left */}
         <div className="feature-block flex justify-end md:justify-start">
-          <div className="w-full pl-12 md:pl-0 max-w-none md:max-w-[480px] md:ml-[5vw] md:mt-[-10vh] text-left space-y-3">
+          <div className="w-full pl-12 md:pl-0 max-w-none md:max-w-[480px] md:mt-[-10vh] text-left space-y-3">
             <div className="text-[#5CC6D0] font-bold text-[32px] md:text-[40px] leading-[100%]">
               03
             </div>
@@ -148,7 +151,7 @@ const Features: React.FC = () => {
 
         {/* 04 - Mobile: Right of line, Desktop: Right */}
         <div className="feature-block flex justify-end">
-          <div className="w-full pl-12 md:pl-0 max-w-none md:max-w-[480px] md:mr-[4vw] md:mt-[-15vh] text-left md:text-right space-y-3">
+          <div className="w-full pl-12 md:pl-0 max-w-none md:max-w-[480px] md:mt-[-15vh] text-left md:text-right space-y-3">
             <div className="text-[#5CC6D0] font-bold text-[32px] md:text-[40px] leading-[100%]">
               04
             </div>
