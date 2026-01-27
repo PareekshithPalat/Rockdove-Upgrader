@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 
 export const Contact: React.FC = () => {
   return (
-    <section className="bg-black text-white py-20 md:py-32">
+    <section className="bg-black text-white pt-12 pb-32">
       <div
         className="
           max-w-[1280px] mx-auto 
