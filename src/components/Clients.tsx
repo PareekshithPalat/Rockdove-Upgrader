@@ -33,64 +33,49 @@ export const Clients: React.FC = () => {
         }}
       ></div>
 
-      {/* Responsive 4x4 Grid */}
+      {/* Responsive Grid */}
       <div
         className="
           grid
-          gap-x-8
-          gap-y-10
-          sm:gap-x-10
+          grid-cols-2
+          sm:grid-cols-3
+          md:grid-cols-4
+          gap-x-12
+          gap-y-16
+          sm:gap-x-16
           sm:gap-y-14
-          md:gap-x-16
-          md:gap-y-16
+          md:gap-x-20
+          md:gap-y-20
           place-items-center
           w-full
           max-w-7xl
           mx-auto
           px-4 sm:px-8 md:px-12
         "
-        style={{
-          gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
-        }}
       >
-        {clients.map((src, index) => {
-          // Keep Emirates, Etihad, and Tway smaller; make others bigger
-          const isSmallLogo =
-            src.toLowerCase().includes("emirates") ||
-            src.toLowerCase().includes("ethihad") ||
-            src.toLowerCase().includes("tway");
-
-          const logoWidth = isSmallLogo
-            ? "clamp(60px, 16vw, 150px)"
-            : "clamp(80px, 20vw, 190px)"; // increased size
-          const logoHeight = isSmallLogo
-            ? "clamp(45px, 10vw, 90px)"
-            : "clamp(60px, 12vw, 110px)"; // increased height
-
-          return (
-            <div
-              key={index}
-              className="
-                flex
-                items-center
-                justify-center
-                transition-transform
-                duration-300
-                hover:scale-110
-              "
-              style={{
-                width: logoWidth,
-                height: logoHeight,
-              }}
-            >
-              <img
-                src={src}
-                alt={`Client ${index + 1}`}
-                className="object-contain w-full h-full opacity-90 hover:opacity-100 transition duration-300"
-              />
-            </div>
-          );
-        })}
+        {clients.map((src, index) => (
+          <div
+            key={index}
+            className="
+              flex
+              items-center
+              justify-center
+              w-full
+              h-24
+              sm:h-32
+              md:h-40
+              transition-transform
+              duration-300
+              hover:scale-110
+            "
+          >
+            <img
+              src={src}
+              alt={`Client ${index + 1}`}
+              className="object-contain max-w-full max-h-full opacity-80 hover:opacity-100 transition duration-300"
+            />
+          </div>
+        ))}
       </div>
 
       {/* Background gradient for subtle depth */}
