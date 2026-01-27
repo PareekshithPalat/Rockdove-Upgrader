@@ -1,6 +1,8 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Services: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="relative w-full min-h-screen flex flex-col items-center justify-center bg-black pt-20 pb-24 -mt-20 sm:pt-16 sm:pb-28 px-6 sm:px-10 md:px-20 overflow-hidden font-[Poppins]">
       {/* Title */}
@@ -45,6 +47,7 @@ const Services: React.FC = () => {
                 seamless fleet operations.
               </>
             ),
+            path: "/asset-management",
           },
           {
             title: (
@@ -58,6 +61,7 @@ const Services: React.FC = () => {
                 reliability.
               </>
             ),
+            path: "/repair-management",
           },
           {
             title: (
@@ -70,10 +74,12 @@ const Services: React.FC = () => {
                 Rapid 60–90 minute parts delivery to resolve urgent AOG issues.
               </>
             ),
+            path: "/aog-support",
           },
         ].map((card, index) => (
           <div
             key={index}
+            onClick={() => navigate(card.path)}
             className="
               group relative bg-gray-200 text-black rounded-[20px]
               w-[300px] sm:w-[320px] md:w-[341px]
