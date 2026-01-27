@@ -25,8 +25,8 @@ const Features: React.FC = () => {
       scrollTrigger: {
         trigger: section,
         start: "top center",
-        end: "bottom bottom",
-        scrub: 1,
+        end: "bottom center",
+        scrub: 2,
       },
     });
 
