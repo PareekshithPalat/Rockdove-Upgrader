@@ -72,13 +72,13 @@ const Features: React.FC = () => {
       {/* Static White Line */}
       <div
         ref={whiteLineRef}
-        className="hidden md:block absolute top-[280px] left-1/2 w-[10px] h-[900px] bg-white rounded-full -translate-x-1/2"
+        className="absolute top-[280px] left-1/2 w-[10px] h-[900px] bg-white rounded-full -translate-x-1/2"
       ></div>
 
       {/* Glowing Cyan Line (grows + glows continuously) */}
       <div
         ref={blueLineRef}
-        className="hidden md:block absolute top-[280px] left-1/2 w-[10px] h-[900px] bg-[#5CC6D0] rounded-full -translate-x-1/2 scale-y-0 glow-line"
+        className="absolute top-[280px] left-1/2 w-[10px] h-[900px] bg-[#5CC6D0] rounded-full -translate-x-1/2 scale-y-0 glow-line"
       ></div>
 
       {/* Plane (scrolls with GSAP) */}
@@ -86,14 +86,14 @@ const Features: React.FC = () => {
         ref={planeRef}
         src="/sliderplane.png"
         alt="Plane"
-        className="hidden md:block absolute top-[250px] left-1/2 w-[120px] h-[120px] -translate-x-1/2"
+        className="absolute top-[250px] left-1/2 w-[80px] h-[80px] md:w-[120px] md:h-[120px] -translate-x-1/2 z-10"
       />
 
       {/* Feature Blocks */}
       <div className="mt-10 md:mt-20 flex flex-col gap-12 md:gap-[150px] w-full max-w-[1200px] px-6 sm:px-10 z-20">
         {/* 01 - Left */}
         <div className="feature-block flex justify-center md:justify-start md:ml-[5vw]">
-          <div className="max-w-[480px] w-full bg-[#111] md:bg-transparent p-8 md:p-0 rounded-2xl border border-white/5 md:border-0 shadow-2xl md:shadow-none text-center md:text-left space-y-4">
+          <div className="max-w-[480px] w-full bg-[#111] md:bg-transparent p-8 md:p-0 rounded-2xl border border-white/5 md:border-0 shadow-2xl md:shadow-none text-center md:text-left space-y-4 md:pr-12">
             <div className="text-[#5CC6D0] font-bold text-[32px] md:text-[40px] leading-[100%]">
               01
             </div>
@@ -111,7 +111,7 @@ const Features: React.FC = () => {
 
         {/* 02 - Right */}
         <div className="feature-block flex justify-center md:justify-end">
-          <div className="max-w-[480px] w-full bg-[#111] md:bg-transparent p-8 md:p-0 rounded-2xl border border-white/5 md:border-0 shadow-2xl md:shadow-none md:mr-[4vw] md:mt-[-15vh] text-center md:text-right space-y-4">
+          <div className="max-w-[480px] w-full bg-[#111] md:bg-transparent p-8 md:p-0 rounded-2xl border border-white/5 md:border-0 shadow-2xl md:shadow-none md:mr-[4vw] md:mt-[-15vh] text-center md:text-right space-y-4 md:pl-12">
             <div className="text-[#5CC6D0] font-bold text-[32px] md:text-[40px] leading-[100%]">
               02
             </div>
@@ -129,7 +129,7 @@ const Features: React.FC = () => {
 
         {/* 03 - Left */}
         <div className="feature-block flex justify-center md:justify-start">
-          <div className="max-w-[480px] w-full bg-[#111] md:bg-transparent p-8 md:p-0 rounded-2xl border border-white/5 md:border-0 shadow-2xl md:shadow-none md:ml-[5vw] md:mt-[-10vh] text-center md:text-left space-y-4">
+          <div className="max-w-[480px] w-full bg-[#111] md:bg-transparent p-8 md:p-0 rounded-2xl border border-white/5 md:border-0 shadow-2xl md:shadow-none md:ml-[5vw] md:mt-[-10vh] text-center md:text-left space-y-4 md:pr-12">
             <div className="text-[#5CC6D0] font-bold text-[32px] md:text-[40px] leading-[100%]">
               03
             </div>
@@ -147,7 +147,7 @@ const Features: React.FC = () => {
 
         {/* 04 - Right */}
         <div className="feature-block flex justify-center md:justify-end">
-          <div className="max-w-[480px] w-full bg-[#111] md:bg-transparent p-8 md:p-0 rounded-2xl border border-white/5 md:border-0 shadow-2xl md:shadow-none md:mr-[4vw] md:mt-[-15vh] text-center md:text-right space-y-4">
+          <div className="max-w-[480px] w-full bg-[#111] md:bg-transparent p-8 md:p-0 rounded-2xl border border-white/5 md:border-0 shadow-2xl md:shadow-none md:mr-[4vw] md:mt-[-15vh] text-center md:text-right space-y-4 md:pl-12">
             <div className="text-[#5CC6D0] font-bold text-[32px] md:text-[40px] leading-[100%]">
               04
             </div>
