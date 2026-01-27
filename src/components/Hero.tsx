@@ -321,15 +321,13 @@ export const Hero: React.FC = () => {
           servicing for a safe flight.
         </p>
 
-        <Button className="mt-[67px] h-auto bg-transparent border-0 p-0 hover:bg-transparent relative transition-transform duration-300 hover:scale-110">
-          <img
-            className="w-[150px] h-[46px]"
-            alt="Rectangle"
-            src="/rectangle-6.svg"
-          />
-          <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 [font-family:'Poppins',Helvetica] font-semibold text-white text-2xl tracking-[0] leading-[normal]">
-            Know more
-          </span>
+        <Button
+          className="mt-[67px] h-[48px] px-8 rounded-full border-0 transition-all duration-300 ease-out hover:scale-105 active:scale-[0.98] shadow-[0_4px_14px_rgba(92,198,208,0.4)] hover:shadow-[0_6px_20px_rgba(92,198,208,0.6)] text-white font-semibold text-lg min-w-[160px]"
+          style={{
+            background: "linear-gradient(180deg, #5CC6D0 0%, #05848E 100%)",
+          }}
+        >
+          Know more
         </Button>
       </div>
     </section>
