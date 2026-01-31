@@ -245,19 +245,6 @@ const TheStory: React.FC = () => {
 
           <FadeInUp delay={400}>
             <div className="flex flex-wrap justify-center items-center gap-2 text-[#5cc6d0] font-semibold text-base sm:text-lg md:text-xl">
-              <Link
-                to="/contact"
-                className="hover:underline hover:text-[#6fdbe5] transition-colors duration-300"
-              >
-                Contact Us
-              </Link>
-              <span className="text-white">|</span>
-              <Link
-                to="/rfq"
-                className="hover:underline hover:text-[#6fdbe5] transition-colors duration-300"
-              >
-                Request a Quote
-              </Link>
               <span className="text-white">|</span>
               <Link
                 to="/services"
@@ -265,6 +252,14 @@ const TheStory: React.FC = () => {
               >
                 Explore Services
               </Link>
+              <span className="text-white">|</span>
+              <Link
+                to="/contact"
+                className="hover:underline hover:text-[#6fdbe5] transition-colors duration-300"
+              >
+                Contact Us
+              </Link>
+              <span className="text-white">|</span>
             </div>
           </FadeInUp>
         </section>
