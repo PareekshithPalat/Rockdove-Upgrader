@@ -197,29 +197,41 @@ const TheStory: React.FC = () => {
         </section>
 
         {/* What We Do Section */}
-        <section className="bg-black text-white px-6 sm:px-10 md:px-28 py-20 flex flex-col md:flex-row justify-center items-start text-center md:text-left gap-20">
-          <div className="max-w-md md:pl-20">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">What We Do</h2>
-            <p className="text-gray-300 leading-relaxed text-left text-base sm:text-lg md:text-[24px]">
-              We specialize in high-quality pre-owned aviation parts, aircraft
-              teardown, and end-to-end aerospace solutions. Through
-              cutting-edge technology, personalized teamwork, and rigorous
-              quality standards, we ensure seamless operations for Boeing,
-              Airbus, Embraer, and beyond. Our core values — leadership,
-              accountability, and service excellence — drive every decision and
-              delivery.
-            </p>
+        <section className="bg-black text-white px-6 sm:px-10 md:px-28 py-20 flex flex-col md:flex-row justify-center items-start gap-16 md:gap-24">
+          <div className="max-w-xl w-full">
+            <FadeInUp delay={200}>
+              <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center md:text-left">
+                What We Do
+              </h2>
+            </FadeInUp>
+            <FadeInUp delay={400}>
+              <p className="text-gray-300 leading-relaxed text-justify text-base sm:text-lg md:text-2xl">
+                We specialize in high-quality pre-owned aviation parts, aircraft
+                teardown, and comprehensive end-to-end aerospace solutions.
+                Leveraging cutting-edge technology, personalized teamwork, and
+                rigorous quality standards, we deliver seamless operations for
+                Boeing, Airbus, Embraer, and many other platforms. Our core
+                values of leadership, accountability, and service excellence
+                guide every decision and every delivery.
+              </p>
+            </FadeInUp>
           </div>
 
-          <div className="flex flex-col items-center md:items-start mt-10 md:mt-0">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 md:ml-4">
-              Serving world-wide
-            </h2>
-            <img
-              src="/worldmap.png"
-              alt="World Map"
-              className="w-[300px] sm:w-[380px] md:w-[520px] lg:w-[620px] object-contain md:-ml-4 lg:-ml-8 mt-16"
-            />
+          <div className="flex flex-col items-center md:items-start w-full md:w-auto">
+            <FadeInUp delay={200}>
+              <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center md:text-left">
+                Serving world-wide
+              </h2>
+            </FadeInUp>
+            <FadeInUp delay={400}>
+              <div className="relative w-full flex justify-center md:justify-start">
+                <img
+                  src="/worldmap.png"
+                  alt="World Map"
+                  className="w-full max-w-[600px] object-contain mt-4 md:mt-8"
+                />
+              </div>
+            </FadeInUp>
           </div>
         </section>
 
