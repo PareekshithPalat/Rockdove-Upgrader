@@ -121,11 +121,10 @@ const Header: React.FC = () => {
             >
               <button
                 onClick={() => toggleDropdown("services")}
-                className={`inline-flex items-center gap-2 transition-colors ${
-                  activeDropdown === "services"
+                className={`inline-flex items-center gap-2 transition-colors ${activeDropdown === "services"
                     ? "text-white"
                     : "text-[#5CC6D0] hover:text-white"
-                }`}
+                  }`}
               >
                 Services <ChevronDown className="h-5 w-5" />
               </button>
@@ -214,11 +213,10 @@ const Header: React.FC = () => {
             >
               <button
                 onClick={() => toggleDropdown("company")}
-                className={`inline-flex items-center gap-2 transition-colors ${
-                  activeDropdown === "company"
+                className={`inline-flex items-center gap-2 transition-colors ${activeDropdown === "company"
                     ? "text-white"
                     : "text-[#5CC6D0] hover:text-white"
-                }`}
+                  }`}
               >
                 Company <ChevronDown className="h-5 w-5" />
               </button>

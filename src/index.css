@@ -29,30 +29,56 @@
 
 /* Airplane image styling */
 .plane {
-  width: 40vw;      /* bigger */
-  max-width: 500px; /* max limit */
+  width: 40vw;
+  /* bigger */
+  max-width: 500px;
+  /* max limit */
   height: auto;
   animation: flyScreen 4s ease-in forwards;
-  animation-delay: 0s; /* appear immediately */
+  animation-delay: 0s;
+  /* appear immediately */
 }
 
 /* Fly from bottom to completely off top */
 @keyframes flyScreen {
-  0% { transform: translateY(120vh); opacity: 1; }  /* start fully below screen */
-  50% { transform: translateY(50vh); opacity: 1; }
-  100% { transform: translateY(-150vh); opacity: 0.8; } /* fly completely off top */
+  0% {
+    transform: translateY(120vh);
+    opacity: 1;
+  }
+
+  /* start fully below screen */
+  50% {
+    transform: translateY(50vh);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-150vh);
+    opacity: 0.8;
+  }
+
+  /* fly completely off top */
 }
 
 /* Fade in app content */
-#root { opacity: 0; transition: opacity 1s ease; }
-body.loaded #root { opacity: 1; }
+#root {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+body.loaded #root {
+  opacity: 1;
+}
+
 @keyframes glowPulse {
   0% {
     box-shadow: 0 0 10px #5CC6D0, 0 0 20px #5CC6D0, 0 0 30px #5CC6D0;
   }
+
   50% {
     box-shadow: 0 0 25px #5CC6D0, 0 0 45px #5CC6D0, 0 0 60px #5CC6D0;
   }
+
   100% {
     box-shadow: 0 0 10px #5CC6D0, 0 0 20px #5CC6D0, 0 0 30px #5CC6D0;
   }
