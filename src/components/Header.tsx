@@ -98,7 +98,8 @@ const Header: React.FC = () => {
   return (
     <header
       ref={containerRef}
-      className="w-full relative top-0 left-0 z-50 bg-black font-[Poppins]"
+      className="absolute w-full top-0 left-0 z-[100] bg-transparent font-[Poppins] transition-all duration-300"
+      style={{ transform: 'translateY(var(--header-y, 0))' }}
     >
       <div className="max-w-7xl mx-auto px-6">
         <div className="h-20 flex items-center justify-between">
@@ -107,7 +108,7 @@ const Header: React.FC = () => {
             <img
               src="/rda-gradient-logo--1--1.png"
               alt="RockDove Logo"
-              className="h-10 w-auto"
+              className="h-14 w-auto"
             />
           </Link>
 
@@ -121,11 +122,10 @@ const Header: React.FC = () => {
             >
               <button
                 onClick={() => toggleDropdown("services")}
-                className={`inline-flex items-center gap-2 transition-colors ${
-                  activeDropdown === "services"
-                    ? "text-white"
-                    : "text-[#5CC6D0] hover:text-white"
-                }`}
+                className={`inline-flex items-center gap-2 transition-colors ${activeDropdown === "services"
+                  ? "text-white"
+                  : "text-[#0891B2] hover:text-white"
+                  }`}
               >
                 Services <ChevronDown className="h-5 w-5" />
               </button>
@@ -201,7 +201,7 @@ const Header: React.FC = () => {
             {/* RFQ Link */}
             <Link
               to="/rfq"
-              className="text-[#5CC6D0] hover:text-white transition-colors"
+              className="text-[#0891B2] hover:text-white transition-colors"
             >
               RFQ
             </Link>
@@ -214,11 +214,10 @@ const Header: React.FC = () => {
             >
               <button
                 onClick={() => toggleDropdown("company")}
-                className={`inline-flex items-center gap-2 transition-colors ${
-                  activeDropdown === "company"
-                    ? "text-white"
-                    : "text-[#5CC6D0] hover:text-white"
-                }`}
+                className={`inline-flex items-center gap-2 transition-colors ${activeDropdown === "company"
+                  ? "text-white"
+                  : "text-[#0891B2] hover:text-white"
+                  }`}
               >
                 Company <ChevronDown className="h-5 w-5" />
               </button>
@@ -302,14 +301,14 @@ const Header: React.FC = () => {
           {/* Contact Button */}
           <Link
             to="/contact"
-            className="hidden md:inline-block border border-[#5CC6D0] text-[#5CC6D0] rounded-full px-5 py-2 font-semibold hover:bg-[#5CC6D0] hover:text-black transition"
+            className="hidden md:inline-block border border-[#0891B2] text-[#0891B2] rounded-full px-5 py-2 font-semibold hover:bg-[#0891B2] hover:text-black transition"
           >
             Contact
           </Link>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-[#5CC6D0] hover:text-white"
+            className="md:hidden text-[#0891B2] hover:text-white"
             onClick={() => setMobileOpen((v) => !v)}
           >
             {mobileOpen ? (
@@ -323,7 +322,7 @@ const Header: React.FC = () => {
         {/* ✅ Fixed Mobile Menu */}
         {mobileOpen && (
           <div className="md:hidden fixed inset-0 top-20 bg-black bg-opacity-95 backdrop-blur-sm z-50 overflow-y-auto transition-all duration-300">
-            <div className="flex flex-col p-6 space-y-5 text-[#5CC6D0] font-medium text-lg">
+            <div className="flex flex-col p-6 space-y-5 text-[#0891B2] font-medium text-lg">
               <Link to="/asset-management" className="hover:text-white transition-colors" onClick={() => setMobileOpen(false)}>Asset Management</Link>
               <Link to="/repair-management" className="hover:text-white transition-colors" onClick={() => setMobileOpen(false)}>Repair Management</Link>
               <Link to="/aog-support" className="hover:text-white transition-colors" onClick={() => setMobileOpen(false)}>AOG Support</Link>
