@@ -101,13 +101,13 @@ const Header: React.FC = () => {
       className="w-full relative top-0 left-0 z-50 bg-black font-[Poppins]"
     >
       <div className="max-w-7xl mx-auto px-6">
-        <div className="h-20 flex items-center justify-between">
+        <div className="h-28 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <img
-              src="/rda-gradient-logo--1--1.png"
+              src="/rockdove-logo.png"
               alt="RockDove Logo"
-              className="h-10 w-auto"
+              className="h-24 w-auto"
             />
           </Link>
 
@@ -122,8 +122,8 @@ const Header: React.FC = () => {
               <button
                 onClick={() => toggleDropdown("services")}
                 className={`inline-flex items-center gap-2 transition-colors ${activeDropdown === "services"
-                    ? "text-white"
-                    : "text-[#5CC6D0] hover:text-white"
+                  ? "text-white"
+                  : "text-[#5CC6D0] hover:text-white"
                   }`}
               >
                 Services <ChevronDown className="h-5 w-5" />
@@ -214,8 +214,8 @@ const Header: React.FC = () => {
               <button
                 onClick={() => toggleDropdown("company")}
                 className={`inline-flex items-center gap-2 transition-colors ${activeDropdown === "company"
-                    ? "text-white"
-                    : "text-[#5CC6D0] hover:text-white"
+                  ? "text-white"
+                  : "text-[#5CC6D0] hover:text-white"
                   }`}
               >
                 Company <ChevronDown className="h-5 w-5" />

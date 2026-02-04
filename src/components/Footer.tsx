@@ -19,9 +19,9 @@ export const Footer: React.FC = () => {
         <div className="flex flex-col gap-3 md:gap-4 items-start min-w-[180px] w-full">
           <Link to="/">
             <img
-              src="https://c.animaapp.com/mh6p7bc3N6zmh3/img/rda-black-logo.png"
+              src="/rockdove-logo.png"
               alt="ROCKDOVE"
-              className="w-48 object-contain hover:opacity-80 transition"
+              className="w-96 object-contain hover:opacity-80 transition"
             />
           </Link>
 
