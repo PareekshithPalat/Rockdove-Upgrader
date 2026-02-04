@@ -410,9 +410,9 @@ export const Frame = (): JSX.Element => {
 
         <div className="absolute top-[41px] left-[77px] w-[242px] h-[138px]">
           <img
-            className="absolute top-0 left-0 w-[450px] h-[140px] object-contain transition-transform duration-300 hover:scale-105"
+            className="absolute top-0 left-0 w-[280px] h-[88px] object-contain transition-transform duration-300 hover:scale-105"
             alt="Rda black logo"
-            src="/rockdove-logo.png"
+            src="/rda-black-logo.png"
           />
 
           {footerLogos.map((logo, index) => (
