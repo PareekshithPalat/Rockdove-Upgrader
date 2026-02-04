@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "./ui/button";
 import {
   MailIcon,
   MapPinIcon,
@@ -175,12 +176,15 @@ export const ContactUs: React.FC = () => {
 
               {/* Smaller Submit Button */}
               <div className="mt-4">
-                <button
+                <Button
                   type="submit"
-                  className="bg-[#5cc6d0] hover:bg-[#4ab5bf] text-black font-bold tracking-widest transition-all duration-300 w-full sm:w-[160px] h-[54px] rounded-full shadow-lg shadow-[#5cc6d0]/20 hover:shadow-[#5cc6d0]/40 uppercase text-sm"
+                  className="h-[48px] px-8 rounded-xl border-0 transition-all duration-300 ease-out hover:scale-105 active:scale-[0.98] shadow-[0_4px_14px_rgba(92,198,208,0.4)] hover:shadow-[0_6px_20px_rgba(92,198,208,0.6)] text-white font-semibold text-lg w-full sm:w-[160px]"
+                  style={{
+                    background: "linear-gradient(180deg, #5CC6D0 0%, #05848E 100%)",
+                  }}
                 >
                   SUBMIT
-                </button>
+                </Button>
               </div>
             </form>
           </FadeInUp>
@@ -189,10 +193,11 @@ export const ContactUs: React.FC = () => {
           <FadeInUp delay={600} className="w-full max-w-[400px]">
             <div className="relative h-[350px] sm:h-[400px] flex justify-center items-center lg:justify-end">
               {/* Blue background rectangle */}
-              <img
-                src="/rectangle.png"
-                alt="Blue Background"
-                className="absolute w-full h-full object-contain opacity-40 lg:right-[-40px]"
+              <div
+                className="absolute w-full h-full opacity-40 lg:right-[-40px] rounded-3xl"
+                style={{
+                  background: "linear-gradient(180deg, #5CC6D0 0%, #05848E 100%)",
+                }}
               />
               {/* Man image on top */}
               <img
