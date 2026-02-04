@@ -129,7 +129,7 @@ export const Frame = (): JSX.Element => {
 
       <header className="absolute top-[58px] left-[58px] right-[58px] flex items-center justify-between">
         <img
-          className="w-[450px] h-[140px] object-contain transition-transform duration-300 hover:scale-105"
+          className="w-[550px] h-[170px] object-contain transition-transform duration-300 hover:scale-105"
           alt="Rda gradient logo"
           src="/rockdove-logo.png"
         />
