@@ -133,7 +133,7 @@ const RFQ: React.FC = () => {
                 <FadeInUp key={field.name} delay={idx * 100}>
                   <div className="group">
                     <label className="block text-sm font-bold text-[#5cc6d0] uppercase tracking-widest mb-3 ml-2 transition-all group-focus-within:translate-x-1">
-                      {field.label}
+                      {field.label.replace("*", "")}<span className="text-red-500">*</span>
                     </label>
                     <input
                       name={field.name}
@@ -150,7 +150,7 @@ const RFQ: React.FC = () => {
 
             <FadeInUp delay={500}>
               <div className="group">
-                <label className="block text-sm font-bold text-[#5cc6d0] uppercase tracking-widest mb-3 ml-2 transition-all group-focus-within:translate-x-1">Notes*</label>
+                <label className="block text-sm font-bold text-[#5cc6d0] uppercase tracking-widest mb-3 ml-2 transition-all group-focus-within:translate-x-1">Notes<span className="text-red-500">*</span></label>
                 <textarea
                   name="notes"
                   value={formData.notes}

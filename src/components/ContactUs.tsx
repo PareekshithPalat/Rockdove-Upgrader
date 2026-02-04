@@ -119,7 +119,7 @@ export const ContactUs: React.FC = () => {
                   htmlFor="name"
                   className="text-[#5cc6d0] font-semibold text-sm uppercase tracking-widest mb-2 block"
                 >
-                  Name*
+                  Name<span className="text-red-500">*</span>
                 </label>
                 <input
                   id="name"
@@ -134,7 +134,7 @@ export const ContactUs: React.FC = () => {
                   htmlFor="email"
                   className="text-[#5cc6d0] font-semibold text-sm uppercase tracking-widest mb-2 block"
                 >
-                  Email address*
+                  Email address<span className="text-red-500">*</span>
                 </label>
                 <input
                   id="email"
@@ -149,7 +149,7 @@ export const ContactUs: React.FC = () => {
                   htmlFor="phone"
                   className="text-[#5cc6d0] font-semibold text-sm uppercase tracking-widest mb-2 block"
                 >
-                  Phone*
+                  Phone<span className="text-red-500">*</span>
                 </label>
                 <input
                   id="phone"
@@ -164,7 +164,7 @@ export const ContactUs: React.FC = () => {
                   htmlFor="message"
                   className="text-[#5cc6d0] font-semibold text-sm uppercase tracking-widest mb-2 block"
                 >
-                  Write a message *
+                  Write a message <span className="text-red-500">*</span>
                 </label>
                 <textarea
                   id="message"
