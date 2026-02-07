@@ -101,13 +101,13 @@ const Header: React.FC = () => {
       className="w-full relative top-0 left-0 z-50 bg-black font-[Poppins]"
     >
       <div className="max-w-7xl mx-auto px-6">
-        <div className="h-40 flex items-center justify-between">
+        <div className="h-28 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <img
               src="/rockdove-logo.png"
               alt="RockDove Logo"
-              className="h-32 w-auto"
+              className="h-24 w-auto"
             />
           </Link>
 
