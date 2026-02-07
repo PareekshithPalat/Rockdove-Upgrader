@@ -1,5 +1,5 @@
 import React from "react";
-import { Wrench, Users, Clock, Shield, CheckCircle, Calendar, Phone, Mail } from "lucide-react";
+import { Wrench, Users, Clock, Shield, Calendar, Phone, Mail } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { PageLayout } from "../components/PageLayout";
 import {
@@ -7,8 +7,7 @@ import {
   FadeInLeft,
   FadeInRight,
   ScaleIn,
-  StaggeredContainer,
-  ParallaxSection
+  StaggeredContainer
 } from "../components/animations";
 
 const MRO: React.FC = () => {
@@ -35,16 +34,6 @@ const MRO: React.FC = () => {
     }
   ];
 
-  const capabilities = [
-    "Line Maintenance",
-    "Heavy Maintenance",
-    "Engine Overhaul",
-    "Component Repair",
-    "Avionics Installation",
-    "Interior Refurbishment",
-    "Paint & Livery",
-    "Modification Services"
-  ];
 
   const certifications = [
     "FAA Part 145 Repair Station",
@@ -57,8 +46,8 @@ const MRO: React.FC = () => {
   return (
     <PageLayout>
       <div className="min-h-screen bg-black text-white">
-        {/* Hero Section with Parallax Effect */}
-        <ParallaxSection speed={0.3} className="relative pt-32 pb-20 px-8">
+        {/* Hero Section */}
+        <section className="relative pt-32 pb-20 px-8">
           <div className="max-w-6xl mx-auto">
             {/* Animated title and icon */}
             <FadeInUp delay={200}>
@@ -84,7 +73,7 @@ const MRO: React.FC = () => {
               </div>
             </FadeInUp>
           </div>
-        </ParallaxSection>
+        </section>
 
         {/* Services Section with Staggered Animation */}
         <section className="py-20 px-8">
@@ -115,29 +104,6 @@ const MRO: React.FC = () => {
           </div>
         </section>
 
-        {/* Capabilities Section with Parallax */}
-        <ParallaxSection speed={0.2} className="py-20 px-8 bg-[#0b0d10]/30">
-          <div className="max-w-6xl mx-auto">
-            {/* Animated section title */}
-            <FadeInUp delay={200}>
-              <h2 className="text-4xl font-bold text-center mb-16">Our Capabilities</h2>
-            </FadeInUp>
-
-            {/* Staggered capability cards */}
-            <StaggeredContainer delay={100}>
-              <div className="grid md:grid-cols-4 gap-8">
-                {capabilities.map((capability, index) => (
-                  <ScaleIn key={index} delay={index * 80} scale={0.8}>
-                    <div className="bg-[#0b0d10]/50 border border-[#1a1d22] rounded-xl p-6 text-center hover:bg-[#0b0d10]/70 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#5cc6d0]/20">
-                      <CheckCircle className="w-8 h-8 text-[#5cc6d0] mx-auto mb-4" />
-                      <h3 className="text-xl font-semibold text-[#5cc6d0]">{capability}</h3>
-                    </div>
-                  </ScaleIn>
-                ))}
-              </div>
-            </StaggeredContainer>
-          </div>
-        </ParallaxSection>
 
         {/* Certifications Section with Alternating Animations */}
         <section className="py-20 px-8">
@@ -164,8 +130,8 @@ const MRO: React.FC = () => {
           </div>
         </section>
 
-        {/* Why Choose Us Section with Parallax and Staggered Stats */}
-        <ParallaxSection speed={0.4} className="py-20 px-8 bg-[#0b0d10]/30">
+        {/* Why Choose Us Section with Staggered Stats */}
+        <section className="py-20 px-8 bg-[#0b0d10]/30">
           <div className="max-w-6xl mx-auto">
             {/* Animated section title */}
             <FadeInUp delay={200}>
@@ -203,7 +169,7 @@ const MRO: React.FC = () => {
               </div>
             </StaggeredContainer>
           </div>
-        </ParallaxSection>
+        </section>
 
         {/* Contact Section with Final Animations */}
         <section className="py-20 px-8">
