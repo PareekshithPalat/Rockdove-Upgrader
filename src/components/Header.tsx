@@ -98,7 +98,8 @@ const Header: React.FC = () => {
   return (
     <header
       ref={containerRef}
-      className="w-full relative top-0 left-0 z-50 bg-black text-white font-[Poppins]"
+      className="absolute w-full top-0 left-0 z-[100] bg-transparent font-[Poppins] transition-all duration-300"
+      style={{ transform: 'translateY(var(--header-y, 0))' }}
     >
       <div className="max-w-7xl mx-auto px-6">
         <div className="h-20 flex items-center justify-between">
@@ -107,7 +108,7 @@ const Header: React.FC = () => {
             <img
               src="/rda-gradient-logo--1--1.png"
               alt="RockDove Logo"
-              className="h-10 w-auto"
+              className="h-14 w-auto"
             />
           </Link>
 
@@ -121,11 +122,10 @@ const Header: React.FC = () => {
             >
               <button
                 onClick={() => toggleDropdown("services")}
-                className={`inline-flex items-center gap-2 transition-colors ${
-                  activeDropdown === "services"
-                    ? "text-white"
-                    : "text-[#5CC6D0] hover:text-white"
-                }`}
+                className={`inline-flex items-center gap-2 transition-colors ${activeDropdown === "services"
+                  ? "text-white"
+                  : "text-[#0891B2] hover:text-white"
+                  }`}
               >
                 Services <ChevronDown className="h-5 w-5" />
               </button>
@@ -134,8 +134,10 @@ const Header: React.FC = () => {
                 <div
                   className="absolute left-1/2 -translate-x-1/2 mt-4 w-[998px] rounded-3xl shadow-2xl overflow-hidden"
                   style={{
-                    background:
-                      "linear-gradient(0deg, #5CC6D0, #5CC6D0), linear-gradient(180deg, rgba(0,0,0,0) -6.8%, rgba(0,0,0,0.2) 93.2%)",
+                    background: `
+                      linear-gradient(0deg, #5CC6D0, #5CC6D0),
+                      linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(20, 40, 50, 0.25) 100%)
+                    `,
                   }}
                 >
                   <div className="flex h-full">
@@ -199,7 +201,7 @@ const Header: React.FC = () => {
             {/* RFQ Link */}
             <Link
               to="/rfq"
-              className="text-[#5CC6D0] hover:text-white transition-colors"
+              className="text-[#0891B2] hover:text-white transition-colors"
             >
               RFQ
             </Link>
@@ -212,30 +214,31 @@ const Header: React.FC = () => {
             >
               <button
                 onClick={() => toggleDropdown("company")}
-                className={`inline-flex items-center gap-2 transition-colors ${
-                  activeDropdown === "company"
-                    ? "text-white"
-                    : "text-[#5CC6D0] hover:text-white"
-                }`}
+                className={`inline-flex items-center gap-2 transition-colors ${activeDropdown === "company"
+                  ? "text-white"
+                  : "text-[#0891B2] hover:text-white"
+                  }`}
               >
                 Company <ChevronDown className="h-5 w-5" />
               </button>
 
               {activeDropdown === "company" && (
                 <div
-                  className="absolute left-1/2 -translate-x-1/2 mt-4 w-[1200px] rounded-3xl shadow-2xl overflow-hidden"
+                  className="absolute left-1/2 -translate-x-[51%] mt-4 w-[1000px] rounded-3xl shadow-2xl overflow-hidden"
                   style={{
-                    background:
-                      "linear-gradient(0deg, #5CC6D0, #5CC6D0), linear-gradient(180deg, rgba(0,0,0,0) -6.8%, rgba(0,0,0,0.2) 93.2%)",
+                    background: `
+                      linear-gradient(0deg, #5CC6D0, #5CC6D0),
+                      linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(20, 40, 50, 0.25) 100%)
+                    `,
                   }}
                 >
                   <div className="flex h-full">
-                    <div className="flex-1 p-10">
+                    <div className="flex-1 p-8">
                       <p className="text-black font-medium text-sm mb-6">
                         Know more about Company
                       </p>
 
-                      <div className="grid grid-cols-2 gap-8">
+                      <div className="grid grid-cols-2 gap-6">
                         {COMPANY.map((item) => (
                           <Link
                             key={item.href}
@@ -249,11 +252,12 @@ const Header: React.FC = () => {
                                 className="w-10 h-10 object-contain"
                               />
                             </div>
+
                             <div>
                               <p className="text-black font-semibold text-base">
                                 {item.label}
                               </p>
-                              <p className="text-black/80 text-sm leading-tight">
+                              <p className="text-black/80 text-sm leading-snug">
                                 {item.desc}
                               </p>
                             </div>
@@ -264,26 +268,26 @@ const Header: React.FC = () => {
 
                     <div className="w-[1px] bg-black/20 my-8"></div>
 
-                    <div className="w-[40%] p-10 flex flex-col justify-between">
+                    <div className="w-[34%] p-7 flex flex-col justify-between">
                       <div>
-                        <h4 className="text-black font-semibold text-lg mb-3">
-                          Request for quote
+                        <h4 className="text-black font-semibold text-base mb-2">
+                          Request for Quote
                         </h4>
-                        <p className="text-black/80 text-sm leading-relaxed mb-6">
-                          With our extensive inventory and strategic UAE
-                          locations, we ensure reliable, cost-effective
-                          solutions for Boeing, Airbus, and Embraer fleets.
+                        <p className="text-black/80 text-sm leading-relaxed mb-5">
+                          With our extensive inventory and UAE presence, we
+                          ensure cost-effective, reliable support for Boeing,
+                          Airbus, and Embraer fleets.
                         </p>
                       </div>
 
                       <Link
                         to="/rfq"
-                        className="inline-flex items-center justify-center gap-2 bg-[#EAEAEA] text-black font-semibold text-sm px-5 py-3 rounded-xl transition-all duration-300 w-fit"
+                        className="inline-flex items-center justify-center gap-2 bg-[#EAEAEA] text-black font-semibold text-sm px-4 py-2.5 rounded-xl transition-all duration-300 w-fit"
                       >
                         <img
                           src="/sign.png"
                           alt=""
-                          className="w-10 h-6 opacity-70"
+                          className="w-8 h-5 opacity-70"
                         />
                         Go to Form
                       </Link>
@@ -297,14 +301,14 @@ const Header: React.FC = () => {
           {/* Contact Button */}
           <Link
             to="/contact"
-            className="hidden md:inline-block border border-[#5CC6D0] text-[#5CC6D0] rounded-full px-5 py-2 font-semibold hover:bg-[#5CC6D0] hover:text-black transition"
+            className="hidden md:inline-block border border-[#0891B2] text-[#0891B2] rounded-full px-5 py-2 font-semibold hover:bg-[#0891B2] hover:text-black transition"
           >
             Contact
           </Link>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-[#5CC6D0] hover:text-white"
+            className="md:hidden text-[#0891B2] hover:text-white"
             onClick={() => setMobileOpen((v) => !v)}
           >
             {mobileOpen ? (
@@ -315,21 +319,21 @@ const Header: React.FC = () => {
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* ✅ Fixed Mobile Menu */}
         {mobileOpen && (
-          <div className="md:hidden bg-black border-t border-gray-700 mt-2">
-            <div className="flex flex-col p-4 space-y-4">
-              <Link to="/asset-management">Asset Management</Link>
-              <Link to="/repair-management">Repair Management</Link>
-              <Link to="/aog-support">AOG Support</Link>
+          <div className="md:hidden fixed inset-0 top-20 bg-black bg-opacity-95 backdrop-blur-sm z-50 overflow-y-auto transition-all duration-300">
+            <div className="flex flex-col p-6 space-y-5 text-[#0891B2] font-medium text-lg">
+              <Link to="/asset-management" className="hover:text-white transition-colors" onClick={() => setMobileOpen(false)}>Asset Management</Link>
+              <Link to="/repair-management" className="hover:text-white transition-colors" onClick={() => setMobileOpen(false)}>Repair Management</Link>
+              <Link to="/aog-support" className="hover:text-white transition-colors" onClick={() => setMobileOpen(false)}>AOG Support</Link>
               <hr className="border-gray-700" />
-              <Link to="/the-story">The Story</Link>
-              <Link to="/careers">Careers</Link>
-              <Link to="/mro">MRO</Link>
-              <Link to="/faqs">FAQs</Link>
+              <Link to="/the-story" className="hover:text-white transition-colors" onClick={() => setMobileOpen(false)}>The Story</Link>
+              <Link to="/careers" className="hover:text-white transition-colors" onClick={() => setMobileOpen(false)}>Careers</Link>
+              <Link to="/mro" className="hover:text-white transition-colors" onClick={() => setMobileOpen(false)}>MRO</Link>
+              <Link to="/faqs" className="hover:text-white transition-colors" onClick={() => setMobileOpen(false)}>FAQs</Link>
               <hr className="border-gray-700" />
-              <Link to="/rfq">RFQ</Link>
-              <Link to="/contact">Contact</Link>
+              <Link to="/rfq" className="hover:text-white transition-colors" onClick={() => setMobileOpen(false)}>RFQ</Link>
+              <Link to="/contact" className="hover:text-white transition-colors" onClick={() => setMobileOpen(false)}>Contact</Link>
             </div>
           </div>
         )}

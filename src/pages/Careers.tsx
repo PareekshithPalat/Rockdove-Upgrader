@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { PageLayout } from "../components/PageLayout";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
@@ -6,21 +6,6 @@ import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { RadioGroup, RadioGroupItem } from "../components/ui/radio-group";
 import { Textarea } from "../components/ui/textarea";
-
-const perksData = [
-  { title: "Medical Insurance", description: "Your health, our priority" },
-  { title: "CSR Initiatives", description: "Give back with purpose" },
-  { title: "Weekend Turf", description: "Team sports & bonding every week" },
-  { title: "Festival Celebrations", description: "We celebrate together" },
-  {
-    title: "MRO & International Trips",
-    description: "Experience global exposure",
-  },
-  {
-    title: "Career Growth",
-    description: "Fast-track opportunities in a rising company",
-  },
-];
 
 const jobTypes = [
   { id: "internship", label: "Internship" },
@@ -35,13 +20,41 @@ const jobRoles = [
   { id: "admin", label: "Admin" },
 ];
 
+const positions = [
+  "Procurement Analyst",
+  "Business Associate",
+  "Senior Business Associate",
+  "Senior Finance Manager",
+  "Finance Manager",
+  "Finance Executive",
+  "HR Manager",
+  "Operations Manager",
+  "Digital Marketing Executive",
+  "Office Admin",
+];
+
 const Career = (): JSX.Element => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedPosition, setSelectedPosition] = useState("");
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
     <PageLayout>
-      <div
-        className="bg-black overflow-hidden w-full min-h-screen relative"
-        data-model-id="596:223"
-      >
+      <div className="bg-black overflow-hidden w-full min-h-screen relative">
         <div className="max-w-[1440px] mx-auto">
           <main>
             {/* Hero Section */}
@@ -72,7 +85,7 @@ const Career = (): JSX.Element => {
             </section>
 
             {/* Our Perks Section */}
-            <section className="px-9 py-16 flex flex-col items-center">
+            <section className="px-9 py-20 flex flex-col items-center">
               <h2 className="[font-family:'Poppins',Helvetica] font-bold text-[#5cc6d0] text-[40px] text-left mb-2 ml-[-820px]">
                 Our Perks
               </h2>
@@ -84,49 +97,58 @@ const Career = (): JSX.Element => {
                 {[
                   {
                     title: "Medical Insurance",
-                    description: "Your health, our priority",
+                    description:
+                      "We ensure the health and safety of our employees by providing comprehensive medical insurance coverage for them and their families.",
                   },
                   {
                     title: "CSR Initiatives",
-                    description: "Give back with purpose",
+                    description:
+                      "We actively take part in community development and support social causes that create a positive impact.",
                   },
                   {
                     title: "Weekend Turf",
-                    description: "Team sports & bonding every week",
+                    description:
+                      "Our weekend turf sessions offer a fun way for employees to relax, recharge, and build team spirit.",
                   },
                   {
                     title: "Festival Celebrations",
-                    description: "We celebrate together",
+                    description:
+                      "Every festival is celebrated with enthusiasm, bringing the team together in a joyful and friendly atmosphere.",
                   },
                   {
-                    title: "MRO & International Trips",
-                    description: "Hands-on training & global exposure",
+                    title: "MRO",
+                    description:
+                      "Employees gain valuable exposure through international trips and MRO visits that enhance professional experience and learning.",
                   },
                   {
                     title: "Career Growth",
-                    description: "Fast-track opportunities in a rising company",
+                    description:
+                      "We provide continuous learning opportunities and a clear path for professional development.",
                   },
                   {
                     title: "Flat Hierarchy",
-                    description: "We celebrate together",
+                    description:
+                      "We encourage open communication and easy access to leadership for guidance and collaboration.",
                   },
                   {
                     title: "Awards and Rewards",
-                    description: "Hands-on training & global exposure",
+                    description:
+                      "Employee achievements are recognized and appreciated through regular awards and acknowledgments.",
                   },
                   {
                     title: "Team Outs",
-                    description: "Fast-track opportunities in a rising company",
+                    description:
+                      "Regular team lunches and outings provide a refreshing break from work and help build stronger connections within the team.",
                   },
                 ].map((perk, index) => (
                   <div
                     key={index}
-                    className="bg-[#D9D9D9] w-[311px] h-[245px] rounded-[5px] flex flex-col justify-center items-center text-center shadow-[0px_0px_4px_#00000040] transition-transform hover:scale-[1.03]"
+                    className="bg-[#D9D9D9] w-[320px] h-[260px] rounded-[8px] flex flex-col justify-end items-start text-left shadow-[0px_0px_4px_#00000040] transition-transform hover:scale-[1.03] p-6"
                   >
-                    <h3 className="[font-family:'Poppins',Helvetica] font-semibold text-black text-[20px] mb-3">
+                    <h3 className="[font-family:'Poppins',Helvetica] font-semibold text-black text-[18px] mb-2">
                       {perk.title}
                     </h3>
-                    <p className="[font-family:'Poppins',Helvetica] font-normal text-[#3e3e3e] text-[16px] leading-[30px] max-w-[230px]">
+                    <p className="[font-family:'Poppins',Helvetica] font-normal text-[#3e3e3e] text-[15px] leading-[26px]">
                       {perk.description}
                     </p>
                   </div>
@@ -156,12 +178,12 @@ const Career = (): JSX.Element => {
                             value={type.id}
                             id={type.id}
                             className="
-                  w-4 h-4 border-2 border-[#d9d9d9]
-                  data-[state=checked]:border-[#00E0FF]
-                  data-[state=checked]:bg-[#00E0FF]
-                  data-[state=checked]:shadow-[0_0_6px_#00E0FF]
-                  rounded-full transition-all duration-200
-                "
+                              w-4 h-4 border-2 border-[#d9d9d9]
+                              data-[state=checked]:border-[#00E0FF]
+                              data-[state=checked]:bg-[#00E0FF]
+                              data-[state=checked]:shadow-[0_0_6px_#00E0FF]
+                              rounded-full transition-all duration-200
+                            "
                           />
                           <Label
                             htmlFor={type.id}
@@ -187,12 +209,12 @@ const Career = (): JSX.Element => {
                             value={role.id}
                             id={role.id}
                             className="
-                  w-4 h-4 border-2 border-[#d9d9d9]
-                  data-[state=checked]:border-[#00E0FF]
-                  data-[state=checked]:bg-[#00E0FF]
-                  data-[state=checked]:shadow-[0_0_6px_#00E0FF]
-                  rounded-full transition-all duration-200
-                "
+                              w-4 h-4 border-2 border-[#d9d9d9]
+                              data-[state=checked]:border-[#00E0FF]
+                              data-[state=checked]:bg-[#00E0FF]
+                              data-[state=checked]:shadow-[0_0_6px_#00E0FF]
+                              rounded-full transition-all duration-200
+                            "
                           />
                           <Label
                             htmlFor={role.id}
@@ -205,13 +227,53 @@ const Career = (): JSX.Element => {
                     </RadioGroup>
                   </div>
 
-                  {/* Input Fields */}
+                  {/* Position Dropdown */}
+                  <div ref={dropdownRef} className="relative">
+                    <Label className="[font-family:'Poppins',Helvetica] font-semibold text-white text-xl mb-3 block">
+                      Position Applying For{" "}
+                      <span className="text-[#f50000]">*</span>
+                    </Label>
+                    <button
+                      type="button"
+                      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                      className="h-[50px] w-full bg-[#e7e7e7] rounded-[8px] border border-transparent px-4 text-[#3c3c3c] text-sm [font-family:'Poppins',Helvetica] text-left focus:ring-2 focus:ring-[#00E0FF] focus:outline-none flex justify-between items-center"
+                    >
+                      {selectedPosition || "Select a position"}
+                      <span
+                        className={`text-[#00E0FF] ml-2 transform transition-transform duration-300 ${
+                          isDropdownOpen ? "rotate-180" : "rotate-0"
+                        }`}
+                      >
+                        ▼
+                      </span>
+                    </button>
+
+                    <div
+                      className={`absolute z-10 mt-2 w-full bg-white rounded-[8px] shadow-lg transition-all duration-300 ease-in-out overflow-hidden ${
+                        isDropdownOpen
+                          ? "max-h-60 opacity-100"
+                          : "max-h-0 opacity-0"
+                      }`}
+                    >
+                      <ul className="py-2 max-h-60 overflow-y-auto scrollbar-thin scrollbar-thumb-[#00E0FF]/50 scrollbar-track-transparent">
+                        {positions.map((pos) => (
+                          <li
+                            key={pos}
+                            onClick={() => {
+                              setSelectedPosition(pos);
+                              setIsDropdownOpen(false);
+                            }}
+                            className="px-4 py-2 text-[#3c3c3c] hover:bg-[#00E0FF]/20 cursor-pointer [font-family:'Poppins',Helvetica]"
+                          >
+                            {pos}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Remaining Input Fields */}
                   {[
-                    {
-                      id: "position",
-                      label: "Position Applying For",
-                      placeholder: "Enter your specific role",
-                    },
                     {
                       id: "name",
                       label: "Enter your name",
@@ -315,7 +377,12 @@ const Career = (): JSX.Element => {
               <h2 className="[font-family:'Poppins',Helvetica] font-bold text-[#5cc6d0] text-[40px] text-center mb-8">
                 Grow with Rockdove Aviation - Contact HR
               </h2>
-              <Button className="h-auto rounded-[40px] bg-[linear-gradient(180deg,rgba(92,198,208,1)_0%,rgba(20,145,155,1)_100%)] border-0 [font-family:'Poppins',Helvetica] font-bold text-white text-2xl px-12 py-4 hover:opacity-90 transition-opacity">
+              <Button className="flex items-center gap-3 h-auto rounded-[40px] bg-[linear-gradient(180deg,rgba(92,198,208,1)_0%,rgba(20,145,155,1)_100%)] border-0 [font-family:'Poppins',Helvetica] font-bold text-white text-2xl px-12 py-4 hover:opacity-90 transition-opacity">
+                <img
+                  src="/smail.svg"
+                  alt="Mail Icon"
+                  className="w-6 h-6 object-contain"
+                />
                 HR@rockdoveaviation.com
               </Button>
             </section>

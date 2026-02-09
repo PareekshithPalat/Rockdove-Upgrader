@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -17,19 +17,23 @@ const Features: React.FC = () => {
 
     if (!section || !plane || !blueLine) return;
 
-    // Scroll animation
+    const isMobile = window.innerWidth < 768;
+    const distance = isMobile ? 1300 : 900;
+
+    // Scroll animation for plane and blue line growth
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
         start: "top center",
-        end: "bottom bottom",
-        scrub: 1,
+        end: "bottom center",
+        scrub: 2,
       },
     });
-    // Plane movement along the line
-    tl.fromTo(plane, { y: 0 }, { y: 900, ease: "none" }, 0);
 
-    // Line color progress (white to cyan as plane moves)
+    // Plane movement along the line
+    tl.fromTo(plane, { y: 0 }, { y: distance, ease: "none" }, 0);
+
+    // Line growth animation
     tl.fromTo(
       blueLine,
       { scaleY: 0 },
@@ -37,7 +41,7 @@ const Features: React.FC = () => {
       0
     );
 
-    // Fade-in animations for text blocks
+    // Fade-in animations for text blocks on scroll
     const texts = gsap.utils.toArray<HTMLElement>(".feature-block");
     texts.forEach((text) => {
       gsap.fromTo(
@@ -46,12 +50,12 @@ const Features: React.FC = () => {
         {
           opacity: 1,
           y: 0,
-          duration: 1.2,
+          duration: 1,
           ease: "power3.out",
           scrollTrigger: {
             trigger: text,
             start: "top 80%",
-            toggleActions: "play none none none", // only once
+            toggleActions: "play none none none",
           },
         }
       );
@@ -61,44 +65,46 @@ const Features: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[230vh] bg-black text-white flex flex-col items-center justify-start py-24 font-[Poppins]"
+      className="relative min-h-[120vh] bg-black text-white flex flex-col items-center justify-start py-24 font-[Poppins]"
     >
       {/* Title */}
       <h2 className="text-[48px] font-semibold text-center leading-[100%] text-white mb-32">
         Fly safe with parts you <span className="text-[#5CC6D0]">trust.</span>
       </h2>
 
-      {/* Vertical Lines */}
+      {/* Static White Line */}
       <div
         ref={whiteLineRef}
-        className="absolute top-[280px] left-1/2 w-[10px] h-[900px] bg-white rounded-full -translate-x-1/2"
+        className="absolute top-[280px] left-[20px] md:left-1/2 w-[4px] md:w-[10px] h-[1300px] md:h-[900px] bg-white rounded-full -translate-x-1/2"
       ></div>
 
+      {/* Glowing Cyan Line (grows + glows continuously) */}
       <div
         ref={blueLineRef}
-        className="absolute top-[280px] left-1/2 w-[10px] h-[900px] bg-[#5CC6D0] rounded-full -translate-x-1/2 scale-y-0"
+        className="absolute top-[280px] left-[20px] md:left-1/2 w-[4px] md:w-[10px] h-[1300px] md:h-[900px] bg-[#2D7F87] rounded-full -translate-x-1/2 scale-y-0 glow-line"
       ></div>
 
-      {/* Plane */}
+      {/* Plane (scrolls with GSAP) */}
       <img
         ref={planeRef}
         src="/sliderplane.png"
         alt="Plane"
-        className="absolute top-[250px] left-1/2 w-[120px] h-[120px] rotate-0 -translate-x-1/2"
+        className="absolute top-[250px] left-[20px] md:left-1/2 w-[40px] h-[40px] md:w-[120px] md:h-[120px] -translate-x-1/2 z-10"
       />
 
-      {/* Zigzag Feature Blocks */}
-      <div className="mt-[-100px]  flex flex-col gap-[120px] w-full max-w-[1200px]">
-        {/* 01 - Left */}
-        <div className="feature-block flex justify-start ml-[5vw] mt-[20vh]">
-          <div className="max-w-[440px] text-left space-y-3">
-            <div className="text-[#5CC6D0] font-bold text-[40px] leading-[100%]">
+      {/* Feature Blocks */}
+      {/* Feature Blocks */}
+      <div className="mt-0 md:mt-20 flex flex-col gap-24 md:gap-[150px] w-full max-w-[1400px] px-6 sm:px-10 z-20">
+        {/* 01 - Mobile: Right of line, Desktop: Left */}
+        <div className="feature-block flex justify-end md:justify-start md:ml-0">
+          <div className="w-full pl-12 md:pl-0 max-w-none md:max-w-[480px] text-left space-y-3">
+            <div className="text-[#5CC6D0] font-bold text-[32px] md:text-[40px] leading-[100%]">
               01
             </div>
-            <h3 className="text-[32px] font-medium leading-[110%]">
+            <h3 className="text-[26px] md:text-[32px] font-semibold md:font-medium leading-[110%] text-white">
               Quality we follow
             </h3>
-            <p className="text-[16px] font-normal text-gray-300 leading-[160%] tracking-wide">
+            <p className="text-[15px] md:text-[16px] text-gray-300 leading-[160%] tracking-wide">
               RDA ensures top-quality products and on-time support, backed by
               ISO 9001:2015 compliance, ASA, and NBAA memberships. Regular
               audits reflect our commitment to being the premier aviation
@@ -107,16 +113,16 @@ const Features: React.FC = () => {
           </div>
         </div>
 
-        {/* 02 - Right */}
+        {/* 02 - Mobile: Right of line, Desktop: Right */}
         <div className="feature-block flex justify-end">
-          <div className="max-w-[440px] mr-[100px] mr-[4vw] mt-[-15vh]  text-right space-y-3">
-            <div className="text-[#5CC6D0] font-bold text-[40px] leading-[100%]">
+          <div className="w-full pl-12 md:pl-0 max-w-none md:max-w-[480px] md:mt-[-15vh] text-left md:text-right space-y-3">
+            <div className="text-[#5CC6D0] font-bold text-[32px] md:text-[40px] leading-[100%]">
               02
             </div>
-            <h3 className="text-[32px] font-medium leading-[110%]">
+            <h3 className="text-[26px] md:text-[32px] font-semibold md:font-medium leading-[110%] text-white">
               Logistics
             </h3>
-            <p className="text-[16px] font-normal text-gray-300 leading-[160%] tracking-wide">
+            <p className="text-[15px] md:text-[16px] text-gray-300 leading-[160%] tracking-wide">
               Our team ensures timely global delivery of aircraft parts,
               partnering with trusted providers like DHL, FedEx, UPS, and TWI.
               We collaborate with private air, sea, and freight forwarders for
@@ -125,16 +131,16 @@ const Features: React.FC = () => {
           </div>
         </div>
 
-        {/* 03 - Left */}
-        <div className="feature-block flex justify-start">
-          <div className="max-w-[440px]  ml-[5vw] mt-[-10vh] text-left space-y-3">
-            <div className="text-[#5CC6D0] font-bold text-[40px] leading-[100%]">
+        {/* 03 - Mobile: Right of line, Desktop: Left */}
+        <div className="feature-block flex justify-end md:justify-start">
+          <div className="w-full pl-12 md:pl-0 max-w-none md:max-w-[480px] md:mt-[-10vh] text-left space-y-3">
+            <div className="text-[#5CC6D0] font-bold text-[32px] md:text-[40px] leading-[100%]">
               03
             </div>
-            <h3 className="text-[32px] font-medium leading-[110%]">
+            <h3 className="text-[26px] md:text-[32px] font-semibold md:font-medium leading-[110%] text-white">
               From OEM to Customer
             </h3>
-            <p className="text-[16px] font-normal text-gray-300 leading-[160%] tracking-wide">
+            <p className="text-[15px] md:text-[16px] text-gray-300 leading-[160%] tracking-wide">
               A trusted distributor of aerospace tools and placards, RDA
               specializes in aircraft parts for the Asia-Pacific, Middle East,
               and Africa. As an official OEM distributor, we guarantee quality
@@ -143,16 +149,16 @@ const Features: React.FC = () => {
           </div>
         </div>
 
-        {/* 04 - Right */}
+        {/* 04 - Mobile: Right of line, Desktop: Right */}
         <div className="feature-block flex justify-end">
-          <div className="max-w-[440px] mr-[100px] mr-[4vw] mt-[-15vh] text-right space-y-3">
-            <div className="text-[#5CC6D0] font-bold text-[40px] leading-[100%]">
+          <div className="w-full pl-12 md:pl-0 max-w-none md:max-w-[480px] md:mt-[-15vh] text-left md:text-right space-y-3">
+            <div className="text-[#5CC6D0] font-bold text-[32px] md:text-[40px] leading-[100%]">
               04
             </div>
-            <h3 className="text-[32px] font-medium leading-[110%]">
+            <h3 className="text-[26px] md:text-[32px] font-semibold md:font-medium leading-[110%] text-white">
               Accreditation
             </h3>
-            <p className="text-[16px] font-normal text-gray-300 leading-[160%] tracking-wide">
+            <p className="text-[15px] md:text-[16px] text-gray-300 leading-[160%] tracking-wide">
               Partnerships with SAT, Logisky, Shanghai Junuun Aviation, and
               JS-Tooling elevate our repair, tooling, and distribution services.
               We ensure fast turnaround, high precision, and unmatched service

@@ -1,28 +1,24 @@
-import React from "react";
+import React, { useState, Suspense, lazy, useEffect, useRef } from "react";
 import { PageLayout } from "../components/PageLayout";
 import { Button } from "../components/ui/button";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+const Spline = lazy(() => import("@splinetool/react-spline"));
+gsap.registerPlugin(ScrollTrigger);
 
 const advantages = [
   {
     title: "Advantage 1",
     description: "Always-on team for global, time-sensitive needs.",
-    gradient: true,
-    titleColor: "text-white",
-    descriptionColor: "text-black",
   },
   {
     title: "Advantage 2",
     description: "Reduces expenses by addressing urgent issues efficiently.",
-    gradient: false,
-    titleColor: "text-black",
-    descriptionColor: "text-black",
   },
   {
     title: "Advantage 3",
     description: "Certified quality and innovation for trusted performance.",
-    gradient: false,
-    titleColor: "text-black",
-    descriptionColor: "text-black",
   },
 ];
 
@@ -53,25 +49,17 @@ const processSteps = [
   },
 ];
 
-// ✅ Added highlight for the blue logo
 const logisticsPartners = [
-  {
-    src: "/dhl.png",
-    alt: "Dhl",
-  },
+  { src: "/dhl.png", alt: "DHL" },
   {
     src: "https://c.animaapp.com/mh4e1d40mbxSsz/img/logo-mobile-removebg-preview-1.png",
     alt: "Blue Logo",
-    highlight: true, // 👈 only this one gets the gray rounded background
   },
   {
     src: "https://c.animaapp.com/mh4e1d40mbxSsz/img/tnt-logo-png-5-1.png",
-    alt: "Tnt logo png",
+    alt: "TNT",
   },
-  {
-    src: "/fedex.png",
-    alt: "Fedex",
-  },
+  { src: "/fedex.png", alt: "FedEx" },
   {
     src: "https://c.animaapp.com/mh4e1d40mbxSsz/img/united-parcel-service-logo-2014-svg-1.png",
     alt: "UPS",
@@ -79,147 +67,157 @@ const logisticsPartners = [
 ];
 
 const AOGSupport: React.FC = () => {
+  const [showHeading, setShowHeading] = useState(false);
+  const heroRef = useRef<HTMLDivElement | null>(null);
+  const splineRef = useRef<HTMLDivElement | null>(null);
+
+  const handleSplineLoad = () => {
+    setTimeout(() => {
+      setShowHeading(true);
+    }, 1000);
+  };
+
+  useEffect(() => {
+    if (heroRef.current && splineRef.current) {
+      const ctx = gsap.context(() => {
+        gsap.fromTo(
+          splineRef.current,
+          { y: 80, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 2,
+            scrollTrigger: {
+              trigger: heroRef.current,
+              start: "top 90%",
+              end: "bottom 30%",
+              scrub: true,
+            },
+          }
+        );
+      }, heroRef);
+      return () => ctx.revert();
+    }
+  }, []);
+
   return (
     <PageLayout>
-      <div className="bg-black text-white overflow-hidden">
+      <div className="bg-black text-white overflow-x-hidden">
         {/* ====================== HERO SECTION ====================== */}
         <section
-          className="w-full"
-          style={{
-            paddingLeft: "205px",
-            paddingRight: "205px",
-            paddingTop: "80px",
-            paddingBottom: "56px",
-            boxSizing: "border-box",
-          }}
+          ref={heroRef}
+          className="relative w-full h-screen flex flex-col justify-center items-center overflow-hidden"
         >
+          {/* Background Glow */}
           <div
-            style={{
-              maxWidth: "1200px",
-              margin: "0 auto",
-              display: "grid",
-              gridTemplateColumns: "832px 1fr",
-              columnGap: "48px",
-              alignItems: "start",
-            }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0"
+            style={{ width: "55vw", height: "55vh" }}
           >
-            {/* LEFT COLUMN */}
-            <div style={{ width: "832px" }}>
-              <h1
-                style={{
-                  fontFamily: "Poppins, sans-serif",
-                  fontWeight: 700,
-                  fontSize: "40px",
-                  lineHeight: "150%",
-                  margin: 0,
-                }}
-              >
-                <span style={{ color: "#5CC6D0" }}>24/7 AOG Support </span>
-                <span style={{ color: "#FFFFFF", marginLeft: 6 }}>
-                  (Aircraft on ground)
-                </span>
-              </h1>
-
-              <div style={{ height: "28px" }} />
-
-              <p
-                className="shadow-lg transform translate-y-12 -translate-x-4 lg:translate-y-12 lg:-translate-x-[-10px]"
-                style={{
-                  fontFamily: "Poppins, sans-serif",
-                  fontWeight: 500,
-                  fontSize: "21px",
-                  lineHeight: "1.6",
-                  color: "#ffffff",
-                  margin: 0,
-                  maxWidth: "520px",
-                  textAlign: "left",
-                  letterSpacing: "0.05em",
-                }}
-              >
-                Our priority service ensures parts are ready
-                <br />
-                for pickup in 60–90 minutes, delivering fast,
-                <br />
-                cost-effective solutions to minimize
-                <br />
-                downtime during Aircraft-on-Ground
-                <br />
-                emergencies
-              </p>
-
-              <div style={{ height: "36px" }} />
-
-              <Button
-                className="shadow-lg transform translate-y-12 -translate-x-4 lg:translate-y-12 lg:-translate-x-[-20px]"
-                style={{
-                  width: 367,
-                  height: 53,
-                  borderRadius: 40,
-                  background:
-                    "linear-gradient(180deg, #5CC6D0 0%, #14919B 100%)",
-                  color: "#ffffff",
-                  fontFamily: "Poppins, sans-serif",
-                  fontWeight: 500,
-                  fontSize: 20,
-                  lineHeight: "100%",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: "0 24px",
-                  boxShadow: "0 6px 18px rgba(0,0,0,0.25)",
-                }}
-              >
-                Request AOG Assistance Now
-              </Button>
-            </div>
-
-            {/* RIGHT COLUMN - Mascot box */}
             <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "start",
-              }}
+              className="w-full h-full rounded-full bg-[#5cc6d0] opacity-30"
+              style={{ filter: "blur(100px)" }}
+            ></div>
+          </div>
+
+          {/* 3D Spline Scene */}
+          <div
+            ref={splineRef}
+            className="
+              absolute inset-0 z-10 flex items-center justify-center pointer-events-none
+              transform -translate-y-10
+            "
+          >
+            <div
+              className="
+                relative flex justify-center items-center
+                w-[120vw] sm:w-[140vw] md:w-[160vw] lg:w-[180vw] xl:w-[200vw]
+                h-[55vh] sm:h-[65vh] md:h-[75vh]
+              "
             >
-              <div
-                className="shadow-lg transform translate-y-12 -translate-x-4 lg:translate-y-28 lg:-translate-x-40"
-                style={{
-                  width: 290,
-                  height: 335,
-                  background: "#D9D9D9",
-                  borderRadius: 20,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
+              <Suspense
+                fallback={
+                  <div className="flex items-center justify-center text-gray-400 text-sm h-full">
+                    Loading 3D model...
+                  </div>
+                }
               >
-                <span
-                  style={{
-                    color: "#5CC6D0",
-                    fontFamily: "Poppins, sans-serif",
-                    fontWeight: 500,
-                  }}
-                >
-                  Mascot
-                </span>
-              </div>
+                <Spline
+                  scene="https://prod.spline.design/sha7cJ5NS-EhRcKr/scene.splinecode"
+                  onLoad={handleSplineLoad}
+                  className="spline-canvas"
+                />
+              </Suspense>
             </div>
           </div>
+
+          {/* Animated Heading */}
+          <div
+            className={`absolute inset-0 flex items-start justify-center pt-24 sm:pt-32 md:pt-40 z-20 transition-opacity duration-1000 ${
+              showHeading ? "opacity-100" : "opacity-0"
+            } transform -translate-y-16`}
+          >
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center px-4">
+              <span className="text-[#5cc6d0]">24/7 AOG Support </span>
+              <span className="text-white">(Aircraft on ground)</span>
+            </h1>
+          </div>
+
+          {/* Paragraph + Button */}
+          <div
+            className={`absolute bottom-10 left-0 right-0 flex flex-col items-center z-20 transition-opacity duration-1000 ${
+              showHeading ? "opacity-100" : "opacity-0"
+            } px-4`}
+          >
+            <p
+              className="text-base sm:text-lg md:text-xl text-white text-center max-w-full sm:max-w-xl md:max-w-3xl mb-8"
+              style={{ lineHeight: "1.6" }}
+            >
+              Our priority service ensures parts are ready for pickup in 60–90
+              minutes, delivering fast, cost-effective solutions to minimize
+              downtime during Aircraft-on-Ground emergencies
+            </p>
+            <Button
+              className="shadow-lg w-full sm:w-auto"
+              style={{
+                maxWidth: 367,
+                height: 40,
+                borderRadius: 40,
+                background:
+                  "linear-gradient(180deg, #5CC6D0 0%, #14919B 100%)",
+                color: "#ffffff",
+                fontFamily: "Poppins, sans-serif",
+                fontWeight: 500,
+                fontSize: "clamp(16px, 5vw, 20px)",
+                lineHeight: "100%",
+              }}
+            >
+              Request AOG Assistance Now
+            </Button>
+          </div>
+
+          {/* Mobile Fix for 3D Model */}
+          <style>
+            {`
+              @media (max-width: 768px) {
+                .spline-canvas canvas {
+                  transform: scale(1.4) translateY(25px);
+                  transform-origin: center;
+                }
+              }
+
+              @media (max-width: 480px) {
+                .spline-canvas canvas {
+                  transform: scale(1.55) translateY(30px);
+                  transform-origin: center;
+                }
+              }
+            `}
+          </style>
         </section>
 
         {/* ====================== ADVANTAGES SECTION ====================== */}
-        <section
-          className="
-          flex flex-col items-center 
-          px-[180px] md:px-[160px] lg:px-[205px] 
-          pt-48 pb-24 
-          text-center bg-black text-white
-        "
-        >
-          <h2
-            className="max-w-3xl text-3xl md:text-4xl leading-snug mb-16"
-            style={{ lineHeight: "1.4" }}
-          >
+        <section className="flex flex-col items-center px-4 sm:px-8 md:px-16 lg:px-24 py-24 text-center bg-black text-white">
+          <h2 className="max-w-3xl text-3xl md:text-4xl leading-snug mb-16">
             <span className="font-medium text-white">
               Keeping Your Aircraft Airborne in <br />
             </span>
@@ -230,35 +228,12 @@ const AOGSupport: React.FC = () => {
             {advantages.map((advantage, index) => (
               <div
                 key={index}
-                className="
-                  group 
-                  rounded-[20px] 
-                  w-[341px] 
-                  h-[300px]
-                  flex flex-col justify-center items-start 
-                  px-8 py-6 mx-auto 
-                  transition-all duration-300 ease-in-out
-                  transform hover:scale-105
-                  bg-[#D9D9D9]
-                  hover:bg-[linear-gradient(180deg,#5CC6D0_0%,#0097A1_100%)]
-                  shadow-lg
-                "
+                className="group rounded-[20px] w-full h-[300px] flex flex-col justify-center items-start px-8 py-6 mx-auto transition-all duration-300 ease-in-out transform hover:scale-105 bg-[#D9D9D9] hover:bg-[linear-gradient(180deg,#5CC6D0_0%,#0097A1_100%)] shadow-lg"
               >
-                <h3
-                  className="
-                    font-[600] text-2xl mb-4 transition-colors duration-300 
-                    text-black group-hover:text-white font-[Poppins] mt-[-40px]
-                  "
-                >
+                <h3 className="font-[600] text-2xl mb-4 transition-colors duration-300 text-black group-hover:text-white font-[Poppins] mt-[-40px]">
                   {advantage.title}
                 </h3>
-
-                <p
-                  className="
-                    text-black font-medium text-lg leading-relaxed tracking-wide 
-                    mt-[25px] text-left
-                  "
-                >
+                <p className="text-black font-medium text-lg leading-relaxed tracking-wide mt-[25px] text-left">
                   {advantage.description}
                 </p>
               </div>
@@ -266,59 +241,31 @@ const AOGSupport: React.FC = () => {
           </div>
         </section>
 
-        {/* ====================== RAPID RESPONSE SECTION (UPDATED SPACING) ====================== */}
-        <section className="flex flex-col items-center px-4 sm:px-8 md:px-16 lg:px-32 pt-24 pb-32 text-center">
-          {/* Section Title */}
-          <h2
-            className="max-w-2xl font-bold text-3xl md:text-4xl mb-14"
-            style={{
-              fontFamily: "Poppins, sans-serif",
-              lineHeight: "1.4",
-            }}
-          >
+        {/* ====================== RAPID RESPONSE SECTION ====================== */}
+        <section className="flex flex-col items-center px-4 sm:px-8 md:px-16 lg:px-24 pt-24 pb-32 text-center">
+          <h2 className="max-w-2xl font-bold text-3xl md:text-4xl mb-14">
             <span className="text-white">Rapid Response: </span>
             <span className="text-[#5cc6d0]">From Request to Resolution</span>
           </h2>
 
-          {/* Section Paragraph (added more space below title) */}
-          <p
-            className="max-w-3xl text-lg md:text-xl text-white mb-24"
-            style={{
-              fontFamily: "Poppins, sans-serif",
-              lineHeight: "1.8",
-              color: "#E5E5E5",
-            }}
-          >
+          <p className="max-w-3xl text-lg md:text-xl text-white mb-24">
             When you select our AOG Priority service, we guarantee prompt
             action. Our committed and agile team handles all aspects to
             seamlessly assist during Aircraft-on-Ground scenarios.
           </p>
 
-          {/* Process Steps */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 max-w-6xl">
             {processSteps.map((step, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center text-center"
-                style={{ fontFamily: "Poppins, sans-serif" }}
-              >
-                {/* Step Number */}
+              <div key={index} className="flex flex-col items-center text-center">
                 <span className="text-[#5cc6d0] font-bold text-4xl mb-6">
                   {step.number}
                 </span>
-
-                {/* Step Title */}
                 <span className="text-white font-semibold text-lg mb-4 leading-snug">
                   {step.title}
                 </span>
-
-                {/* Step Description */}
                 <p
                   className="text-white text-base font-medium leading-relaxed"
-                  style={{
-                    maxWidth: "260px",
-                    color: "#E5E5E5",
-                  }}
+                  style={{ maxWidth: "260px", color: "#E5E5E5" }}
                 >
                   {step.description}
                 </p>
@@ -328,50 +275,21 @@ const AOGSupport: React.FC = () => {
         </section>
 
         {/* ====================== LOGISTICS SECTION ====================== */}
-        <section className="flex flex-col items-center px-4 sm:px-8 md:px-16 lg:px-32 pt-24 pb-32 text-center">
+        <section className="flex flex-col items-center px-4 sm:px-8 md:px-16 lg:px-24 pt-24 pb-32 text-center">
           <h2 className="max-w-3xl font-bold text-3xl md:text-4xl mb-16">
             <span className="text-white">Logistics support for our</span>
             <span className="text-[#5cc6d0]"> AOG</span>
             <span className="text-white"> orders.</span>
           </h2>
 
-          {/* Top row (3 logos) */}
-          <div className="flex flex-wrap justify-center gap-12 pt-12 mb-10">
-            {logisticsPartners.slice(0, 3).map((partner, index) => (
+          <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-12">
+            {logisticsPartners.map((partner, index) => (
               <div
                 key={index}
-                className="
-          flex items-center justify-center 
-          bg-[#d9d9d9] rounded-[20px]
-          w-[220px] h-[120px]
-          shadow-md transition-transform duration-300 ease-in-out
-          hover:scale-105 hover:shadow-lg
-        "
+                className="flex items-center justify-center bg-[#d9d9d9] rounded-[20px] w-[180px] h-[100px] sm:w-[200px] sm:h-[110px] md:w-[220px] md:h-[120px] shadow-md transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
               >
                 <img
-                  className="w-[140px] h-[70px] object-contain"
-                  alt={partner.alt}
-                  src={partner.src}
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* Bottom row (2 logos, centered) */}
-          <div className="flex justify-center gap-12 pt-12 mb-16">
-            {logisticsPartners.slice(3).map((partner, index) => (
-              <div
-                key={index}
-                className="
-          flex items-center justify-center 
-          bg-[#d9d9d9] rounded-[20px]
-          w-[220px] h-[120px]
-          shadow-md transition-transform duration-300 ease-in-out
-          hover:scale-105 hover:shadow-lg
-        "
-              >
-                <img
-                  className="w-[140px] h-[70px] object-contain"
+                  className="w-[100px] sm:w-[120px] md:w-[140px] h-auto object-contain"
                   alt={partner.alt}
                   src={partner.src}
                 />

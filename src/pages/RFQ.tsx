@@ -13,6 +13,8 @@ const RFQ: React.FC = () => {
     notes: "",
   });
 
+
+
   const formRef = useRef<HTMLDivElement | null>(null);
 
   const handleChange = (
@@ -24,6 +26,17 @@ const RFQ: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const url = "https://script.google.com/macros/s/AKfycbxcW6jiHtOKpjmYdC6AFdmG3NYyui7weUHoNpWUTs_R3YaXiB2NDomNppCbziO9T_1r/exec"; // TODO: Replace with your Google Apps Script URL
+    fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString(),
+    })
+        .then((res) => res.text())
+        .then((data) => {
+            alert(data);
+        })
+        .catch((error) => console.log(error));
 
     // Simple professional visual effect
     const button = document.getElementById("submit-btn");

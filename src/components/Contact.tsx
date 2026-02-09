@@ -2,32 +2,30 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
-import { MascotModel } from "./MascotModel";
 
 export const Contact: React.FC = () => {
   return (
-    <section className="bg-black text-white py-24 md:py-32">
+    <section className="bg-black text-white pt-12 pb-32">
       <div
         className="
           max-w-[1280px] mx-auto 
           px-6 sm:px-10 md:px-16 lg:px-20 
-          grid grid-cols-1 lg:grid-cols-2 
-          gap-12 lg:gap-20 items-center
+          flex flex-col items-center text-center
         "
       >
-        {/* LEFT CONTENT */}
+        {/* CENTER CONTENT */}
         <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="space-y-8 mt-10 lg:mt-24 pl-4 md:pl-10"
+          className="space-y-8 mt-10 lg:mt-24 max-w-3xl"
         >
-          <h2 className="font-[Poppins] font-bold text-[#5CC6D0] text-4xl md:text-5xl leading-tight">
+          <h2 className="font-[Poppins] font-bold text-[#5CC6D0] text-5xl md:text-7xl leading-tight">
             Let’s Talk Business
           </h2>
 
-          <p className="font-[Poppins] text-gray-300 text-base md:text-lg leading-relaxed max-w-lg">
+          <p className="font-[Poppins] text-gray-300 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
             Ready to elevate your fleet? <br />
             At Rockdove Aviation, we deliver fast, reliable parts and tailored
             support to keep your aircraft soaring without interruption.
@@ -38,7 +36,7 @@ export const Contact: React.FC = () => {
               relative isolate overflow-hidden group
               bg-gradient-to-b from-[#5CC6D0] to-[#14919B]
               text-white font-[Poppins] font-semibold
-              text-base md:text-lg px-10 py-3.5 rounded-xl
+              text-lg md:text-xl px-12 py-4 rounded-xl
               border border-[#5CC6D0]/40
               transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
               hover:scale-[1.04] active:scale-[0.98]
@@ -68,17 +66,6 @@ export const Contact: React.FC = () => {
               "
             ></span>
           </Button>
-        </motion.div>
-
-        {/* RIGHT IMAGE (MASCOT MODEL) */}
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          viewport={{ once: true }}
-          className="flex justify-center lg:justify-end lg:pr-10 xl:pr-20"
-        >
-          <MascotModel />
         </motion.div>
       </div>
     </section>

@@ -24,10 +24,10 @@ export const MascotModel = () => {
         <ambientLight intensity={1.2} />
         <directionalLight position={[3, 5, 2]} intensity={1.5} />
 
-        {/* Mascot */}
+        {/* Mascot
         <Suspense fallback={null}>
           <Mascot url="/robot.glb" />
-        </Suspense>
+        </Suspense> */}
 
         {/* No OrbitControls */}
       </Canvas>

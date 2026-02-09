@@ -5,19 +5,21 @@ import { ChevronDown } from "lucide-react";
 
 const faqItems = [
   {
-    question: "What kind of certificate will come with the products?",
-    answer:
-      "All our products come with proper certification documents including traceability records, material certificates, and compliance documentation as required by aviation standards.",
+    question: "What kind of certificate will come with products?",
+    answer: `OEM/MFC COC
+FAA 8130
+EASA FORM1`,
   },
   {
     question: "What is the warranty period for the unit supplied?",
-    answer:
-      "We provide comprehensive warranty coverage for all supplied units, with terms varying based on the specific component and manufacturer requirements. Contact us for detailed warranty information.",
+    answer: `NEW – 1YR
+SERVICEABLE 3–6 MONTH
+REPAIRED 1–3 MONTHS
+OVERHAUL 6–9 MONTHS`,
   },
   {
     question: "Average self life for the consumable supplied?",
-    answer:
-      "Consumable shelf life varies by product type and storage conditions. We provide detailed shelf life information with each consumable item and can advise on optimal storage practices.",
+    answer: `70% AND ABOVE`,
   },
   {
     question: "How quickly can RDA deliver parts for an urgent AOG situation?",
@@ -34,7 +36,7 @@ export const FAQ: React.FC = () => {
   };
 
   return (
-    <section className="bg-black text-white py-20">
+    <section className="bg-black text-white pt-24 pb-12">
       {/* Container with same width & side gaps as other sections */}
       <div className="w-full max-w-[1200px] mx-auto grid md:grid-cols-2 gap-12 md:gap-20 px-[5vw] items-start">
         {/* Left Section (vertical offset) */}
@@ -46,7 +48,7 @@ export const FAQ: React.FC = () => {
             ease: [0.25, 0.1, 0.25, 1],
           }}
           viewport={{ once: true }}
-          className="space-y-4 mt-10 md:mt-16" // vertical offset
+          className="space-y-4 mt-10 md:mt-16"
         >
           <h2 className="text-4xl md:text-5xl font-semibold font-[Poppins]">
             FAQS
@@ -111,7 +113,7 @@ export const FAQ: React.FC = () => {
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                       transition={{ delay: 0.05, duration: 0.4 }}
-                      className="text-[#5CC6D0] text-sm md:text-base font-[Poppins] font-medium leading-relaxed pb-4"
+                      className="text-[#5CC6D0] text-sm md:text-base font-[Poppins] font-medium leading-relaxed pb-4 whitespace-pre-line"
                     >
                       {faq.answer}
                     </motion.div>

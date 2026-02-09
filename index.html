@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>ROCKDOVE</title>
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-    <link href="tailwind.css" rel="stylesheet" />
+
+<head>
+  <meta charset="utf-8" />
+  <title>ROCKDOVE</title>
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link href="tailwind.css" rel="stylesheet" />
   <!-- Poppins font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <!-- Preloader markup -->
-    <div id="preloader">
-      <div class="plane-container">
-        <!-- Airplane image -->
-        <img
-          class="plane"
-          src="/flightpreloader.png"
-          alt="Airplane"
-        />
-      </div>
+</head>
+
+<body>
+  <!-- Preloader markup -->
+  <div id="preloader"
+    style="background: #000; position: fixed; inset: 0; z-index: 9999; display: flex; align-items: flex-end; justify-content: center; overflow: hidden;">
+    <div class="plane-container">
+      <img class="plane" src="/flightpreloader.png" alt="Airplane"
+        style="width: 40vw; max-width: 500px; height: auto; opacity: 0; transform: translateY(110vh);" />
     </div>
+  </div>
 
-    <!-- React root -->
-    <div id="root"></div>
+  <!-- React root -->
+  <div id="root"></div>
 
-    <script type="module" src="./src/index.tsx"></script>
-  </body>
+  <script type="module" src="./src/index.tsx"></script>
+</body>
+
 </html>

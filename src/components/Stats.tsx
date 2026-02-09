@@ -2,7 +2,7 @@ import React from "react";
 
 export const Stats: React.FC = () => {
   return (
-    <section className="py-16 md:py-24 px-4 md:px-8">
+    <section className="bg-black text-white py-24 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         <h2 className="[font-family:'Poppins',Helvetica] font-semibold text-3xl md:text-5xl text-center tracking-[0] leading-[normal] animate-fade-up">
           <span className="text-[#5cc6d0]">
@@ -22,7 +22,10 @@ export const Stats: React.FC = () => {
         </div>
 
         <div className="mt-8 md:mt-12 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 lg:gap-24">
-          <div className="text-center transition-transform duration-500 hover:scale-110 animate-fade-up" style={{animationDelay: '0.1s', opacity: 0}}>
+          <div
+            className="text-center transition-transform duration-500 hover:scale-110 animate-fade-up"
+            style={{ animationDelay: "0.1s", opacity: 0 }}
+          >
             <div className="[font-family:'Poppins',Helvetica] font-bold text-[#55cccc] text-3xl md:text-[40px] tracking-[0] leading-[normal]">
               27k+
             </div>
@@ -37,7 +40,10 @@ export const Stats: React.FC = () => {
             src="/7z2dnha8-removebg-preview-1.png"
           />
 
-          <div className="text-center transition-transform duration-500 hover:scale-110 animate-fade-up" style={{animationDelay: '0.3s', opacity: 0}}>
+          <div
+            className="text-center transition-transform duration-500 hover:scale-110 animate-fade-up"
+            style={{ animationDelay: "0.3s", opacity: 0 }}
+          >
             <div className="[font-family:'Poppins',Helvetica] font-bold text-[#55cccc] text-3xl md:text-[40px] text-center tracking-[0] leading-[normal]">
               400,000
             </div>

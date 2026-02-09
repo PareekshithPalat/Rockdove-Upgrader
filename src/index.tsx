@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import "./index.css";
+import "../tailwind.css";
 
 const root = createRoot(document.getElementById("root") as HTMLElement);
 root.render(
@@ -10,12 +11,14 @@ root.render(
   </StrictMode>
 );
 
-// TEMP: Always show preloader for 4 seconds (for local dev/testing)
+// Preloader removal logic
 const loader = document.getElementById("preloader");
 if (loader) {
+  // Wait for 4s (matching the plane animation)
   setTimeout(() => {
     document.body.classList.add("loaded");
     loader.classList.add("hidden");
-    setTimeout(() => loader.remove(), 1000); // fade out over 1s
-  }, 4000); // preloader visible for 4s
+    // Remove element after fade transition
+    setTimeout(() => loader.remove(), 1000);
+  }, 4000);
 }
