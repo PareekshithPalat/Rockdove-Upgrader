@@ -58,20 +58,20 @@ const Career = (): JSX.Element => {
         <div className="max-w-[1440px] mx-auto">
           <main>
             {/* Hero Section */}
-            <section className="flex flex-col items-center px-9 py-16 translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]">
+            <section className="flex flex-col items-center px-9 pt-32 md:pt-48 pb-16 animate-fade-in">
               <h1 className="[font-family:'Poppins',Helvetica] font-bold text-[40px] text-center leading-[60px] mb-6">
                 <span className="text-[#5cc6d0]">Soar with</span>
                 <br />
                 <span className="text-white">Rockdove Aviation</span>
               </h1>
-              <p className="[font-family:'Poppins',Helvetica] font-medium text-white text-[32px] text-center max-w-[931px]">
+              <p className="[font-family:'Poppins',Helvetica] font-medium text-white text-[24px] md:text-[32px] text-center max-w-[931px]">
                 Be part of a fast-growing aviation leader
               </p>
             </section>
 
             {/* Why Join Us */}
-            <section className="flex flex-col items-center px-9 py-16 translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:400ms]">
-              <h2 className="[font-family:'Poppins',Helvetica] font-bold text-white text-[40px] text-center mb-6">
+            <section className="flex flex-col items-center px-9 py-16 animate-fade-in">
+              <h2 className="[font-family:'Poppins',Helvetica] font-bold text-white text-[32px] md:text-[40px] text-center mb-6">
                 Why Join Us?
               </h2>
               <div className="w-[93px] h-[3px] bg-[#5cc6d0] mb-8" />
@@ -371,8 +371,8 @@ const Career = (): JSX.Element => {
             </section>
 
             {/* Contact HR Section */}
-            <section className="flex flex-col items-center px-9 h-[400px] py-16 translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]">
-              <h2 className="[font-family:'Poppins',Helvetica] font-bold text-[#5cc6d0] text-[40px] text-center mb-8">
+            <section className="flex flex-col items-center px-9 py-24 animate-fade-in">
+              <h2 className="[font-family:'Poppins',Helvetica] font-bold text-[#5cc6d0] text-[32px] md:text-[40px] text-center mb-8 uppercase">
                 Grow with Rockdove Aviation - Contact HR
               </h2>
               <Button className="flex items-center gap-3 h-auto rounded-[40px] bg-[linear-gradient(180deg,rgba(92,198,208,1)_0%,rgba(20,145,155,1)_100%)] border-0 [font-family:'Poppins',Helvetica] font-bold text-white text-2xl px-12 py-4 hover:opacity-90 transition-opacity">

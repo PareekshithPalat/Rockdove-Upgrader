@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Send, Phone, Mail, CheckCircle2 } from "lucide-react";
+import { Send, Phone, Mail, CheckCircle2, ArrowDown } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { PageLayout } from "../components/PageLayout";
 import { FadeInUp } from "../components/animations";
@@ -56,28 +56,28 @@ const RFQ: React.FC = () => {
       <div className="bg-black text-white min-h-screen font-[Poppins] relative overflow-x-hidden">
         {/* ============ HERO SECTION ============ */}
         <section className="px-6 sm:px-10 md:px-20 lg:px-40 xl:px-64 pt-32 md:pt-48 pb-20 flex flex-col lg:flex-row justify-between items-center gap-12">
-          <div className="max-w-2xl space-y-8 text-center lg:text-left">
+          <div className="max-w-4xl space-y-8 text-center lg:text-left">
             <FadeInUp>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#5cc6d0] leading-tight">
-                Request for Quote <br className="hidden md:block" />
+              <h1 className="text-3xl md:text-4xl lg:text-[48px] font-bold leading-tight whitespace-nowrap">
+                <span className="text-[#5cc6d0]">Request for Quote</span>{" "}
                 <span className="text-white">(RFQ)</span>
               </h1>
             </FadeInUp>
 
             <FadeInUp delay={200}>
-              <p className="text-gray-300 text-lg md:text-xl leading-relaxed">
+              <p className="text-gray-300 text-lg md:text-xl leading-relaxed max-w-2xl">
                 Submit your parts requirements and receive competitive quotes from
                 our global network. Expect a professional response within{" "}
-                <span className="text-[#5cc6d0] font-semibold">2 hours.</span>
+                <span className="text-[#5cc6d0] font-semibold">24 hours.</span>
               </p>
             </FadeInUp>
 
             <FadeInUp delay={400}>
               <Button
                 onClick={scrollToForm}
-                className="bg-[#5cc6d0] text-black px-10 py-6 rounded-full font-bold text-lg hover:bg-[#4ab5bf] transition-all shadow-lg shadow-[#5cc6d0]/20"
+                className="bg-[#5cc6d0] text-black px-10 py-6 rounded-full font-bold text-lg hover:bg-[#4ab5bf] transition-all shadow-lg shadow-[#5cc6d0]/20 flex items-center gap-2 mx-auto lg:mx-0"
               >
-                Start Your Quote
+                Scroll down to form <ArrowDown className="w-5 h-5" />
               </Button>
             </FadeInUp>
           </div>
@@ -213,7 +213,7 @@ const RFQ: React.FC = () => {
             <h3 className="text-[#5cc6d0] text-2xl md:text-4xl font-black mb-6 uppercase tracking-widest">
               Need Direct Assistance?
             </h3>
-            <p className="text-gray-300 mb-16 text-lg md:text-xl max-w-2xl mx-auto font-light">
+            <p className="text-gray-300 mb-16 text-lg md:text-xl mx-auto font-light">
               Our support team is available 24/7 to help you with urgent parts requirements.
             </p>
           </FadeInUp>
