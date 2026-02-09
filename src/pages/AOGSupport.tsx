@@ -53,7 +53,7 @@ const logisticsPartners = [
   { src: "/dhl.png", alt: "DHL" },
   {
     src: "https://c.animaapp.com/mh4e1d40mbxSsz/img/logo-mobile-removebg-preview-1.png",
-    alt: "Blue Logo",
+    alt: "Sterling",
   },
   {
     src: "https://c.animaapp.com/mh4e1d40mbxSsz/img/tnt-logo-png-5-1.png",
@@ -152,9 +152,8 @@ const AOGSupport: React.FC = () => {
 
           {/* Animated Heading */}
           <div
-            className={`absolute inset-0 flex items-start justify-center pt-24 sm:pt-32 md:pt-40 z-20 transition-opacity duration-1000 ${
-              showHeading ? "opacity-100" : "opacity-0"
-            } transform -translate-y-16`}
+            className={`absolute inset-0 flex items-start justify-center pt-24 sm:pt-32 md:pt-40 z-20 transition-opacity duration-1000 ${showHeading ? "opacity-100" : "opacity-0"
+              } transform -translate-y-16`}
           >
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center px-4">
               <span className="text-[#5cc6d0]">24/7 AOG Support </span>
@@ -164,9 +163,8 @@ const AOGSupport: React.FC = () => {
 
           {/* Paragraph + Button */}
           <div
-            className={`absolute bottom-10 left-0 right-0 flex flex-col items-center z-20 transition-opacity duration-1000 ${
-              showHeading ? "opacity-100" : "opacity-0"
-            } px-4`}
+            className={`absolute bottom-10 left-0 right-0 flex flex-col items-center z-20 transition-opacity duration-1000 ${showHeading ? "opacity-100" : "opacity-0"
+              } px-4`}
           >
             <p
               className="text-base sm:text-lg md:text-xl text-white text-center max-w-full sm:max-w-xl md:max-w-3xl mb-8"
@@ -282,19 +280,41 @@ const AOGSupport: React.FC = () => {
             <span className="text-white"> orders.</span>
           </h2>
 
-          <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-12">
-            {logisticsPartners.map((partner, index) => (
-              <div
-                key={index}
-                className="flex items-center justify-center bg-[#d9d9d9] rounded-[20px] w-[180px] h-[100px] sm:w-[200px] sm:h-[110px] md:w-[220px] md:h-[120px] shadow-md transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
-              >
-                <img
-                  className="w-[100px] sm:w-[120px] md:w-[140px] h-auto object-contain"
-                  alt={partner.alt}
-                  src={partner.src}
-                />
-              </div>
-            ))}
+          <div className="flex flex-col gap-8 md:gap-12 w-full max-w-5xl mx-auto">
+            {/* First Row: 3 logos (DHL, Sterling, TNT) */}
+            <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-12">
+              {logisticsPartners.slice(0, 3).map((partner, index) => (
+                <div
+                  key={index}
+                  className="flex items-center justify-center bg-[#d9d9d9] rounded-[20px] w-[180px] h-[100px] sm:w-[200px] sm:h-[110px] md:w-[220px] md:h-[120px] shadow-md transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg p-4"
+                >
+                  <img
+                    className="max-w-full max-h-full w-auto h-auto object-contain"
+                    alt={partner.alt}
+                    src={partner.src}
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* Second Row: 2 logos (FedEx, UPS) */}
+            <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-12">
+              {logisticsPartners.slice(3).map((partner, index) => (
+                <div
+                  key={index}
+                  className="flex items-center justify-center bg-[#d9d9d9] rounded-[20px] w-[180px] h-[100px] sm:w-[200px] sm:h-[110px] md:w-[220px] md:h-[120px] shadow-md transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg p-4"
+                >
+                  <img
+                    className={`${partner.alt === "UPS"
+                      ? "max-h-[85%] w-auto"
+                      : "max-w-full max-h-full w-auto h-auto"
+                      } object-contain`}
+                    alt={partner.alt}
+                    src={partner.src}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       </div>
