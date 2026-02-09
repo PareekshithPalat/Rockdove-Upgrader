@@ -168,7 +168,7 @@ export const Footer: React.FC = () => {
       </div>
 
       {/* BOTTOM BAR */}
-      <div className="flex flex-col md:flex-row justify-between items-center md:items-start px-4 sm:px-8 md:px-12 py-3 md:py-4 text-[12px] md:text-[14px] text-black gap-2 md:gap-0 text-left">
+      <div className="flex flex-col md:flex-row justify-between items-center px-4 sm:px-8 md:px-12 py-3 md:py-4 text-[12px] md:text-[14px] text-black gap-2 md:gap-0">
         <p>Copyright © 2025 | All Rights Reserved</p>
 
         {/* SOCIALS */}
@@ -199,8 +199,6 @@ export const Footer: React.FC = () => {
             className="w-6 h-6 opacity-90 hover:opacity-100 transition"
           />
         </div>
-
-        <p>Certificates: NBAA membership, ISO, ASA</p>
       </div>
     </footer>
   );
