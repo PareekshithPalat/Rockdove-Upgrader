@@ -37,6 +37,7 @@
     "vanta": "^0.5.24"
   },
   "devDependencies": {
+    "@types/node": "^25.2.2",
     "@types/react": "18.2.0",
     "@types/react-dom": "18.2.0",
     "@types/three": "^0.180.0",

@@ -1,10 +1,64 @@
 import React, { Suspense, useRef, useState, useEffect } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, ThreeEvent } from "@react-three/fiber";
 import { motion, useSpring, useTransform, MotionValue } from "framer-motion";
 import * as THREE from "three";
-import { SkyBackground } from "./animations/SkyBackground";
 import { AirplaneModel } from "./animations/AirplaneModel";
 import { Button } from "./ui/button";
+import { PerspectiveCamera, OrbitControls } from "@react-three/drei";
+
+// AOG Style Background Glow (Matches 24/7 AOG Support branding)
+const NeonBackground: React.FC = () => {
+  return (
+    <div className="absolute inset-0 z-0 bg-black overflow-hidden pointer-events-none select-none">
+      {/* Centered Tiffany Blue Glow */}
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0"
+        style={{
+          width: "60vw",
+          height: "60vh",
+          background: "#5cc6d0",
+          opacity: 0.55,
+          filter: "blur(160px)",
+          borderRadius: "50%"
+        }}
+      />
+    </div>
+  );
+};
+
+
+
+
+
+
+
+
+
+// Error Boundary
+class SceneErrorBoundary extends React.Component<
+  { children: React.ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  componentDidCatch(error: any, errorInfo: any) {
+    console.error("3D Scene Error:", error, errorInfo);
+  }
+  render() {
+    if (this.state.hasError)
+      return (
+        <div className="absolute inset-0 flex items-center justify-center text-white bg-black">
+          3D Scene Error
+        </div>
+      );
+    return this.props.children;
+  }
+}
 
 export const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -44,11 +98,7 @@ export const Hero: React.FC = () => {
       }
     };
 
-    const container = containerRef.current;
-    if (container) {
-      // Use window-level for more reliable "catch" when returning to top
-      window.addEventListener('wheel', handleWheel, { passive: false });
-    }
+    window.addEventListener('wheel', handleWheel, { passive: false });
     return () => {
       window.removeEventListener('wheel', handleWheel);
     };
@@ -64,53 +114,50 @@ export const Hero: React.FC = () => {
   const textY = useTransform(smoothProgress, [0, 0.25], [0, -800]);
 
   return (
-    <section
-      ref={containerRef}
-      className="relative w-full h-screen overflow-hidden bg-gradient-to-b from-sky-400 to-sky-200"
-    >
+    <section ref={containerRef} className="hero-mask relative w-full h-screen overflow-hidden bg-black">
+      {/* BACKGROUND */}
+      <NeonBackground />
+
       {/* 3D SCENE */}
       <div className="absolute inset-0 w-full h-full z-10">
-        <Canvas
-          shadows
-          camera={{ position: [0, 1.4, 8], fov: 45 }}
-          gl={{ antialias: true, alpha: true }}
-        >
-          <Suspense fallback={null}>
-            <ambientLight intensity={0.6} />
-            <pointLight position={[10, 10, 10]} intensity={1.5} color="#ffffff" />
-            <pointLight position={[-10, 5, -5]} intensity={1} color="#e0f2fe" />
-            <directionalLight
-              position={[5, 10, 5]}
-              intensity={2.5}
-              castShadow
-              shadow-mapSize={[2048, 2048]}
-            />
-            <hemisphereLight intensity={0.5} color="#87ceeb" groundColor="#ffffff" />
-
-            <SkyBackground />
-
-            <CinematicController progress={smoothProgress} />
-          </Suspense>
-        </Canvas>
+        <SceneErrorBoundary>
+          <Canvas
+            shadows
+            gl={{ antialias: true, alpha: true }}
+          >
+            <Suspense fallback={null}>
+              <PerspectiveCamera makeDefault position={[0, 1.4, 8]} fov={45} />
+              <ambientLight intensity={0.5} />
+              <pointLight position={[10, 10, 10]} intensity={2} />
+              <pointLight position={[-10, 5, -5]} intensity={1.5} />
+              <directionalLight
+                position={[5, 10, 5]}
+                intensity={4}
+                castShadow
+                shadow-mapSize={[2048, 2048]}
+              />
+              <hemisphereLight intensity={1} />
+              <CinematicController progress={smoothProgress} />
+            </Suspense>
+          </Canvas>
+        </SceneErrorBoundary>
       </div>
 
-      {/* TEXT CONTENT - Balanced positioning */}
-      <div className="relative z-20 h-full w-full flex flex-col items-center justify-end pb-24 pointer-events-none">
+      {/* UI - Balanced positioning shifted slightly up (pb-20) */}
+      <div className="relative z-20 h-full w-full flex flex-col items-center justify-end pb-20 pointer-events-none">
         <motion.div
           style={{ opacity: textOpacity, y: textY }}
-          className="text-center px-4 sm:px-8 md:px-12 flex flex-col items-center"
+          className="text-center px-4 flex flex-col items-center"
         >
-          <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-4 leading-tight drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]">
-            Parts, Service and <span className="text-cyan-400">Solution</span>
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]">
+            Parts, Service and <span className="text-[#5cc6D0]">Solution</span>
           </h1>
-
-          <p className="text-base sm:text-lg md:text-xl text-white max-w-2xl mx-auto mb-8 px-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+          <p className="text-lg text-white max-w-2xl mb-8 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
             The one-stop destination for all your aircraft components and
             servicing for a safe flight.
           </p>
-
           <Button
-            className="h-[48px] px-8 rounded-xl border-0 shadow-[0_4px_14px_rgba(92,198,208,0.4)] text-white font-semibold text-lg min-w-[160px]"
+            className="h-[48px] px-8 rounded-xl text-white font-semibold text-lg pointer-events-auto"
             style={{
               background: "linear-gradient(180deg, #5CC6D0 0%, #05848E 100%)",
             }}
@@ -119,95 +166,142 @@ export const Hero: React.FC = () => {
           </Button>
         </motion.div>
       </div>
+
+      {/* 🔥 EDGE VIGNETTE (FINAL POLISH) */}
+      <div className="pointer-events-none absolute inset-0 z-30">
+        <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-black to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black to-transparent" />
+      </div>
     </section>
   );
 };
 
+
+
+
 const CinematicController: React.FC<{ progress: MotionValue<number> }> = ({ progress }) => {
   const airplaneRef = useRef<THREE.Group>(null);
+  const controlsRef = useRef<any>(null);
+  const [hoveredObject, setHoveredObject] = useState<THREE.Object3D | null>(null);
+  const [isInteracting, setIsInteracting] = useState(false);
 
   useFrame((state) => {
     const p = progress.get();
     const camera = state.camera;
+    const time = state.clock.elapsedTime;
 
     // --- ROBUST BOUNDARY CONSTANTS ---
-    const startPos = { x: 0, y: 6.0, z: 0 };    // High-altitude (User's red line)
+    const startPos = { x: 0, y: 6.0, z: 0 };    // High-altitude
     const settledPos = { x: 0, y: 0.8, z: 1 };   // P=0.25 (Standard cruise)
     const midPos = { x: 0, y: 0.8, z: 45 };     // P=0.6
-    const endPos = { x: 0, y: 0.8, z: 150 };   // P=1.0
+    const endPos = { x: 0, y: 0.8, z: 150 };    // P=1.0
 
     // Camera Reference Points
-    const camInitial = { x: 0, y: 6.5, z: 9 };   // Keep "little top" angle above plane
-    const camMidTarget = { x: 0, y: 2.5, z: 8 }; // Balanced lift
-    const camLanding = { x: 0, y: 4, z: 22 };   // Final chase position
+    const camInitial = { x: 0, y: 6.5, z: 9 };
+    const camMidTarget = { x: 0, y: 2.5, z: 8 };
+    const camLanding = { x: 0, y: 4, z: 22 };
 
-    // 1. Airplane Logistics: Unified Positive Z (Towards Screen)
+    const targetCamPos = new THREE.Vector3();
+    const targetLookAt = new THREE.Vector3();
+
+    // 1. Airplane Logistics
     if (airplaneRef.current) {
       const airplane = airplaneRef.current;
       airplane.scale.setScalar(0.25);
       airplane.rotation.set(0, 0, 0);
 
+      const hoverY = Math.sin(time * 0.8) * 0.05;
+      const breathingX = Math.cos(time * 0.5) * 0.02;
+      const breathingZ = Math.sin(time * 0.4) * 0.03;
+
       if (p <= 0.25) {
         const subP = p / 0.25;
-        // Act 1: Smooth Descent from High-Start
         const currentY = THREE.MathUtils.lerp(startPos.y, settledPos.y, subP);
         const currentZ = THREE.MathUtils.lerp(startPos.z, settledPos.z, subP);
-        airplane.position.set(startPos.x, currentY, currentZ);
+        airplane.position.set(startPos.x, currentY + hoverY, currentZ);
+        airplane.rotation.x = breathingX;
+        airplane.rotation.z = breathingZ;
+        airplane.scale.setScalar(0.25);
       }
-      else if (p > 0.25 && p <= 0.6) {
+      else if (p <= 0.6) {
         const subP = (p - 0.25) / 0.35;
-        // Act 2: Approach
         const currentZ = THREE.MathUtils.lerp(settledPos.z, midPos.z, subP);
-        airplane.position.set(midPos.x, midPos.y, currentZ);
-        airplane.scale.setScalar(0.25 + subP * 0.1);
+        airplane.position.set(midPos.x, settledPos.y + hoverY, currentZ);
+        airplane.scale.setScalar(THREE.MathUtils.lerp(0.25, 0.35, subP));
+        airplane.rotation.x = breathingX;
+        airplane.rotation.z = breathingZ;
       }
-      else if (p > 0.6) {
+      else {
         const subP = (p - 0.6) / 0.4;
-        // Act 3: Massive Departure
         const currentZ = THREE.MathUtils.lerp(midPos.z, endPos.z, subP);
         airplane.position.set(midPos.x, midPos.y, currentZ);
         airplane.scale.setScalar(0.35 * (1 - subP * 0.98));
-        airplane.rotation.z = Math.sin(subP * 15) * 0.05; // Reduced Banking
+        airplane.rotation.z = Math.sin(subP * 15) * 0.03;
       }
+      airplane.visible = p < 0.99;
     }
 
-    // 2. Camera Logistics: Robust Continuity
+    // 2. Camera Logistics
     if (p <= 0.25) {
       const subP = p / 0.25;
-      // Camera smoothly lowers from high vantage as plane descends
-      const currentCamY = THREE.MathUtils.lerp(camInitial.y, camMidTarget.y, subP);
-      const currentCamZ = THREE.MathUtils.lerp(camInitial.z, camMidTarget.z, subP);
-      camera.position.set(0, currentCamY, currentCamZ);
-
-      // Track airplane nose (interpolated)
+      targetCamPos.lerpVectors(
+        new THREE.Vector3(camInitial.x, camInitial.y, camInitial.z),
+        new THREE.Vector3(camMidTarget.x, camMidTarget.y, camMidTarget.z),
+        subP
+      );
       const currentPlaneY = THREE.MathUtils.lerp(startPos.y, settledPos.y, subP);
       const currentPlaneZ = THREE.MathUtils.lerp(startPos.z, settledPos.z, subP);
-      camera.lookAt(0, currentPlaneY, currentPlaneZ);
+      targetLookAt.set(0, currentPlaneY, currentPlaneZ);
     }
-    else if (p > 0.25 && p <= 0.6) {
+    else if (p <= 0.6) {
       const subP = (p - 0.25) / 0.35;
-
-      // Side-sweep orbit to land behind (Z=22)
       const sweepX = Math.sin(subP * Math.PI) * 16;
-      const climbHeight = camMidTarget.y + Math.sin(subP * Math.PI) * 18;
-      const currentCamZ = THREE.MathUtils.lerp(camInitial.z - 1, camLanding.z, subP); // Adjusted for Z-8 start
+      const climbHump = Math.sin(subP * Math.PI) * 18;
+      const currentCamY = THREE.MathUtils.lerp(camMidTarget.y, camLanding.y, subP) + climbHump;
+      const currentCamZ = THREE.MathUtils.lerp(camMidTarget.z, camLanding.z, subP);
 
-      camera.position.set(sweepX, climbHeight, currentCamZ);
-
-      // Track airplane at its constant mid-height (interpolated Z)
+      targetCamPos.set(sweepX, currentCamY, currentCamZ);
       const currentPlaneZ = THREE.MathUtils.lerp(settledPos.z, midPos.z, subP);
-      camera.lookAt(0, settledPos.y, currentPlaneZ);
+      targetLookAt.set(0, settledPos.y, currentPlaneZ);
     }
-    else if (p > 0.6) {
-      // Locked Chase Perspective
-      camera.position.copy(new THREE.Vector3(camLanding.x, camLanding.y, camLanding.z));
-      camera.lookAt(0, settledPos.y, 2000);
+    else {
+      const subP = (p - 0.6) / 0.4;
+      targetCamPos.set(camLanding.x, camLanding.y, camLanding.z);
+      // Continuous lookat: start at midPos.z (where the previous phase ended) and go to 2000
+      const lookAtZ = THREE.MathUtils.lerp(midPos.z, 2000, subP);
+      targetLookAt.set(0, settledPos.y, lookAtZ);
+    }
+
+    if (!isInteracting && controlsRef.current) {
+      camera.position.lerp(targetCamPos, 0.1);
+      controlsRef.current.target.lerp(targetLookAt, 0.1);
+      controlsRef.current.update();
+    } else if (!controlsRef.current) {
+      camera.position.copy(targetCamPos);
+      camera.lookAt(targetLookAt);
     }
   });
 
   return (
-    <group ref={airplaneRef}>
-      <AirplaneModel />
-    </group>
+    <>
+      <OrbitControls
+        ref={controlsRef}
+        enablePan={false}
+        enableZoom={false}
+        rotateSpeed={0.5}
+        onStart={() => setIsInteracting(true)}
+        onEnd={() => setIsInteracting(false)}
+      />
+      <group ref={airplaneRef}>
+        <AirplaneModel
+          hoveredObject={hoveredObject}
+          onPointerMove={(e: ThreeEvent<PointerEvent>) =>
+            setHoveredObject(e.object)
+          }
+          onPointerOut={() => setHoveredObject(null)}
+        />
+      </group>
+    </>
   );
 };
+
