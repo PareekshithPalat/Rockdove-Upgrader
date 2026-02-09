@@ -85,7 +85,7 @@ const Career = (): JSX.Element => {
             </section>
 
             {/* Our Perks Section */}
-            <section className="px-9 py-20 flex flex-col items-center">
+            {/* <section className="px-9 py-20 flex flex-col items-center">
               <h2 className="[font-family:'Poppins',Helvetica] font-bold text-[#5cc6d0] text-[40px] text-left mb-2 ml-[-820px]">
                 Our Perks
               </h2>
@@ -154,7 +154,7 @@ const Career = (): JSX.Element => {
                   </div>
                 ))}
               </div>
-            </section>
+            </section> */}
 
             {/* Application Form */}
             <section className="relative px-4 sm:px-6 md:px-12 lg:px-[178px] py-24 bg-transparent">
@@ -240,20 +240,18 @@ const Career = (): JSX.Element => {
                     >
                       {selectedPosition || "Select a position"}
                       <span
-                        className={`text-[#00E0FF] ml-2 transform transition-transform duration-300 ${
-                          isDropdownOpen ? "rotate-180" : "rotate-0"
-                        }`}
+                        className={`text-[#00E0FF] ml-2 transform transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : "rotate-0"
+                          }`}
                       >
                         ▼
                       </span>
                     </button>
 
                     <div
-                      className={`absolute z-10 mt-2 w-full bg-white rounded-[8px] shadow-lg transition-all duration-300 ease-in-out overflow-hidden ${
-                        isDropdownOpen
-                          ? "max-h-60 opacity-100"
-                          : "max-h-0 opacity-0"
-                      }`}
+                      className={`absolute z-10 mt-2 w-full bg-white rounded-[8px] shadow-lg transition-all duration-300 ease-in-out overflow-hidden ${isDropdownOpen
+                        ? "max-h-60 opacity-100"
+                        : "max-h-0 opacity-0"
+                        }`}
                     >
                       <ul className="py-2 max-h-60 overflow-y-auto scrollbar-thin scrollbar-thumb-[#00E0FF]/50 scrollbar-track-transparent">
                         {positions.map((pos) => (

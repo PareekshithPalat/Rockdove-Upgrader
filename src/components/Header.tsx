@@ -102,11 +102,11 @@ const Header: React.FC = () => {
       style={{ transform: 'translateY(var(--header-y, 0))' }}
     >
       <div className="max-w-7xl mx-auto px-6">
-        <div className="h-20 flex items-center justify-between">
+        <div className="h-28 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <img
-              src="/rda-gradient-logo--1--1.png"
+              src="/rockdove-logo.png"
               alt="RockDove Logo"
               className="h-14 w-auto"
             />

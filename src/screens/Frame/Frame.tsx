@@ -1,5 +1,4 @@
 import { ChevronDown as ChevronDownIcon } from "lucide-react";
-import React from "react";
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 
@@ -130,9 +129,9 @@ export const Frame = (): JSX.Element => {
 
       <header className="absolute top-[58px] left-[58px] right-[58px] flex items-center justify-between">
         <img
-          className="w-[191px] h-[60px] object-cover transition-transform duration-300 hover:scale-105"
+          className="w-[450px] h-[140px] object-contain transition-transform duration-300 hover:scale-105"
           alt="Rda gradient logo"
-          src="/rda-gradient-logo--1--1.png"
+          src="/rockdove-logo.png"
         />
 
         <nav className="flex items-center gap-8">
@@ -164,12 +163,12 @@ export const Frame = (): JSX.Element => {
           <span className="text-[#5cc6d0]"> Solution</span>
         </h1>
 
-        <p className="mt-[115px] w-[1161px] -ml-[65px] [font-family:'Poppins',Helvetica] font-medium text-white text-xl text-center tracking-[0] leading-[normal] animate-fade-up" style={{animationDelay: '0.2s', opacity: 0}}>
+        <p className="mt-[115px] w-[1161px] -ml-[65px] [font-family:'Poppins',Helvetica] font-medium text-white text-xl text-center tracking-[0] leading-[normal] animate-fade-up" style={{ animationDelay: '0.2s', opacity: 0 }}>
           The one-stop destination for all of your aircraft components
           <br /> and servicing for a safe flight
         </p>
 
-        <Button className="mt-[103px] h-auto bg-[#5cc6d0] rounded-[40px] border-0 px-8 py-2 transition-all duration-300 hover:bg-[#4ab5bf] hover:scale-110 hover:shadow-lg hover:shadow-[#5cc6d0]/50 animate-fade-up" style={{animationDelay: '0.4s', opacity: 0}}>
+        <Button className="mt-[103px] h-auto bg-[#5cc6d0] rounded-[40px] border-0 px-8 py-2 transition-all duration-300 hover:bg-[#4ab5bf] hover:scale-110 hover:shadow-lg hover:shadow-[#5cc6d0]/50 animate-fade-up" style={{ animationDelay: '0.4s', opacity: 0 }}>
           <span className="[font-family:'Poppins',Helvetica] font-semibold text-white text-[15px] tracking-[0] leading-[normal]">
             Know more
           </span>
@@ -198,17 +197,15 @@ export const Frame = (): JSX.Element => {
         {serviceCards.map((card, index) => (
           <Card
             key={index}
-            className={`w-[281px] h-[345px] rounded-[20px] border-0 transition-all duration-500 hover:scale-105 hover:shadow-2xl cursor-pointer group ${
-              card.gradient
-                ? "bg-[linear-gradient(180deg,rgba(92,198,208,1)_0%,rgba(0,151,161,1)_100%)] hover:shadow-[#5cc6d0]/50"
-                : "bg-[#d9d9d9] hover:shadow-gray-500/50"
-            }`}
+            className={`w-[281px] h-[345px] rounded-[20px] border-0 transition-all duration-500 hover:scale-105 hover:shadow-2xl cursor-pointer group ${card.gradient
+              ? "bg-[linear-gradient(180deg,rgba(92,198,208,1)_0%,rgba(0,151,161,1)_100%)] hover:shadow-[#5cc6d0]/50"
+              : "bg-[#d9d9d9] hover:shadow-gray-500/50"
+              }`}
           >
             <CardContent className="p-8 flex flex-col justify-between h-full">
               <h3
-                className={`[font-family:'Poppins',Helvetica] font-semibold text-2xl tracking-[0] leading-[normal] whitespace-pre-line ${
-                  card.gradient ? "text-white" : "text-black"
-                }`}
+                className={`[font-family:'Poppins',Helvetica] font-semibold text-2xl tracking-[0] leading-[normal] whitespace-pre-line ${card.gradient ? "text-white" : "text-black"
+                  }`}
               >
                 {card.title}
               </h3>
@@ -413,7 +410,7 @@ export const Frame = (): JSX.Element => {
 
         <div className="absolute top-[41px] left-[77px] w-[242px] h-[138px]">
           <img
-            className="absolute top-0 left-0 w-[198px] h-[62px] object-cover transition-transform duration-300 hover:scale-105"
+            className="absolute top-0 left-0 w-[280px] h-[88px] object-contain transition-transform duration-300 hover:scale-105"
             alt="Rda black logo"
             src="/rda-black-logo.png"
           />

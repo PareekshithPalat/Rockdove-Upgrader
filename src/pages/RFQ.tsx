@@ -1,7 +1,8 @@
 import React, { useState, useRef } from "react";
-import { Send, Phone, Mail } from "lucide-react";
+import { Send, Phone, Mail, CheckCircle2 } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { PageLayout } from "../components/PageLayout";
+import { FadeInUp } from "../components/animations";
 
 const RFQ: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -12,8 +13,6 @@ const RFQ: React.FC = () => {
     quality: "",
     notes: "",
   });
-
-
 
   const formRef = useRef<HTMLDivElement | null>(null);
 
@@ -26,17 +25,17 @@ const RFQ: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const url = "https://script.google.com/macros/s/AKfycbxcW6jiHtOKpjmYdC6AFdmG3NYyui7weUHoNpWUTs_R3YaXiB2NDomNppCbziO9T_1r/exec"; // TODO: Replace with your Google Apps Script URL
+    const url = "https://script.google.com/macros/s/AKfycbxcW6jiHtOKpjmYdC6AFdmG3NYyui7weUHoNpWUTs_R3YaXiB2NDomNppCbziO9T_1r/exec";
     fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData).toString(),
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString(),
     })
-        .then((res) => res.text())
-        .then((data) => {
-            alert(data);
-        })
-        .catch((error) => console.log(error));
+      .then((res) => res.text())
+      .then((data) => {
+        alert(data);
+      })
+      .catch((error) => console.log(error));
 
     // Simple professional visual effect
     const button = document.getElementById("submit-btn");
@@ -46,62 +45,64 @@ const RFQ: React.FC = () => {
         button.classList.remove("scale-95", "bg-[#4ab5bf]");
       }, 300);
     }
-
-    console.log("RFQ submitted:", formData);
   };
 
   const scrollToForm = () => {
     formRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const sectionPadding: React.CSSProperties = {
-    paddingLeft: "260px",
-    paddingRight: "260px",
-    paddingTop: "100px",
-    paddingBottom: "80px",
-    boxSizing: "border-box",
-  };
-
   return (
     <PageLayout>
-      <div className="bg-black text-white min-h-screen font-[Poppins] relative overflow-hidden">
+      <div className="bg-black text-white min-h-screen font-[Poppins] relative overflow-x-hidden">
         {/* ============ HERO SECTION ============ */}
-        <section
-          style={sectionPadding}
-          className="flex flex-col lg:flex-row justify-between items-center text-left pt-[150px]"
-        >
-          <div className="max-w-xl space-y-6">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#5cc6d0] leading-snug whitespace-nowrap">
-              Request for Quote (RFQ)
-            </h1>
+        <section className="px-6 sm:px-10 md:px-20 lg:px-40 xl:px-64 pt-32 md:pt-48 pb-20 flex flex-col lg:flex-row justify-between items-center gap-12">
+          <div className="max-w-2xl space-y-8 text-center lg:text-left">
+            <FadeInUp>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#5cc6d0] leading-tight">
+                Request for Quote <br className="hidden md:block" />
+                <span className="text-white">(RFQ)</span>
+              </h1>
+            </FadeInUp>
 
-            <p className="text-gray-200 text-lg leading-relaxed">
-              Submit your parts requirements and receive competitive quotes from
-              our global network. Expect a response within 2 hours.
-            </p>
+            <FadeInUp delay={200}>
+              <p className="text-gray-300 text-lg md:text-xl leading-relaxed">
+                Submit your parts requirements and receive competitive quotes from
+                our global network. Expect a professional response within{" "}
+                <span className="text-[#5cc6d0] font-semibold">2 hours.</span>
+              </p>
+            </FadeInUp>
 
-            <Button
-              onClick={scrollToForm}
-              className="bg-[#5cc6d0] text-black px-6 py-3 rounded-full font-semibold hover:bg-[#4ab5bf] transition-all"
-            >
-              ↓ Scroll to Form
-            </Button>
+            <FadeInUp delay={400}>
+              <Button
+                onClick={scrollToForm}
+                className="bg-[#5cc6d0] text-black px-10 py-6 rounded-full font-bold text-lg hover:bg-[#4ab5bf] transition-all shadow-lg shadow-[#5cc6d0]/20"
+              >
+                Start Your Quote
+              </Button>
+            </FadeInUp>
           </div>
 
-          {/* Right Image Placeholder */}
-          <div className="w-[260px] h-[320px] bg-[#d9d9d9] rounded-xl flex items-center justify-center mt-10 lg:mt-0">
-            <span className="text-[#5cc6d0] text-lg font-medium">Mascot</span>
-          </div>
+          <FadeInUp delay={600} className="w-full lg:w-auto">
+            <div className="w-full sm:w-[320px] md:w-[400px] h-[300px] md:h-[400px] bg-white/5 border border-white/10 backdrop-blur-sm rounded-3xl flex items-center justify-center relative overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#5cc6d0]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+              <span className="text-[#5cc6d0] text-xl font-bold uppercase tracking-widest relative z-10">Mascot Model</span>
+            </div>
+          </FadeInUp>
         </section>
 
         {/* ============ PARTS INFORMATION FORM ============ */}
-        <section ref={formRef} style={sectionPadding} className="text-left">
-          <h2 className="text-[#5cc6d0] text-2xl md:text-3xl font-semibold mb-12">
-            Parts Information
-          </h2>
+        <section ref={formRef} className="px-6 sm:px-10 md:px-20 lg:px-40 xl:px-64 py-24 bg-white/[0.02] border-y border-white/5">
+          <FadeInUp>
+            <div className="flex items-center gap-4 mb-12 justify-center lg:justify-start">
+              <div className="h-10 w-2 bg-[#5cc6d0] rounded-full"></div>
+              <h2 className="text-[#5cc6d0] text-3xl md:text-4xl font-bold uppercase tracking-tight">
+                Parts Information
+              </h2>
+            </div>
+          </FadeInUp>
 
-          <form onSubmit={handleSubmit} className="space-y-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <form onSubmit={handleSubmit} className="space-y-12 max-w-5xl mx-auto lg:mx-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-x-12 md:gap-y-10">
               {[
                 {
                   name: "partNumber",
@@ -111,125 +112,130 @@ const RFQ: React.FC = () => {
                 {
                   name: "condition",
                   label: "Condition*",
-                  placeholder: "Enter the condition",
+                  placeholder: "NE, OH, SV, etc.",
                 },
                 {
                   name: "description",
                   label: "Description*",
-                  placeholder: "Enter the description",
+                  placeholder: "What is this part?",
                 },
                 {
                   name: "certificate",
                   label: "Certificate*",
-                  placeholder: "Enter the certificate",
+                  placeholder: "FAA 8130, EASA Form 1, etc.",
                 },
                 {
                   name: "quality",
-                  label: "Quality*",
-                  placeholder: "Enter your quantity needed",
+                  label: "Quantity*",
+                  placeholder: "Number of units",
                 },
-              ].map((field) => (
-                <div key={field.name}>
-                  <label className="block text-sm font-medium mb-2">
-                    {field.label}
-                  </label>
-                  <input
-                    name={field.name}
-                    value={(formData as any)[field.name]}
-                    onChange={handleChange}
-                    placeholder={field.placeholder}
-                    className="w-full bg-[#d9d9d9] text-black px-5 py-3 rounded-full outline-none"
-                  />
-                </div>
+              ].map((field, idx) => (
+                <FadeInUp key={field.name} delay={idx * 100}>
+                  <div className="group">
+                    <label className="block text-sm font-bold text-[#5cc6d0] uppercase tracking-widest mb-3 ml-2 transition-all group-focus-within:translate-x-1">
+                      {field.label.replace("*", "")}<span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      name={field.name}
+                      value={(formData as any)[field.name]}
+                      onChange={handleChange}
+                      placeholder={field.placeholder}
+                      className="w-full bg-white/5 border border-white/10 text-white px-6 py-4 rounded-2xl outline-none focus:border-[#5cc6d0]/50 transition-all placeholder:text-white/20 hover:bg-white/[0.08]"
+                      required
+                    />
+                  </div>
+                </FadeInUp>
               ))}
             </div>
 
-            <div>
-              <label className="block text-sm font-medium mb-2">Notes*</label>
-              <textarea
-                name="notes"
-                value={formData.notes}
-                onChange={handleChange}
-                placeholder="Add any extra details, specs, or special instructions"
-                className="w-full bg-[#d9d9d9] text-black px-5 py-4 rounded-xl outline-none resize-none"
-                rows={4}
-              />
-            </div>
+            <FadeInUp delay={500}>
+              <div className="group">
+                <label className="block text-sm font-bold text-[#5cc6d0] uppercase tracking-widest mb-3 ml-2 transition-all group-focus-within:translate-x-1">Notes<span className="text-red-500">*</span></label>
+                <textarea
+                  name="notes"
+                  value={formData.notes}
+                  onChange={handleChange}
+                  placeholder="Add any extra details, specs, or special instructions"
+                  className="w-full bg-white/5 border border-white/10 text-white px-6 py-5 rounded-3xl outline-none focus:border-[#5cc6d0]/50 transition-all placeholder:text-white/20 hover:bg-white/[0.08] resize-none"
+                  rows={5}
+                />
+              </div>
+            </FadeInUp>
 
             {/* Submit Button */}
-            <div className="flex flex-wrap items-center gap-4">
-              <Button
-                id="submit-btn"
-                type="submit"
-                className="bg-[#5cc6d0] text-black px-6 py-3 rounded-full font-semibold flex items-center gap-2 hover:bg-[#4ab5bf] transition-all transform active:scale-95"
-              >
-                <Send className="w-5 h-5" />
-                Submit RFQ
-              </Button>
-              <span className="text-sm text-gray-400">
-                Response within 2 hours
-              </span>
-            </div>
+            <FadeInUp delay={600}>
+              <div className="flex flex-col sm:flex-row items-center gap-6 pt-4">
+                <Button
+                  id="submit-btn"
+                  type="submit"
+                  className="bg-[#5cc6d0] text-black px-12 py-7 rounded-full font-black text-lg flex items-center gap-3 hover:bg-[#4ab5bf] transition-all transform hover:scale-[1.02] active:scale-95 shadow-xl shadow-[#5cc6d0]/10 w-full sm:w-auto uppercase tracking-widest"
+                >
+                  <Send className="w-5 h-5" />
+                  Submit RFQ
+                </Button>
+                <div className="flex items-center gap-2 text-gray-400">
+                  <CheckCircle2 className="w-5 h-5 text-[#5cc6d0]" />
+                  <span className="text-sm font-medium tracking-wide">Professional Response within 2 hours</span>
+                </div>
+              </div>
+            </FadeInUp>
           </form>
         </section>
 
         {/* ============ WHY SUBMIT SECTION ============ */}
-        <section style={sectionPadding} className="text-left">
-          <h2 className="text-[#5cc6d0] text-2xl md:text-3xl font-semibold mb-14">
-            Why Submit Your RFQ with Rockdove Aviation?
-          </h2>
+        <section className="px-6 sm:px-10 md:px-20 lg:px-40 xl:px-64 py-32">
+          <FadeInUp>
+            <h2 className="text-[#5cc6d0] text-3xl md:text-5xl font-bold mb-20 text-center uppercase tracking-tighter">
+              Why Choose Rockdove?
+            </h2>
+          </FadeInUp>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl">
-            {[1, 2, 3].map((item) => (
-              <div
-                key={item}
-                className="w-full h-[220px] bg-[#d9d9d9] rounded-xl flex items-center justify-center text-[#5cc6d0] text-lg font-medium mx-auto"
-              >
-                Image {item}
-              </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 max-w-7xl mx-auto">
+            {[
+              { title: "Global Network", text: "Access to thousands of certified parts worldwide." },
+              { title: "Rapid Turnaround", text: "Receive competitive quotes in under 2 hours." },
+              { title: "Quality Guaranteed", text: "All parts come with full certification and traceability." }
+            ].map((item, idx) => (
+              <FadeInUp key={idx} delay={idx * 200} className="group">
+                <div className="w-full h-[280px] bg-white/5 border border-white/10 rounded-[40px] p-10 flex flex-col justify-end transition-all duration-500 hover:bg-[#5cc6d0]/5 hover:border-[#5cc6d0]/30 hover:-translate-y-2 relative overflow-hidden">
+                  <div className="absolute top-8 left-8 text-6xl font-black text-white/5 group-hover:text-[#5cc6d0]/10 transition-colors">0{idx + 1}</div>
+                  <h3 className="text-[#5cc6d0] text-2xl font-bold mb-3 relative z-10">{item.title}</h3>
+                  <p className="text-gray-400 leading-relaxed font-light relative z-10">{item.text}</p>
+                </div>
+              </FadeInUp>
             ))}
           </div>
         </section>
 
         {/* ============ HELP SECTION ============ */}
-        <section style={sectionPadding} className="text-left pb-20">
-          <h3 className="text-[#5cc6d0] text-xl md:text-2xl font-semibold mb-4">
-            Need Help with Your RFQ?
-          </h3>
-          <p className="text-gray-200 mb-8 text-base md:text-lg">
-            Contact our team directly for personalized assistance.
-          </p>
+        <section className="px-6 sm:px-10 md:px-20 lg:px-40 xl:px-64 py-32 bg-gradient-to-t from-[#5cc6d0]/5 to-transparent text-center">
+          <FadeInUp>
+            <h3 className="text-[#5cc6d0] text-2xl md:text-4xl font-black mb-6 uppercase tracking-widest">
+              Need Direct Assistance?
+            </h3>
+            <p className="text-gray-300 mb-16 text-lg md:text-xl max-w-2xl mx-auto font-light">
+              Our support team is available 24/7 to help you with urgent parts requirements.
+            </p>
+          </FadeInUp>
 
-          <div className="flex flex-col text-gray-300 gap-4">
-            <div className="flex items-center gap-3">
-              <Phone className="w-5 h-5 text-[#5cc6d0]" />
-              <span>+971 505056093</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <Mail className="w-5 h-5 text-[#5cc6d0]" />
-              <span>sales@rockdoveaviation.com</span>
-            </div>
-          </div>
-        </section>
+          <div className="flex flex-col sm:flex-row justify-center gap-8 md:gap-16">
+            <FadeInUp delay={200}>
+              <a href="tel:+971505056093" className="flex flex-col items-center gap-4 group">
+                <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[#5cc6d0] group-hover:text-black transition-all duration-500">
+                  <Phone className="w-8 h-8" />
+                </div>
+                <span className="text-lg font-bold group-hover:text-[#5cc6d0] transition-colors tracking-widest">+971 505056093</span>
+              </a>
+            </FadeInUp>
 
-        {/* ============ ELLIPTICAL BALLS SECTION ============ */}
-        <section
-          className="w-full flex justify-center items-center bg-black overflow-hidden pb-16"
-          style={{ height: "280px" }}
-        >
-          <div
-            className="grid gap-[4px]"
-            style={{
-              gridTemplateColumns: "repeat(66, 10px)",
-              gridTemplateRows: "repeat(3, 10px)",
-            }}
-          >
-            {Array.from({ length: 3 * 66 }).map((_, i) => (
-              <div
-                key={i}
-                className="w-[10px] h-[10px] rounded-full bg-white"
-              ></div>
-            ))}
+            <FadeInUp delay={400}>
+              <a href="mailto:sales@rockdoveaviation.com" className="flex flex-col items-center gap-4 group">
+                <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[#5cc6d0] group-hover:text-black transition-all duration-500">
+                  <Mail className="w-8 h-8" />
+                </div>
+                <span className="text-lg font-bold group-hover:text-[#5cc6d0] transition-colors tracking-widest">sales@rockdoveaviation.com</span>
+              </a>
+            </FadeInUp>
           </div>
         </section>
       </div>

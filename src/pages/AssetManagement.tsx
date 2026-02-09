@@ -290,7 +290,7 @@ const AssetManagement = (): JSX.Element => {
           </h2>
 
           <div className="w-24 h-1 bg-[#5cc6d0] mx-auto mb-12" />
-          <p className="font-medium text-white text-lg sm:text-xl mb-28 text-[20px]">
+          <p className="font-medium text-white text-lg sm:text-xl md:text-2xl mb-28">
             We manage critical assets with
             <br />
             expert maintenance, ensuring top performance and safety
@@ -309,43 +309,43 @@ const AssetManagement = (): JSX.Element => {
               const imageWidth = isAPU
                 ? 660 // increased APU
                 : isBrakes || isStarter
-                ? 250 // moderate reduction
-                : isThrustReverser
-                ? 270
-                : isEngine
-                ? 290
-                : 370;
+                  ? 250 // moderate reduction
+                  : isThrustReverser
+                    ? 270
+                    : isEngine
+                      ? 290
+                      : 370;
 
               const imageHeight = isAPU
                 ? 580
                 : isBrakes || isStarter
-                ? 150
-                : isThrustReverser
-                ? 170
-                : 230;
+                  ? 150
+                  : isThrustReverser
+                    ? 170
+                    : 230;
 
               const scale = isAPU
                 ? "scale-[1.7]"
                 : isStarter || isThrustReverser
-                ? "scale-[1.0]"
-                : isEngine
-                ? "scale-[1.27]"
-                : isBrakes
-                ? "scale-[1.2]"
-                : "scale-[1.15]";
+                  ? "scale-[1.0]"
+                  : isEngine
+                    ? "scale-[1.27]"
+                    : isBrakes
+                      ? "scale-[1.2]"
+                      : "scale-[1.15]";
 
               // 🧭 Position adjustments
               const topOffset = isAPU
                 ? "-top-60"
                 : isStarter
-                ? "-top-0"
-                : isBrakes
-                ? "-top-4"
-                : isEngine
-                ? "-top-14"
-                : isThrustReverser
-                ? "-top-6"
-                : "-top-16";
+                  ? "-top-0"
+                  : isBrakes
+                    ? "-top-4"
+                    : isEngine
+                      ? "-top-14"
+                      : isThrustReverser
+                        ? "-top-6"
+                        : "-top-16";
 
               const leftOffset = isEngine ? "left-[-80px]" : "-left-16";
 
@@ -353,10 +353,10 @@ const AssetManagement = (): JSX.Element => {
               const hoverScale = isAPU
                 ? "group-hover:scale-[1.8]"
                 : isEngine
-                ? "group-hover:scale-[1.33]"
-                : isBrakes
-                ? "group-hover:scale-[1.28]" // subtle increase (from 1.45 → 1.5)
-                : "group-hover:scale-110"; // others use normal 10% increase
+                  ? "group-hover:scale-[1.33]"
+                  : isBrakes
+                    ? "group-hover:scale-[1.28]" // subtle increase (from 1.45 → 1.5)
+                    : "group-hover:scale-110"; // others use normal 10% increase
 
               return (
                 <div
