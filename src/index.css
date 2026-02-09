@@ -1,17 +1,5 @@
-/* === AIRPLANE PRELOADER === */
 #preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  z-index: 9999;
-  overflow: hidden;
-  transition: opacity 0.1s ease, visibility 0.1s ease;
+  transition: opacity 1s ease, visibility 1s ease;
 }
 
 #preloader.hidden {
@@ -27,63 +15,59 @@
   justify-content: center;
 }
 
-/* Airplane image styling */
 .plane {
-  width: 40vw;
-  /* bigger */
-  max-width: 500px;
-  /* max limit */
-  height: auto;
-  animation: flyScreen 4s ease-in forwards;
-  animation-delay: 0s;
-  /* appear immediately */
+  animation: flyScreen 4s linear forwards;
+  animation-delay: 0.2s;
 }
 
-/* Fly from bottom to completely off top */
+.hero-mask {
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-composite: intersect;
+
+  mask-image:
+    linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-composite: intersect;
+}
+
+
 @keyframes flyScreen {
   0% {
-    transform: translateY(120vh);
-    opacity: 1;
+    transform: translateY(110vh);
+    opacity: 0;
   }
 
-  /* start fully below screen */
-  50% {
-    transform: translateY(50vh);
+  10% {
     opacity: 1;
   }
 
   100% {
-    transform: translateY(-150vh);
-    opacity: 0.8;
+    transform: translateY(-120vh);
+    opacity: 1;
   }
-
-  /* fly completely off top */
 }
 
-/* Fade in app content */
+/* Fade in app content and handle scroll locking */
+body {
+  overflow: hidden;
+  margin: 0;
+}
+
 #root {
   opacity: 0;
   transition: opacity 1s ease;
+}
+
+body.loaded {
+  overflow: auto;
 }
 
 body.loaded #root {
   opacity: 1;
 }
 
-@keyframes glowPulse {
-  0% {
-    box-shadow: 0 0 10px #5CC6D0, 0 0 20px #5CC6D0, 0 0 30px #5CC6D0;
-  }
-
-  50% {
-    box-shadow: 0 0 25px #5CC6D0, 0 0 45px #5CC6D0, 0 0 60px #5CC6D0;
-  }
-
-  100% {
-    box-shadow: 0 0 10px #5CC6D0, 0 0 20px #5CC6D0, 0 0 30px #5CC6D0;
-  }
-}
-
 .glow-line {
-  animation: glowPulse 2s ease-in-out infinite;
+  box-shadow: 0 0 6px rgba(45, 127, 135, 0.5);
 }

@@ -1,335 +1,307 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { Suspense, useRef, useState, useEffect } from "react";
+import { Canvas, useFrame, ThreeEvent } from "@react-three/fiber";
+import { motion, useSpring, useTransform, MotionValue } from "framer-motion";
 import * as THREE from "three";
-import { GLTFLoader, GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { AirplaneModel } from "./animations/AirplaneModel";
 import { Button } from "./ui/button";
-// @ts-ignore
-import CLOUDS from "./vanta/vanta.clouds.js";
+import { PerspectiveCamera, OrbitControls } from "@react-three/drei";
 
-declare const gsap: any;
-
-export const Hero: React.FC = () => {
-  const threeJsContainerRef = useRef<HTMLDivElement>(null);
-  const vantaRef = useRef<HTMLDivElement>(null);
-  const vantaInstanceRef = useRef<any>(null);
-  const [isHeroReady, setIsHeroReady] = useState(false);
-
-  const airplaneRef = useRef<THREE.Group | null>(null);
-  const startTimeRef = useRef<number | null>(null);
-  const useGsapRef = useRef<boolean>(false);
-
-  // --- VANTA CLOUDS setup ---
-  useEffect(() => {
-    if (!vantaRef.current) return;
-    // @ts-ignore
-    window.THREE = THREE;
-
-    /* const effect = CLOUDS({
-      el: vantaRef.current,
-      THREE: THREE,
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200.0,
-      minWidth: 200.0,
-      skyColor: "#6ec6ff",
-      cloudColor: "#ffffff",
-      speed: 1.4,
-    });
-
-    vantaInstanceRef.current = effect;*/
-
-    return () => {
-      if (vantaInstanceRef.current?.destroy) vantaInstanceRef.current.destroy();
-      vantaInstanceRef.current = null;
-    };
-  }, []);
-
-  // --- THREE.JS setup ---
-  useEffect(() => {
-    if (!threeJsContainerRef.current) return;
-
-    let airplaneGroup: THREE.Group | null = null;
-    let isHovered = false;
-    const mouse = new THREE.Vector2();
-
-    const scene = new THREE.Scene();
-    scene.background = null;
-
-    const camera = new THREE.PerspectiveCamera(
-      45,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      100
-    );
-    camera.position.set(0, 1.4, 8);
-
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-
-    // 🧠 Optimization for mobile: lower pixel ratio
-    const pixelRatio = Math.min(window.devicePixelRatio, 1.8);
-    renderer.setPixelRatio(pixelRatio);
-
-    threeJsContainerRef.current!.appendChild(renderer.domElement);
-
-    // --- LIGHTS ---
-    scene.add(new THREE.AmbientLight(0xffffff, 0.5));
-
-    const keyLight = new THREE.DirectionalLight(0xfff2e5, 1.2);
-    keyLight.position.set(4, 5, 6);
-    scene.add(keyLight);
-
-    const fillLight = new THREE.DirectionalLight(0xffffff, 0.6);
-    fillLight.position.set(-3, 2, -4);
-    scene.add(fillLight);
-
-    const topLight = new THREE.SpotLight(0xffffff, 6, 25, Math.PI / 3, 0.5, 1);
-    topLight.position.set(0, 7, 2);
-    topLight.target.position.set(0, 0, 0);
-    scene.add(topLight);
-    scene.add(topLight.target);
-
-    const bottomLight = new THREE.PointLight(0x88ddff, 6, 18);
-    bottomLight.position.set(0, -5, 0);
-    scene.add(bottomLight);
-
-    const domeLight1 = new THREE.PointLight(0x66ccff, 4, 15);
-    domeLight1.position.set(3, -4, 2);
-    scene.add(domeLight1);
-
-    const domeLight2 = new THREE.PointLight(0x66ccff, 4, 15);
-    domeLight2.position.set(-3, -4, -2);
-    scene.add(domeLight2);
-
-    const hemiLight = new THREE.HemisphereLight(0x87ceeb, 0xffffff, 0.8);
-    hemiLight.position.set(0, 5, 0);
-    scene.add(hemiLight);
-
-    // --- CONTROLS ---
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.enableZoom = false;
-    controls.enablePan = false;
-    controls.enableRotate = true;
-    controls.minPolarAngle = 0;
-    controls.maxPolarAngle = Math.PI;
-
-    const raycaster = new THREE.Raycaster();
-    const loader = new GLTFLoader();
-
-    useGsapRef.current = typeof gsap !== "undefined" && gsap != null;
-
-    // --- LOAD AIRPLANE MODEL ---
-    loader.load(
-      "/flymodel.glb",
-      (gltf: GLTF) => {
-        airplaneGroup = gltf.scene;
-
-        // ✈️ Dynamic scaling based on screen width (adjusted for mobile)
-        const screenWidth = window.innerWidth;
-        let scaleValue = 0.25; // default desktop size
-
-        if (screenWidth < 480) scaleValue = 0.08; // smaller for phones
-        else if (screenWidth < 768) scaleValue = 0.14; // slightly smaller for tablets
-        else if (screenWidth < 1024) scaleValue = 0.22; // small laptops
-
-        airplaneGroup.scale.set(scaleValue, scaleValue, scaleValue);
-        airplaneGroup.position.set(0, 0.8, 0);
-
-        // make materials solid and realistic
-        airplaneGroup.traverse((child: THREE.Object3D) => {
-          if ((child as THREE.Mesh).isMesh) {
-            const mesh = child as THREE.Mesh;
-            mesh.castShadow = true;
-            mesh.receiveShadow = true;
-
-            let mat: THREE.MeshStandardMaterial;
-            if ((mesh.material as any).isMaterial) {
-              const base = mesh.material as THREE.MeshStandardMaterial;
-              mat = base.clone();
-            } else {
-              mat = new THREE.MeshStandardMaterial();
-            }
-
-            mat.transparent = false;
-            mat.opacity = 1;
-            mat.metalness = 0.3;
-            mat.roughness = 0.4;
-            mat.envMapIntensity = 0;
-
-            mesh.material = mat;
-            (mesh as any).userData.originalPos = mesh.position.clone();
-          }
-        });
-
-        scene.add(airplaneGroup);
-        airplaneRef.current = airplaneGroup;
-        setIsHeroReady(true);
-
-        if (useGsapRef.current) {
-          gsap.to(airplaneGroup.position, {
-            y: airplaneGroup.position.y + 0.28,
-            duration: 2.5,
-            ease: "sine.inOut",
-            yoyo: true,
-            repeat: -1,
-          });
-          gsap.to(airplaneGroup.rotation, {
-            z: "+=0.05",
-            x: "+=0.02",
-            duration: 3,
-            ease: "sine.inOut",
-            yoyo: true,
-            repeat: -1,
-          });
-          gsap.to(airplaneGroup.position, {
-            z: airplaneGroup.position.z - 0.35,
-            duration: 4,
-            ease: "sine.inOut",
-            yoyo: true,
-            repeat: -1,
-          });
-        } else {
-          startTimeRef.current = performance.now();
-        }
-      },
-      undefined,
-      (err) => {
-        console.error("Model failed to load:", err);
-        setTimeout(() => setIsHeroReady(true), 500);
-      }
-    );
-
-    // --- HOVER SEPARATION ---
-    function animateParts(expand: boolean) {
-      if (!airplaneRef.current || typeof gsap === "undefined") return;
-      const spread = 2;
-      airplaneRef.current.traverse((child: THREE.Object3D) => {
-        if ((child as THREE.Mesh).isMesh) {
-          const mesh = child as THREE.Mesh;
-          const original = (mesh as any).userData?.originalPos;
-          if (!original) return;
-          gsap.to(mesh.position, {
-            x: expand
-              ? original.x + (Math.random() - 0.5) * spread
-              : original.x,
-            y: expand
-              ? original.y + (Math.random() - 0.5) * spread * 0.5
-              : original.y,
-            z: expand
-              ? original.z + (Math.random() - 0.5) * spread
-              : original.z,
-            duration: 1.5,
-            ease: "power3.out",
-          });
-        }
-      });
-    }
-
-    // --- EVENTS ---
-    const mouseMove = (e: MouseEvent) => {
-      mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-      mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
-    };
-    window.addEventListener("mousemove", mouseMove);
-
-    const resize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    };
-    window.addEventListener("resize", resize);
-
-    // --- ANIMATION LOOP ---
-    let last = performance.now();
-    const animate = () => {
-      const now = performance.now();
-      const dt = (now - last) / 1000;
-      last = now;
-
-      if (!useGsapRef.current && airplaneRef.current) {
-        if (startTimeRef.current === null) startTimeRef.current = now;
-        const t = (now - (startTimeRef.current || now)) / 1000;
-        const g = airplaneRef.current;
-        g.position.y = 0.8 + Math.sin(t * 0.6) * 0.14;
-        g.position.z = Math.cos(t * 0.25) * 0.18;
-        g.rotation.x = Math.sin(t * 0.4) * 0.02;
-        g.rotation.z = Math.sin(t * 0.6) * 0.03;
-      }
-
-      if (airplaneRef.current) {
-        raycaster.setFromCamera(mouse, camera);
-        const intersects = raycaster.intersectObjects(
-          airplaneRef.current.children,
-          true
-        );
-        if (intersects.length > 0 && !isHovered) {
-          isHovered = true;
-          document.body.style.cursor = "pointer";
-          animateParts(true);
-        } else if (intersects.length === 0 && isHovered) {
-          isHovered = false;
-          document.body.style.cursor = "default";
-          animateParts(false);
-        }
-      }
-
-      controls.update();
-      renderer.render(scene, camera);
-      requestAnimationFrame(animate);
-    };
-    animate();
-
-    return () => {
-      window.removeEventListener("mousemove", mouseMove);
-      window.removeEventListener("resize", resize);
-      renderer.dispose();
-      renderer.domElement.remove();
-    };
-  }, []);
-
+// AOG Style Background Glow (Matches 24/7 AOG Support branding)
+const NeonBackground: React.FC = () => {
   return (
-    <section className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden">
-      {/* CLOUDS BACKGROUND */}
+    <div className="absolute inset-0 z-0 bg-black overflow-hidden pointer-events-none select-none">
+      {/* Centered Tiffany Blue Glow */}
       <div
-        ref={vantaRef}
-        className="absolute inset-0 w-full h-full z-0"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0"
         style={{
-          transform: "scaleX(-1)",
-          pointerEvents: "none",
+          width: "60vw",
+          height: "60vh",
+          background: "#5cc6d0",
+          opacity: 0.55,
+          filter: "blur(160px)",
+          borderRadius: "50%"
         }}
       />
+    </div>
+  );
+};
 
-      {/* AIRPLANE CANVAS */}
-      <div
-        ref={threeJsContainerRef}
-        className="absolute inset-0 w-full h-full z-10"
-      />
 
-      {/* TEXT */}
-      <div
-        className={`relative z-20 text-center px-4 sm:px-8 md:px-12 mt-[300px] sm:mt-[320px] md:mt-[350px] transition-opacity duration-1000 ${isHeroReady ? "opacity-100" : "opacity-0"
-          }`}
-      >
-        <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-4 leading-tight">
-          Parts, Service and <span className="text-cyan-400">Solution</span>
-        </h1>
 
-        <p className="text-base sm:text-lg md:text-xl text-white max-w-2xl mx-auto mb-8 px-4">
-          The one-stop destination for all your aircraft components and
-          servicing for a safe flight.
-        </p>
 
-        <Button
-          className="mt-[20px] h-[48px] px-8 rounded-xl border-0 transition-all duration-300 ease-out hover:scale-105 active:scale-[0.98] shadow-[0_4px_14px_rgba(92,198,208,0.4)] hover:shadow-[0_6px_20px_rgba(92,198,208,0.6)] text-white font-semibold text-lg min-w-[160px]"
-          style={{
-            background: "linear-gradient(180deg, #5CC6D0 0%, #05848E 100%)",
-          }}
+
+
+
+
+
+// Error Boundary
+class SceneErrorBoundary extends React.Component<
+  { children: React.ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  componentDidCatch(error: any, errorInfo: any) {
+    console.error("3D Scene Error:", error, errorInfo);
+  }
+  render() {
+    if (this.state.hasError)
+      return (
+        <div className="absolute inset-0 flex items-center justify-center text-white bg-black">
+          3D Scene Error
+        </div>
+      );
+    return this.props.children;
+  }
+}
+
+export const Hero: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
+
+  // Smooth progress spring for heavy, cinematic feel
+  const smoothProgress = useSpring(progress, {
+    stiffness: 15,
+    damping: 25,
+    restDelta: 0.0001
+  });
+
+  useEffect(() => {
+    smoothProgress.set(progress);
+  }, [progress, smoothProgress]);
+
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      if (!containerRef.current) return;
+
+      // Check if we are at the top of the page
+      const isAtTop = window.scrollY === 0;
+
+      if (progress < 1 || (isAtTop && e.deltaY < 0 && progress > 0)) {
+        // If scrolling up at dead-start, allow normal scroll
+        if (e.deltaY < 0 && progress <= 0) return;
+
+        // If scrolling down and already finished, let normal scroll happen
+        if (e.deltaY > 0 && progress >= 1) return;
+
+        // Capture the event to drive the animation
+        e.preventDefault();
+
+        // Sensitivity tuned for roughly 6-7 full scrolls total
+        const sensitivity = 0.0004;
+        setProgress((prev) => Math.min(1, Math.max(0, prev + e.deltaY * sensitivity)));
+      }
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+    };
+  }, [progress]);
+
+  // Phase 1: Header & UI move out (0.0 to 0.25)
+  useEffect(() => {
+    const headerY = progress <= 0.25 ? (progress / 0.25) * -160 : -160;
+    document.documentElement.style.setProperty('--header-y', `${headerY}px`);
+  }, [progress]);
+
+  const textOpacity = useTransform(smoothProgress, [0, 0.25], [1, 0]);
+  const textY = useTransform(smoothProgress, [0, 0.25], [0, -800]);
+
+  return (
+    <section ref={containerRef} className="hero-mask relative w-full h-screen overflow-hidden bg-black">
+      {/* BACKGROUND */}
+      <NeonBackground />
+
+      {/* 3D SCENE */}
+      <div className="absolute inset-0 w-full h-full z-10">
+        <SceneErrorBoundary>
+          <Canvas
+            shadows
+            gl={{ antialias: true, alpha: true }}
+          >
+            <Suspense fallback={null}>
+              <PerspectiveCamera makeDefault position={[0, 1.4, 8]} fov={45} />
+              <ambientLight intensity={0.5} />
+              <pointLight position={[10, 10, 10]} intensity={2} />
+              <pointLight position={[-10, 5, -5]} intensity={1.5} />
+              <directionalLight
+                position={[5, 10, 5]}
+                intensity={4}
+                castShadow
+                shadow-mapSize={[2048, 2048]}
+              />
+              <hemisphereLight intensity={1} />
+              <CinematicController progress={smoothProgress} />
+            </Suspense>
+          </Canvas>
+        </SceneErrorBoundary>
+      </div>
+
+      {/* UI - Balanced positioning shifted slightly up (pb-20) */}
+      <div className="relative z-20 h-full w-full flex flex-col items-center justify-end pb-20 pointer-events-none">
+        <motion.div
+          style={{ opacity: textOpacity, y: textY }}
+          className="text-center px-4 flex flex-col items-center"
         >
-          Know more
-        </Button>
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]">
+            Parts, Service and <span className="text-[#5cc6D0]">Solution</span>
+          </h1>
+          <p className="text-lg text-white max-w-2xl mb-8 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+            The one-stop destination for all your aircraft components and
+            servicing for a safe flight.
+          </p>
+          <Button
+            className="h-[48px] px-8 rounded-xl text-white font-semibold text-lg pointer-events-auto"
+            style={{
+              background: "linear-gradient(180deg, #5CC6D0 0%, #05848E 100%)",
+            }}
+          >
+            Know more
+          </Button>
+        </motion.div>
+      </div>
+
+      {/* 🔥 EDGE VIGNETTE (FINAL POLISH) */}
+      <div className="pointer-events-none absolute inset-0 z-30">
+        <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-black to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black to-transparent" />
       </div>
     </section>
   );
 };
+
+
+
+
+const CinematicController: React.FC<{ progress: MotionValue<number> }> = ({ progress }) => {
+  const airplaneRef = useRef<THREE.Group>(null);
+  const controlsRef = useRef<any>(null);
+  const [hoveredObject, setHoveredObject] = useState<THREE.Object3D | null>(null);
+  const [isInteracting, setIsInteracting] = useState(false);
+
+  useFrame((state) => {
+    const p = progress.get();
+    const camera = state.camera;
+    const time = state.clock.elapsedTime;
+
+    // --- ROBUST BOUNDARY CONSTANTS ---
+    const startPos = { x: 0, y: 6.0, z: 0 };    // High-altitude
+    const settledPos = { x: 0, y: 0.8, z: 1 };   // P=0.25 (Standard cruise)
+    const midPos = { x: 0, y: 0.8, z: 45 };     // P=0.6
+    const endPos = { x: 0, y: 0.8, z: 150 };    // P=1.0
+
+    // Camera Reference Points
+    const camInitial = { x: 0, y: 6.5, z: 9 };
+    const camMidTarget = { x: 0, y: 2.5, z: 8 };
+    const camLanding = { x: 0, y: 4, z: 22 };
+
+    const targetCamPos = new THREE.Vector3();
+    const targetLookAt = new THREE.Vector3();
+
+    // 1. Airplane Logistics
+    if (airplaneRef.current) {
+      const airplane = airplaneRef.current;
+      airplane.scale.setScalar(0.25);
+      airplane.rotation.set(0, 0, 0);
+
+      const hoverY = Math.sin(time * 0.8) * 0.05;
+      const breathingX = Math.cos(time * 0.5) * 0.02;
+      const breathingZ = Math.sin(time * 0.4) * 0.03;
+
+      if (p <= 0.25) {
+        const subP = p / 0.25;
+        const currentY = THREE.MathUtils.lerp(startPos.y, settledPos.y, subP);
+        const currentZ = THREE.MathUtils.lerp(startPos.z, settledPos.z, subP);
+        airplane.position.set(startPos.x, currentY + hoverY, currentZ);
+        airplane.rotation.x = breathingX;
+        airplane.rotation.z = breathingZ;
+        airplane.scale.setScalar(0.25);
+      }
+      else if (p <= 0.6) {
+        const subP = (p - 0.25) / 0.35;
+        const currentZ = THREE.MathUtils.lerp(settledPos.z, midPos.z, subP);
+        airplane.position.set(midPos.x, settledPos.y + hoverY, currentZ);
+        airplane.scale.setScalar(THREE.MathUtils.lerp(0.25, 0.35, subP));
+        airplane.rotation.x = breathingX;
+        airplane.rotation.z = breathingZ;
+      }
+      else {
+        const subP = (p - 0.6) / 0.4;
+        const currentZ = THREE.MathUtils.lerp(midPos.z, endPos.z, subP);
+        airplane.position.set(midPos.x, midPos.y, currentZ);
+        airplane.scale.setScalar(0.35 * (1 - subP * 0.98));
+        airplane.rotation.z = Math.sin(subP * 15) * 0.03;
+      }
+      airplane.visible = p < 0.99;
+    }
+
+    // 2. Camera Logistics
+    if (p <= 0.25) {
+      const subP = p / 0.25;
+      targetCamPos.lerpVectors(
+        new THREE.Vector3(camInitial.x, camInitial.y, camInitial.z),
+        new THREE.Vector3(camMidTarget.x, camMidTarget.y, camMidTarget.z),
+        subP
+      );
+      const currentPlaneY = THREE.MathUtils.lerp(startPos.y, settledPos.y, subP);
+      const currentPlaneZ = THREE.MathUtils.lerp(startPos.z, settledPos.z, subP);
+      targetLookAt.set(0, currentPlaneY, currentPlaneZ);
+    }
+    else if (p <= 0.6) {
+      const subP = (p - 0.25) / 0.35;
+      const sweepX = Math.sin(subP * Math.PI) * 16;
+      const climbHump = Math.sin(subP * Math.PI) * 18;
+      const currentCamY = THREE.MathUtils.lerp(camMidTarget.y, camLanding.y, subP) + climbHump;
+      const currentCamZ = THREE.MathUtils.lerp(camMidTarget.z, camLanding.z, subP);
+
+      targetCamPos.set(sweepX, currentCamY, currentCamZ);
+      const currentPlaneZ = THREE.MathUtils.lerp(settledPos.z, midPos.z, subP);
+      targetLookAt.set(0, settledPos.y, currentPlaneZ);
+    }
+    else {
+      const subP = (p - 0.6) / 0.4;
+      targetCamPos.set(camLanding.x, camLanding.y, camLanding.z);
+      // Continuous lookat: start at midPos.z (where the previous phase ended) and go to 2000
+      const lookAtZ = THREE.MathUtils.lerp(midPos.z, 2000, subP);
+      targetLookAt.set(0, settledPos.y, lookAtZ);
+    }
+
+    if (!isInteracting && controlsRef.current) {
+      camera.position.lerp(targetCamPos, 0.1);
+      controlsRef.current.target.lerp(targetLookAt, 0.1);
+      controlsRef.current.update();
+    } else if (!controlsRef.current) {
+      camera.position.copy(targetCamPos);
+      camera.lookAt(targetLookAt);
+    }
+  });
+
+  return (
+    <>
+      <OrbitControls
+        ref={controlsRef}
+        enablePan={false}
+        enableZoom={false}
+        rotateSpeed={0.5}
+        onStart={() => setIsInteracting(true)}
+        onEnd={() => setIsInteracting(false)}
+      />
+      <group ref={airplaneRef}>
+        <AirplaneModel
+          hoveredObject={hoveredObject}
+          onPointerMove={(e: ThreeEvent<PointerEvent>) =>
+            setHoveredObject(e.object)
+          }
+          onPointerOut={() => setHoveredObject(null)}
+        />
+      </group>
+    </>
+  );
+};
+

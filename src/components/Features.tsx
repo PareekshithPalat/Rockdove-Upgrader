@@ -81,7 +81,7 @@ const Features: React.FC = () => {
       {/* Glowing Cyan Line (grows + glows continuously) */}
       <div
         ref={blueLineRef}
-        className="absolute top-[280px] left-[20px] md:left-1/2 w-[4px] md:w-[10px] h-[1300px] md:h-[900px] bg-[#5CC6D0] rounded-full -translate-x-1/2 scale-y-0 glow-line"
+        className="absolute top-[280px] left-[20px] md:left-1/2 w-[4px] md:w-[10px] h-[1300px] md:h-[900px] bg-[#2D7F87] rounded-full -translate-x-1/2 scale-y-0 glow-line"
       ></div>
 
       {/* Plane (scrolls with GSAP) */}

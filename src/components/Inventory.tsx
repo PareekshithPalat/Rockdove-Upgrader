@@ -31,11 +31,11 @@ export const Inventory: React.FC = () => {
                 text-lg
                 px-8 py-3
                 rounded-xl
-                shadow-[0_6px_20px_rgba(92,198,208,0.4)]
+                shadow-lg
                 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]
                 hover:scale-[1.05]
                 active:scale-[0.97]
-                hover:shadow-[0_10px_25px_rgba(92,198,208,0.6)]
+                hover:shadow-xl
               "
             >
               Know more

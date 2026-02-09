@@ -13,7 +13,7 @@ import Services from "./Services";
 
 export const Layout: React.FC = () => {
   return (
-    <div className="bg-black overflow-hidden w-full min-h-screen relative">
+    <div className="bg-black overflow-x-hidden w-full min-h-screen relative">
       {/* Background Images */}
       {/* Main Content */}
       <Header />
