@@ -290,7 +290,7 @@ const AssetManagement = (): JSX.Element => {
           </h2>
 
           <div className="w-24 h-1 bg-[#5cc6d0] mx-auto mb-12" />
-          <p className="font-medium text-white text-lg sm:text-xl mb-28 text-[20px]">
+          <p className="font-medium text-white text-lg sm:text-xl md:text-2xl mb-28">
             We manage critical assets with
             <br />
             expert maintenance, ensuring top performance and safety

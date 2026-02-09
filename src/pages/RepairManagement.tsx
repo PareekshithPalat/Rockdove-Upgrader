@@ -122,9 +122,9 @@ const RepairManagementPage = () => {
         <ContainerScroll
           titleComponent={
             <>
-              <h1 className="text-3xl md:text-4xl font-semibold text-white leading-snug text-center md:text-left">
+              <h1 className="text-3xl md:text-5xl font-semibold text-white leading-snug text-center mb-12 md:mb-24">
                 Comprehensive Repair Management for <br className="hidden md:block" />
-                <span className="text-3xl md:text-[6rem] font-bold mt-1 leading-none block">
+                <span className="text-3xl md:text-[5rem] lg:text-[6rem] font-bold mt-2 leading-tight block">
                   Unmatched Aircraft Reliability
                 </span>
               </h1>
@@ -268,9 +268,8 @@ const RepairManagementPage = () => {
             ].map((feature, i) => (
               <div
                 key={i}
-                className={`feature-block flex ${
-                  feature.align === 'right' ? 'justify-end text-right' : 'justify-start text-left'
-                }`}
+                className={`feature-block flex ${feature.align === 'right' ? 'justify-end text-right' : 'justify-start text-left'
+                  }`}
               >
                 <div className="max-w-[440px] space-y-3">
                   <div className="text-[#5CC6D0] font-bold text-[32px] md:text-[40px]">
