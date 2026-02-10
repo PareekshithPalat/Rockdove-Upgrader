@@ -45,7 +45,7 @@ const RepairManagementPage = () => {
     if (!section || !plane || !blueLine) return;
 
     const isMobile = window.innerWidth < 768;
-    const distance = isMobile ? 1200 : 1050;
+    const distance = isMobile ? 1200 : 850;
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -213,7 +213,7 @@ const RepairManagementPage = () => {
         {/* Scroll animation section */}
         <section
           ref={sectionRef}
-          className="relative min-h-[160vh] bg-black text-white flex flex-col items-center justify-start py-16 md:py-24 font-[Poppins]"
+          className="relative min-h-[120vh] bg-black text-white flex flex-col items-center justify-start py-16 md:py-24 font-[Poppins]"
         >
           <h2 className="text-3xl md:text-[48px] font-semibold text-center text-white mb-20 md:mb-32 px-4">
             Fly safe with parts you <span className="text-[#7DF9FF]">trust.</span>
@@ -222,7 +222,7 @@ const RepairManagementPage = () => {
           {/* Lines & Plane */}
           <div
             ref={whiteLineRef}
-            className="absolute top-[204px] md:top-[364px] left-[30px] md:left-1/2 w-[4px] md:w-[10px] h-[1200px] md:h-[1050px] bg-white/10 rounded-full -translate-x-1/2"
+            className="absolute top-[204px] md:top-[364px] left-[30px] md:left-1/2 w-[4px] md:w-[10px] h-[1200px] md:h-[850px] bg-white/10 rounded-full -translate-x-1/2"
           ></div>
 
           <div

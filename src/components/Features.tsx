@@ -18,7 +18,7 @@ const Features: React.FC = () => {
     if (!section || !plane || !blueLine) return;
 
     const isMobile = window.innerWidth < 768;
-    const distance = isMobile ? 1400 : 1050;
+    const distance = isMobile ? 1200 : 850;
 
     // Scroll animation for plane and blue line growth
     const tl = gsap.timeline({
@@ -60,7 +60,7 @@ const Features: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[100vh] bg-black text-white flex flex-col items-center justify-start py-24 font-[Poppins]"
+      className="relative min-h-[80vh] bg-black text-white flex flex-col items-center justify-start py-24 pb-12 font-[Poppins]"
     >
       {/* Title */}
       <h2 className="text-[48px] font-semibold text-center leading-[100%] text-white mb-32">
@@ -70,7 +70,7 @@ const Features: React.FC = () => {
       {/* Static White Line */}
       <div
         ref={whiteLineRef}
-        className="absolute top-[204px] md:top-[364px] left-[20px] md:left-1/2 w-[4px] md:w-[10px] h-[1200px] md:h-[1050px] bg-white/10 rounded-full -translate-x-1/2"
+        className="absolute top-[204px] md:top-[364px] left-[20px] md:left-1/2 w-[4px] md:w-[10px] h-[1200px] md:h-[850px] bg-white/10 rounded-full -translate-x-1/2"
       ></div>
 
       {/* Glowing Cyan Line (grows + glows continuously) */}
