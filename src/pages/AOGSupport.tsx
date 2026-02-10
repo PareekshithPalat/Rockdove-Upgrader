@@ -285,10 +285,12 @@ const AOGSupport: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 max-w-6xl">
             {processSteps.map((step, index) => (
               <div key={index} className="flex flex-col items-center text-center">
-                <span className="text-[#5cc6d0] font-bold text-4xl mb-6">
-                  {step.number}
-                </span>
-                <span className="text-white font-semibold text-lg mb-4 leading-snug">
+                <div className="w-[100px] h-[100px] rounded-full border-2 border-[#5cc6d0] flex items-center justify-center mb-10 transition-transform duration-300 hover:scale-110">
+                  <span className="text-[#5cc6d0] font-bold text-3xl">
+                    {step.number}
+                  </span>
+                </div>
+                <span className="text-white font-semibold text-xl mb-4 leading-snug">
                   {step.title}
                 </span>
                 <p
