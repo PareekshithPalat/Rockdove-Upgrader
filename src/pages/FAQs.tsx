@@ -98,17 +98,27 @@ const FAQs: React.FC = () => {
       <div className="min-h-screen bg-black text-white">
         {/* Hero Section */}
         <section className="relative pt-32 md:pt-48 pb-20 px-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="flex flex-col md:flex-row items-start md:items-center gap-4 mb-8">
-              <HelpCircle className="w-12 h-12 text-[#5cc6d0] hidden md:block" />
-              <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-                Frequently Asked Questions
-              </h1>
+          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
+            <div className="flex-1">
+              <div className="flex flex-col items-start gap-4 mb-8">
+                <HelpCircle className="w-12 h-12 text-[#5cc6d0] hidden md:block" />
+                <h1 className="text-4xl md:text-7xl font-bold leading-tight text-white">
+                  Frequently Asked Questions
+                </h1>
+              </div>
+              <p className="text-xl md:text-2xl text-gray-300 max-w-2xl leading-relaxed">
+                Find answers to common questions about our services, processes,
+                and how we can help optimize your aircraft parts supply chain.
+              </p>
             </div>
-            <p className="text-xl md:text-2xl text-gray-300 max-w-4xl leading-relaxed">
-              Find answers to common questions about our services, processes,
-              and how we can help optimize your aircraft parts supply chain.
-            </p>
+
+            <div className="flex-1 w-full flex justify-center md:justify-end">
+              <img
+                src="/undraw_work-chat_hc3y.svg"
+                alt="Support Illustration"
+                className="w-full max-w-[500px] h-auto opacity-90 drop-shadow-[0_0_25px_rgba(92,198,208,0.25)] animate-in fade-in zoom-in duration-1000"
+              />
+            </div>
           </div>
         </section>
 
