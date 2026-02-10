@@ -45,24 +45,20 @@ const RepairManagementPage = () => {
     if (!section || !plane || !blueLine) return;
 
     const isMobile = window.innerWidth < 768;
-    const distance = isMobile ? 1300 : 900;
+    const distance = isMobile ? 1600 : 1150;
 
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
         start: "top center",
-        end: "bottom center",
+        end: `+=${distance}`,
         scrub: 1,
       },
     });
 
-    tl.fromTo(plane, { y: 0 }, { y: distance, ease: "none" }, 0);
-    tl.fromTo(
-      blueLine,
-      { scaleY: 0 },
-      { scaleY: 1, transformOrigin: "top center", ease: "none" },
-      0
-    );
+    // Animate height instead of scaleY for better sync and rounded caps
+    tl.to(blueLine, { height: distance, ease: "none" }, 0);
+    tl.to(plane, { y: distance, ease: "none" }, 0);
 
     const texts = gsap.utils.toArray<HTMLElement>(".feature-block");
     texts.forEach((text) => {
@@ -217,23 +213,23 @@ const RepairManagementPage = () => {
         {/* Scroll animation section */}
         <section
           ref={sectionRef}
-          className="relative min-h-[230vh] bg-black text-white flex flex-col items-center justify-start py-16 md:py-24 font-[Poppins]"
+          className="relative min-h-[160vh] bg-black text-white flex flex-col items-center justify-start py-16 md:py-24 font-[Poppins]"
         >
           <h2 className="text-3xl md:text-[48px] font-semibold text-center text-white mb-20 md:mb-32 px-4">
-            Fly safe with parts you <span className="text-[#00E5FF]">trust.</span>
+            Fly safe with parts you <span className="text-[#7DF9FF]">trust.</span>
           </h2>
 
           {/* Lines & Plane */}
           <div
             ref={whiteLineRef}
-            className="absolute top-[280px] left-1/2 w-[6px] md:w-[10px] h-[1300px] md:h-[900px] bg-white/20 rounded-full -translate-x-1/2"
+            className="absolute top-[280px] left-1/2 w-[6px] md:w-[10px] h-[1600px] md:h-[1150px] bg-white/10 rounded-full -translate-x-1/2"
           ></div>
 
           <div
             ref={blueLineRef}
-            className="absolute top-[280px] left-1/2 w-[6px] md:w-[10px] h-[1300px] md:h-[900px] bg-[#00E5FF] rounded-full -translate-x-1/2 will-change-transform"
+            className="absolute top-[280px] left-1/2 w-[6px] md:w-[10px] h-0 bg-[#7DF9FF] rounded-full -translate-x-1/2 will-change-transform"
             style={{
-              boxShadow: '0 0 15px #00E5FF, 0 0 30px #00E5FF',
+              boxShadow: '0 0 15px #7DF9FF, 0 0 30px #7DF9FF',
             }}
           ></div>
 
@@ -241,7 +237,7 @@ const RepairManagementPage = () => {
             ref={planeRef}
             src="/sliderplane.png"
             alt="Plane"
-            className="absolute top-[260px] left-1/2 w-[70px] h-[70px] md:w-[120px] md:h-[120px] -translate-x-1/2 will-change-transform"
+            className="absolute top-[240px] left-1/2 w-[70px] h-[70px] md:w-[120px] md:h-[120px] -translate-x-1/2 will-change-transform"
           />
 
           {/* Zigzag features */}
@@ -278,7 +274,7 @@ const RepairManagementPage = () => {
                   }`}
               >
                 <div className="max-w-[440px] space-y-3">
-                  <div className="text-[#00E5FF] font-bold text-[32px] md:text-[40px]">
+                  <div className="text-[#7DF9FF] font-bold text-[32px] md:text-[40px]">
                     {feature.id}
                   </div>
                   <h3 className="text-[24px] md:text-[32px] font-medium">
