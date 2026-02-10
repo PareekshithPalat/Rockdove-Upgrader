@@ -97,8 +97,11 @@ const FAQs: React.FC = () => {
     <PageLayout>
       <div className="min-h-screen bg-black text-white">
         {/* Hero Section */}
-        <section className="relative pt-32 md:pt-48 pb-20 px-8">
-          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
+        <section className="relative pt-32 md:pt-48 pb-20 px-8 overflow-hidden">
+          {/* Blue Shade Background Glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[600px] bg-[#5cc6d0]/20 blur-[120px] rounded-full pointer-events-none z-0" />
+
+          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 relative z-10">
             <div className="flex-1">
               <div className="flex flex-col items-start gap-4 mb-8">
                 <HelpCircle className="w-12 h-12 text-[#5cc6d0] hidden md:block" />
