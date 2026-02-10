@@ -98,9 +98,6 @@ const FAQs: React.FC = () => {
       <div className="min-h-screen bg-black text-white">
         {/* Hero Section */}
         <section className="relative pt-32 md:pt-48 pb-20 px-8 overflow-hidden">
-          {/* Blue Shade Background Glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[600px] bg-[#5cc6d0]/20 blur-[120px] rounded-full pointer-events-none z-0" />
-
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 relative z-10">
             <div className="flex-1">
               <div className="flex flex-col items-start gap-4 mb-8">
@@ -115,11 +112,14 @@ const FAQs: React.FC = () => {
               </p>
             </div>
 
-            <div className="flex-1 w-full flex justify-center md:justify-end">
+            <div className="flex-1 w-full flex justify-center md:justify-end relative">
+              {/* Blue Shade Background Glow (Specifically behind the SVG) */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[#5cc6d0]/20 blur-[100px] rounded-full pointer-events-none z-0" />
+
               <img
                 src="/undraw_work-chat_hc3y.svg"
                 alt="Support Illustration"
-                className="w-full max-w-[500px] h-auto opacity-90 drop-shadow-[0_0_25px_rgba(92,198,208,0.25)] animate-in fade-in zoom-in duration-1000"
+                className="w-full max-w-[500px] h-auto opacity-90 drop-shadow-[0_0_25px_rgba(92,198,208,0.25)] animate-in fade-in zoom-in duration-1000 relative z-10"
               />
             </div>
           </div>
