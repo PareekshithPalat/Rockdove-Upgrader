@@ -48,14 +48,30 @@ export const FAQ: React.FC = () => {
             ease: [0.25, 0.1, 0.25, 1],
           }}
           viewport={{ once: true }}
-          className="space-y-4 mt-10 md:mt-16"
+          className="space-y-6 mt-10 md:mt-16"
         >
-          <h2 className="text-4xl md:text-5xl font-semibold font-[Poppins]">
-            FAQS
-          </h2>
-          <p className="text-gray-300 text-lg md:text-xl font-[Poppins] font-medium leading-snug">
-            Here are answers to <br /> questions our clients ask.
-          </p>
+          <div className="space-y-4">
+            <h2 className="text-4xl md:text-5xl font-semibold font-[Poppins] leading-tight text-[#5CC6D0]">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-gray-300 text-lg md:text-xl font-[Poppins] font-medium leading-relaxed max-w-[500px]">
+              Find answers to common questions about our services, processes, and how we can help optimize your aircraft parts supply chain.
+            </p>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="pt-8"
+          >
+            <img
+              src="/undraw_work-chat_hc3y.svg"
+              alt="Work Chat Illustration"
+              className="w-full max-w-[400px] h-auto opacity-90 drop-shadow-[0_0_15px_rgba(92,198,208,0.2)]"
+            />
+          </motion.div>
         </motion.div>
 
         {/* Right Section */}
