@@ -70,13 +70,13 @@ const Features: React.FC = () => {
       {/* Static White Line */}
       <div
         ref={whiteLineRef}
-        className="absolute top-[280px] left-[20px] md:left-1/2 w-[4px] md:w-[10px] h-[1400px] md:h-[1050px] bg-white/10 rounded-full -translate-x-1/2"
+        className="absolute top-[204px] md:top-[364px] left-[20px] md:left-1/2 w-[4px] md:w-[10px] h-[1200px] md:h-[1050px] bg-white/10 rounded-full -translate-x-1/2"
       ></div>
 
       {/* Glowing Cyan Line (grows + glows continuously) */}
       <div
         ref={blueLineRef}
-        className="absolute top-[280px] left-[20px] md:left-1/2 w-[4px] md:w-[10px] h-0 bg-[#7DF9FF] rounded-full -translate-x-1/2 will-change-transform"
+        className="absolute top-[204px] md:top-[364px] left-[20px] md:left-1/2 w-[4px] md:w-[10px] h-0 bg-[#7DF9FF] rounded-full -translate-x-1/2 will-change-transform"
         style={{
           boxShadow: '0 0 15px #7DF9FF, 0 0 30px #7DF9FF',
         }}
@@ -87,7 +87,7 @@ const Features: React.FC = () => {
         ref={planeRef}
         src="/sliderplane.png"
         alt="Plane"
-        className="absolute top-[240px] left-[20px] md:left-1/2 w-[40px] h-[40px] md:w-[120px] md:h-[120px] -translate-x-1/2 z-10 will-change-transform"
+        className="absolute top-[164px] md:top-[324px] left-[20px] md:left-1/2 w-[40px] h-[40px] md:w-[120px] md:h-[120px] -translate-x-1/2 z-10 will-change-transform"
       />
 
       {/* Feature Blocks */}

@@ -45,7 +45,7 @@ const RepairManagementPage = () => {
     if (!section || !plane || !blueLine) return;
 
     const isMobile = window.innerWidth < 768;
-    const distance = isMobile ? 1600 : 1150;
+    const distance = isMobile ? 1200 : 1050;
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -222,12 +222,12 @@ const RepairManagementPage = () => {
           {/* Lines & Plane */}
           <div
             ref={whiteLineRef}
-            className="absolute top-[280px] left-1/2 w-[6px] md:w-[10px] h-[1600px] md:h-[1150px] bg-white/10 rounded-full -translate-x-1/2"
+            className="absolute top-[204px] md:top-[364px] left-[30px] md:left-1/2 w-[4px] md:w-[10px] h-[1200px] md:h-[1050px] bg-white/10 rounded-full -translate-x-1/2"
           ></div>
 
           <div
             ref={blueLineRef}
-            className="absolute top-[280px] left-1/2 w-[6px] md:w-[10px] h-0 bg-[#7DF9FF] rounded-full -translate-x-1/2 will-change-transform"
+            className="absolute top-[204px] md:top-[364px] left-[30px] md:left-1/2 w-[4px] md:w-[10px] h-0 bg-[#7DF9FF] rounded-full -translate-x-1/2 will-change-transform"
             style={{
               boxShadow: '0 0 15px #7DF9FF, 0 0 30px #7DF9FF',
             }}
@@ -237,11 +237,11 @@ const RepairManagementPage = () => {
             ref={planeRef}
             src="/sliderplane.png"
             alt="Plane"
-            className="absolute top-[240px] left-1/2 w-[70px] h-[70px] md:w-[120px] md:h-[120px] -translate-x-1/2 will-change-transform"
+            className="absolute top-[164px] md:top-[324px] left-[30px] md:left-1/2 w-[50px] h-[50px] md:w-[120px] md:h-[120px] -translate-x-1/2 will-change-transform z-10"
           />
 
           {/* Zigzag features */}
-          <div className="mt-[-60px] md:mt-[-100px] flex flex-col gap-[100px] md:gap-[120px] w-full max-w-[1200px] px-4">
+          <div className="mt-0 md:mt-20 flex flex-col gap-24 md:gap-[150px] w-full max-w-[1200px] px-6">
             {[
               {
                 id: '01',
@@ -270,14 +270,15 @@ const RepairManagementPage = () => {
             ].map((feature, i) => (
               <div
                 key={i}
-                className={`feature-block flex ${feature.align === 'right' ? 'justify-end text-right' : 'justify-start text-left'
+                className={`feature-block flex justify-end ${feature.align === 'right' ? 'md:justify-end' : 'md:justify-start'
                   }`}
               >
-                <div className="max-w-[440px] space-y-3">
+                <div className={`w-full pl-12 md:pl-0 max-w-none md:max-w-[440px] space-y-3 text-left ${feature.align === 'right' ? 'md:text-right' : 'md:text-left'
+                  }`}>
                   <div className="text-[#7DF9FF] font-bold text-[32px] md:text-[40px]">
                     {feature.id}
                   </div>
-                  <h3 className="text-[24px] md:text-[32px] font-medium">
+                  <h3 className="text-[24px] md:text-[32px] font-medium text-white">
                     {feature.title}
                   </h3>
                   <p className="text-[15px] md:text-[16px] text-gray-300 leading-[160%]">
@@ -290,13 +291,13 @@ const RepairManagementPage = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 md:py-20 px-6 text-center">
-          <div className="max-w-2xl mx-auto">
+        <section className="py-20 md:py-32 px-6 text-center">
+          <div className="max-w-6xl mx-auto">
             <motion.h2
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-3xl md:text-4xl font-bold mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 md:mb-12 tracking-tight md:whitespace-nowrap px-4"
             >
               Elevate Your Aircraft Maintenance Today
             </motion.h2>
@@ -305,7 +306,9 @@ const RepairManagementPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <Button className="bg-blue-600 text-white px-8 py-4 text-base md:text-lg font-semibold hover:bg-blue-700">
+              <Button
+                className="bg-[linear-gradient(180deg,#5CC6D0_0%,#14919B_100%)] text-white px-8 py-4 sm:px-12 sm:py-8 text-base sm:text-xl md:text-2xl font-semibold rounded-2xl shadow-[0_4px_0_0_#0D5D64] hover:brightness-110 transition-all active:translate-y-1 active:shadow-none h-auto border-none"
+              >
                 Schedule a Repair Consultation
               </Button>
             </motion.div>
