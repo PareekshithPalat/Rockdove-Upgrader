@@ -198,7 +198,7 @@ const RFQ: React.FC = () => {
             ].map((item, idx) => (
               <FadeInUp key={idx} delay={idx * 200} className="group">
                 <div className="w-full h-[280px] bg-white/5 border border-white/10 rounded-[40px] p-10 flex flex-col justify-end transition-all duration-500 hover:bg-[#5cc6d0]/5 hover:border-[#5cc6d0]/30 hover:-translate-y-2 relative overflow-hidden">
-                  <div className="absolute top-8 left-8 text-6xl font-black text-white/5 group-hover:text-[#5cc6d0]/10 transition-colors">0{idx + 1}</div>
+                  <div className="absolute top-8 left-8 text-6xl font-black text-white/15 group-hover:text-[#5cc6d0]/30 transition-colors">0{idx + 1}</div>
                   <h3 className="text-[#5cc6d0] text-2xl font-bold mb-3 relative z-10">{item.title}</h3>
                   <p className="text-gray-400 leading-relaxed font-light relative z-10">{item.text}</p>
                 </div>
