@@ -1,9 +1,7 @@
-import { lazy, Suspense } from "react";
 import { Button } from "../components/ui/button";
-import { Card, CardContent } from "../components/ui/card";
 import { PageLayout } from "../components/PageLayout";
 
-const Spline = lazy(() => import("@splinetool/react-spline"));
+
 
 const inventoryCategories = [
   {
@@ -147,15 +145,11 @@ const AssetManagement = (): JSX.Element => {
           {/* Right Mascot / Spline Section */}
           <div className="flex-shrink-0 w-full md:w-auto flex justify-center md:justify-end">
             <div className="w-[300px] sm:w-[380px] md:w-[420px] h-[300px] sm:h-[380px] md:h-[420px]">
-              <Suspense
-                fallback={
-                  <div className="flex items-center justify-center text-gray-400 text-sm h-full">
-                    Loading 3D model...
-                  </div>
-                }
-              >
-                <Spline scene="https://prod.spline.design/eKIr9KALeaHgOFXP/scene.splinecode" />
-              </Suspense>
+              <img
+                src="/undraw_logistics_8vri.svg"
+                alt="Asset Management Illustration"
+                className="w-full h-full object-contain"
+              />
             </div>
           </div>
         </section>
