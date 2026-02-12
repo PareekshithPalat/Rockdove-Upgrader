@@ -1,11 +1,11 @@
-import React, { useState, Suspense, lazy, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { PageLayout } from "../components/PageLayout";
 import { Button } from "../components/ui/button";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "../lib/utils";
 
-const Spline = lazy(() => import("@splinetool/react-spline"));
+
 gsap.registerPlugin(ScrollTrigger);
 
 const advantages = [
@@ -83,21 +83,18 @@ const logisticsPartners = [
 ];
 
 const AOGSupport: React.FC = () => {
+
+
   const [showHeading, setShowHeading] = useState(false);
   const heroRef = useRef<HTMLDivElement | null>(null);
-  const splineRef = useRef<HTMLDivElement | null>(null);
-
-  const handleSplineLoad = () => {
-    setTimeout(() => {
-      setShowHeading(true);
-    }, 1000);
-  };
+  const illustrationRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (heroRef.current && splineRef.current) {
+    setShowHeading(true);
+    if (heroRef.current && illustrationRef.current) {
       const ctx = gsap.context(() => {
         gsap.fromTo(
-          splineRef.current,
+          illustrationRef.current,
           { y: 80, opacity: 0 },
           {
             y: 0,
@@ -135,9 +132,9 @@ const AOGSupport: React.FC = () => {
             ></div>
           </div>
 
-          {/* 3D Spline Scene */}
+          {/* Illustration */}
           <div
-            ref={splineRef}
+            ref={illustrationRef}
             className="
               absolute inset-0 z-10 flex items-center justify-center pointer-events-none
               transform -translate-y-10
@@ -146,23 +143,15 @@ const AOGSupport: React.FC = () => {
             <div
               className="
                 relative flex justify-center items-center
-                w-[120vw] sm:w-[140vw] md:w-[160vw] lg:w-[180vw] xl:w-[200vw]
-                h-[55vh] sm:h-[65vh] md:h-[75vh]
+                w-[90vw] sm:w-[80vw] md:w-[70vw] lg:w-[60vw]
+                h-[50vh] sm:h-[60vh]
               "
             >
-              <Suspense
-                fallback={
-                  <div className="flex items-center justify-center text-gray-400 text-sm h-full">
-                    Loading 3D model...
-                  </div>
-                }
-              >
-                <Spline
-                  scene="https://prod.spline.design/sha7cJ5NS-EhRcKr/scene.splinecode"
-                  onLoad={handleSplineLoad}
-                  className="spline-canvas"
-                />
-              </Suspense>
+              <img
+                src="/undraw_aircraft_usu4.svg"
+                alt="AOG Support Illustration"
+                className="w-full h-full object-contain"
+              />
             </div>
           </div>
 
@@ -209,24 +198,7 @@ const AOGSupport: React.FC = () => {
             </Button>
           </div>
 
-          {/* Mobile Fix for 3D Model */}
-          <style>
-            {`
-              @media (max-width: 768px) {
-                .spline-canvas canvas {
-                  transform: scale(1.4) translateY(25px);
-                  transform-origin: center;
-                }
-              }
 
-              @media (max-width: 480px) {
-                .spline-canvas canvas {
-                  transform: scale(1.55) translateY(30px);
-                  transform-origin: center;
-                }
-              }
-            `}
-          </style>
         </section>
 
         {/* ====================== ADVANTAGES SECTION ====================== */}
