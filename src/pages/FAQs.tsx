@@ -58,21 +58,17 @@ const FAQs: React.FC = () => {
       <div className="min-h-screen bg-black text-white">
         {/* Hero Section */}
         <section className="relative pt-32 md:pt-48 pb-20 px-8 overflow-hidden">
-          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 relative z-10">
-            <div className="flex-1">
-              <div className="flex flex-col items-start gap-4 mb-8">
-                <HelpCircle className="w-12 h-12 text-[#5cc6d0] hidden md:block" />
-                <h1 className="text-4xl md:text-7xl font-bold leading-tight text-white">
-                  Frequently Asked Questions
-                </h1>
-              </div>
-              <p className="text-xl md:text-2xl text-gray-300 max-w-2xl leading-relaxed">
-                Find answers to common questions about our services, processes,
-                and how we can help optimize your aircraft parts supply chain.
-              </p>
+          <div className="max-w-7xl mx-auto relative z-10 text-center">
+            <div className="flex flex-col items-center gap-4 mb-8">
+              <HelpCircle className="w-12 h-12 text-[#5cc6d0]" />
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-white md:whitespace-nowrap">
+                Frequently Asked Questions
+              </h1>
             </div>
-
-            <div className="flex-1 h-20 md:h-auto" />
+            <p className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+              Find answers to common questions about our services, processes,
+              and how we can help optimize your aircraft parts supply chain.
+            </p>
           </div>
         </section>
 
