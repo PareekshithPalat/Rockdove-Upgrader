@@ -132,12 +132,11 @@ const AOGSupport: React.FC = () => {
             ></div>
           </div>
 
-          {/* Illustration */}
           <div
             ref={illustrationRef}
             className="
               absolute inset-0 z-10 flex items-center justify-center pointer-events-none
-              transform -translate-y-10
+              transform translate-y-4 md:-translate-y-10
             "
           >
             <div
@@ -157,11 +156,12 @@ const AOGSupport: React.FC = () => {
 
           {/* Animated Heading */}
           <div
-            className={`absolute inset-0 flex items-start justify-center pt-24 sm:pt-32 md:pt-40 z-20 transition-opacity duration-1000 ${showHeading ? "opacity-100" : "opacity-0"
-              } transform -translate-y-16`}
+            className={`absolute inset-0 flex items-start justify-center pt-32 sm:pt-32 md:pt-40 z-20 transition-opacity duration-1000 ${showHeading ? "opacity-100" : "opacity-0"
+              } md:transform md:-translate-y-16`}
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center px-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center px-6 leading-tight max-w-[90vw] md:max-w-full">
               <span className="text-[#5cc6d0]">24/7 AOG Support </span>
+              <br className="block md:hidden" />
               <span className="text-white">(Aircraft on ground)</span>
             </h1>
           </div>
@@ -202,10 +202,11 @@ const AOGSupport: React.FC = () => {
         </section>
 
         {/* ====================== ADVANTAGES SECTION ====================== */}
-        <section className="flex flex-col items-center px-4 sm:px-8 md:px-16 lg:px-24 py-24 text-center bg-black text-white">
-          <h2 className="max-w-3xl text-3xl md:text-4xl leading-snug mb-16">
+        <section className="flex flex-col items-center px-6 sm:px-8 md:px-16 lg:px-24 py-24 text-center bg-black text-white">
+          <h2 className="max-w-3xl text-3xl md:text-4xl leading-tight md:leading-snug mb-16">
             <span className="font-medium text-white">
-              Keeping Your Aircraft Airborne in <br />
+              Keeping Your Aircraft Airborne in{" "}
+              <br className="hidden md:block" />
             </span>
             <span className="font-bold text-[#5cc6d0]">Critical Moments</span>
           </h2>
@@ -215,7 +216,7 @@ const AOGSupport: React.FC = () => {
               <div
                 key={index}
                 className={cn(
-                  "group rounded-[20px] w-full h-[320px] flex flex-col justify-start items-start px-8 py-10 mx-auto transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg",
+                  "group rounded-[20px] w-full h-auto min-h-[320px] flex flex-col justify-start items-center md:items-start px-8 py-10 mx-auto transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg",
                   index === 0
                     ? "bg-[linear-gradient(180deg,#5CC6D0_0%,#0097A1_100%)]"
                     : "bg-[#D9D9D9]"
@@ -225,13 +226,13 @@ const AOGSupport: React.FC = () => {
                   {advantage.icon}
                 </div>
                 <h3 className={cn(
-                  "font-[600] text-xl mb-4 transition-colors duration-300 font-[Poppins]",
+                  "font-[600] text-xl mb-4 transition-colors duration-300 font-[Poppins] text-center md:text-left",
                   index === 0 ? "text-white" : "text-black"
                 )}>
                   {advantage.title}
                 </h3>
                 <p className={cn(
-                  "font-medium text-base leading-relaxed tracking-wide text-left",
+                  "font-medium text-base leading-relaxed tracking-wide text-center md:text-left",
                   index === 0 ? "text-white" : "text-black"
                 )}>
                   {advantage.description}

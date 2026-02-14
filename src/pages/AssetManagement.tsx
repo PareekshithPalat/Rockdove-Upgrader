@@ -196,15 +196,15 @@ const AssetManagement = (): JSX.Element => {
             </div>
 
             {/* Right Side - Engine Image */}
-            <div className="relative flex justify-start md:ml-[-80px] overflow-visible">
+            <div className="relative flex justify-center md:justify-start md:ml-[-80px] overflow-visible w-full md:w-auto">
               {/* Gradient Base */}
-              <div className="w-[250px] h-[150px] lg:w-[320px] lg:h-[170px] rounded-2xl bg-[linear-gradient(180deg,rgba(92,198,208,1)_0%,rgba(47,101,106,1)_100%)]" />
+              <div className="w-[280px] h-[160px] md:w-[250px] md:h-[150px] lg:w-[320px] lg:h-[170px] rounded-2xl bg-[linear-gradient(180deg,rgba(92,198,208,1)_0%,rgba(47,101,106,1)_100%)]" />
 
               {/* Jet Engine Image */}
               <img
                 src="https://c.animaapp.com/mh31x2ueWQqHGB/img/now-that-looks-fun-removebg-preview--1--1.png"
                 alt="Jet Engine"
-                className="absolute -top-14 -left-20 w-[700px] scale-[1.15] object-cover"
+                className="absolute -top-10 md:-top-14 left-1/2 -translate-x-[55%] md:translate-x-0 md:-left-20 w-[500px] md:w-[700px] scale-[1.1] md:scale-[1.15] object-cover max-w-none"
               />
             </div>
           </div>
@@ -341,7 +341,9 @@ const AssetManagement = (): JSX.Element => {
                         ? "-top-6"
                         : "-top-16";
 
-              const leftOffset = isEngine ? "left-[-80px]" : "-left-16";
+              const leftOffset = isEngine
+                ? "left-1/2 -translate-x-[55%] md:translate-x-0 md:left-[-80px]"
+                : "left-1/2 -translate-x-1/2 md:translate-x-0 md:-left-16";
 
               // 💡 Custom hover scale depending on the product
               const hoverScale = isAPU
@@ -355,7 +357,7 @@ const AssetManagement = (): JSX.Element => {
               return (
                 <div
                   key={index}
-                  className="relative w-[260px] flex flex-col items-start gap-4 overflow-visible group"
+                  className="relative w-[280px] flex flex-col items-center md:items-start gap-4 overflow-visible group"
                 >
                   {/* Card Container */}
                   <div className="w-[200px] h-[120px] bg-white rounded-2xl flex items-center justify-center transition-all duration-300 ease-in-out group-hover:bg-[#5cc6d0]" />
@@ -375,8 +377,8 @@ const AssetManagement = (): JSX.Element => {
                   <div className="absolute inset-0 z-20 cursor-pointer" />
 
                   {/* Product Title */}
-                  <div className="flex flex-col items-start justify-start w-full">
-                    <h3 className="mt-5 text-white text-lg font-semibold text-left min-h-[28px] flex items-start">
+                  <div className="flex flex-col items-center md:items-start justify-start w-full">
+                    <h3 className="mt-5 text-white text-lg font-semibold text-center md:text-left min-h-[28px] flex items-start">
                       {product.title}
                     </h3>
                   </div>

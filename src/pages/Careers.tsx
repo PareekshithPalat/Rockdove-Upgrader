@@ -1,7 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { PageLayout } from "../components/PageLayout";
 import { Button } from "../components/ui/button";
-import { Card, CardContent } from "../components/ui/card";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { RadioGroup, RadioGroupItem } from "../components/ui/radio-group";
@@ -58,7 +57,7 @@ const Career = (): JSX.Element => {
         <div className="max-w-[1440px] mx-auto">
           <main>
             {/* Hero Section */}
-            <section className="flex flex-col items-center px-9 pt-32 md:pt-48 pb-16 animate-fade-in">
+            <section className="flex flex-col items-center px-8 md:px-9 pt-32 md:pt-48 pb-16 animate-fade-in">
               <h1 className="[font-family:'Poppins',Helvetica] font-bold text-[40px] text-center leading-[60px] mb-6">
                 <span className="text-[#5cc6d0]">Soar with</span>
                 <br />
@@ -70,7 +69,7 @@ const Career = (): JSX.Element => {
             </section>
 
             {/* Why Join Us */}
-            <section className="flex flex-col items-center px-9 py-16 animate-fade-in">
+            <section className="flex flex-col items-center px-8 md:px-9 py-16 animate-fade-in">
               <h2 className="[font-family:'Poppins',Helvetica] font-bold text-white text-[32px] md:text-[40px] text-center mb-6">
                 Why Join Us?
               </h2>
@@ -157,9 +156,9 @@ const Career = (): JSX.Element => {
             </section> */}
 
             {/* Application Form */}
-            <section className="relative px-4 sm:px-6 md:px-12 lg:px-[178px] py-24 bg-transparent">
-              <h2 className="[font-family:'Poppins',Helvetica] font-bold text-[#5cc6d0] text-[40px] mb-12 text-left">
-                Join Our Team - Employee Gallery
+            <section className="relative px-8 sm:px-10 md:px-12 lg:px-[178px] py-16 md:py-24 bg-transparent">
+              <h2 className="[font-family:'Poppins',Helvetica] font-bold text-[#5cc6d0] text-3xl md:text-[40px] mb-12 text-center md:text-left">
+                Join Our Team
               </h2>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -371,17 +370,17 @@ const Career = (): JSX.Element => {
             </section>
 
             {/* Contact HR Section */}
-            <section className="flex flex-col items-center px-9 py-24 animate-fade-in">
-              <h2 className="[font-family:'Poppins',Helvetica] font-bold text-[#5cc6d0] text-[32px] md:text-[40px] text-center mb-8 uppercase">
-                Grow with Rockdove Aviation - Contact HR
+            <section className="flex flex-col items-center px-8 md:px-9 py-24 animate-fade-in">
+              <h2 className="[font-family:'Poppins',Helvetica] font-bold text-[#5cc6d0] text-2xl sm:text-3xl md:text-[40px] text-center mb-8 uppercase leading-tight">
+                Grow with Rockdove Aviation <br className="block sm:hidden" /> - Contact HR
               </h2>
-              <Button className="flex items-center gap-3 h-auto rounded-[40px] bg-[linear-gradient(180deg,rgba(92,198,208,1)_0%,rgba(20,145,155,1)_100%)] border-0 [font-family:'Poppins',Helvetica] font-bold text-white text-2xl px-12 py-4 hover:opacity-90 transition-opacity">
+              <Button className="flex items-center gap-3 h-auto rounded-[40px] bg-[linear-gradient(180deg,rgba(92,198,208,1)_0%,rgba(20,145,155,1)_100%)] border-0 [font-family:'Poppins',Helvetica] font-bold text-white text-base sm:text-2xl px-6 sm:px-12 py-4 hover:opacity-90 transition-opacity w-full sm:w-auto">
                 <img
                   src="/smail.svg"
                   alt="Mail Icon"
-                  className="w-6 h-6 object-contain"
+                  className="w-5 h-5 sm:w-6 sm:h-6 object-contain"
                 />
-                HR@rockdoveaviation.com
+                <span className="truncate">HR@rockdoveaviation.com</span>
               </Button>
             </section>
           </main>
