@@ -72,16 +72,7 @@ const FAQs: React.FC = () => {
               </p>
             </div>
 
-            <div className="flex-1 w-full flex justify-center md:justify-end relative">
-              {/* Blue Shade Background Glow (Specifically behind the SVG) */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[#5cc6d0]/20 blur-[100px] rounded-full pointer-events-none z-0" />
-
-              <img
-                src="/undraw_work-chat_hc3y.svg"
-                alt="Support Illustration"
-                className="w-full max-w-[500px] h-auto opacity-90 drop-shadow-[0_0_25px_rgba(92,198,208,0.25)] animate-in fade-in zoom-in duration-1000 relative z-10"
-              />
-            </div>
+            <div className="flex-1 h-20 md:h-auto" />
           </div>
         </section>
 

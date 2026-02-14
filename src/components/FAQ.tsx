@@ -65,19 +65,7 @@ export const FAQ: React.FC = () => {
             </p>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="pt-8"
-          >
-            <img
-              src="/undraw_work-chat_hc3y.svg"
-              alt="Work Chat Illustration"
-              className="w-full max-w-[400px] h-auto opacity-90 drop-shadow-[0_0_15px_rgba(92,198,208,0.2)]"
-            />
-          </motion.div>
+
         </motion.div>
 
         {/* Right Section */}

@@ -55,7 +55,7 @@ const RFQ: React.FC = () => {
     <PageLayout>
       <div className="bg-black text-white min-h-screen font-[Poppins] relative overflow-x-hidden">
         {/* ============ HERO SECTION ============ */}
-        <section className="px-6 sm:px-10 md:px-20 lg:px-40 xl:px-64 pt-32 md:pt-48 pb-20 flex flex-col lg:flex-row justify-between items-center gap-12">
+        <section className="px-6 sm:px-10 md:px-20 lg:px-20 xl:px-32 pt-32 md:pt-48 pb-20 flex flex-col lg:flex-row justify-between items-center gap-12">
           <div className="max-w-4xl space-y-8 text-center lg:text-left">
             <FadeInUp>
               <h1 className="text-3xl md:text-4xl lg:text-[48px] font-bold leading-tight whitespace-nowrap">
@@ -82,11 +82,15 @@ const RFQ: React.FC = () => {
             </FadeInUp>
           </div>
 
-          <FadeInUp delay={600} className="w-full lg:w-auto">
-            <div className="w-full sm:w-[320px] md:w-[400px] h-[300px] md:h-[400px] bg-white/5 border border-white/10 backdrop-blur-sm rounded-3xl flex items-center justify-center relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#5cc6d0]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-              <span className="text-[#5cc6d0] text-xl font-bold uppercase tracking-widest relative z-10">Mascot Model</span>
-            </div>
+          <FadeInUp delay={600} className="w-full lg:w-auto relative">
+            {/* Blue Shade Background Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-[#5cc6d0]/10 blur-[120px] rounded-full pointer-events-none z-0" />
+
+            <img
+              src="/undraw_work-chat_hc3y.svg"
+              alt="RFQ Illustration"
+              className="w-full max-w-[850px] h-auto opacity-95 drop-shadow-[0_0_30px_rgba(92,198,208,0.2)] relative z-10"
+            />
           </FadeInUp>
         </section>
 
