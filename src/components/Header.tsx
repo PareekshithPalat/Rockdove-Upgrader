@@ -126,7 +126,7 @@ const Header: React.FC = () => {
                   onClick={() => toggleDropdown("services")}
                   className={`inline-flex items-center gap-2 transition-colors ${activeDropdown === "services"
                     ? "text-white"
-                    : "text-[#0891B2] hover:text-white"
+                    : "text-[#5cc6D0] hover:text-white"
                     }`}
                 >
                   Services <ChevronDown className="h-5 w-5" />
@@ -203,7 +203,7 @@ const Header: React.FC = () => {
               {/* RFQ Link */}
               <Link
                 to="/rfq"
-                className="text-[#0891B2] hover:text-white transition-colors"
+                className="text-[#5cc6D0] hover:text-white transition-colors"
               >
                 RFQ
               </Link>
@@ -218,7 +218,7 @@ const Header: React.FC = () => {
                   onClick={() => toggleDropdown("company")}
                   className={`inline-flex items-center gap-2 transition-colors ${activeDropdown === "company"
                     ? "text-white"
-                    : "text-[#0891B2] hover:text-white"
+                    : "text-[#5cc6D0] hover:text-white"
                     }`}
                 >
                   Company <ChevronDown className="h-5 w-5" />
@@ -303,14 +303,14 @@ const Header: React.FC = () => {
             {/* Contact Button */}
             <Link
               to="/contact"
-              className="hidden md:inline-block border border-[#0891B2] text-[#0891B2] rounded-full px-5 py-2 font-semibold hover:bg-[#0891B2] hover:text-black transition"
+              className="hidden md:inline-block border border-[#5cc6D0] text-[#5cc6D0] rounded-full px-5 py-2 font-semibold hover:bg-[#5cc6D0] hover:text-black transition"
             >
               Contact
             </Link>
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden text-[#0891B2] hover:text-white"
+              className="md:hidden text-[#5cc6D0] hover:text-white"
               onClick={() => setMobileOpen(true)}
             >
               <Menu className="h-7 w-7" />
@@ -339,7 +339,7 @@ const Header: React.FC = () => {
                 />
                 <button
                   onClick={() => setMobileOpen(false)}
-                  className="text-[#0891B2] p-2 hover:bg-white/10 rounded-full transition"
+                  className="text-[#5cc6D0] p-2 hover:bg-white/10 rounded-full transition"
                 >
                   <X className="h-8 w-8" />
                 </button>

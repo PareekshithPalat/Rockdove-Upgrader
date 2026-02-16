@@ -63,6 +63,8 @@ class SceneErrorBoundary extends React.Component<
 export const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
+  const [isMasterSplit, setIsMasterSplit] = useState(false);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Smooth progress spring for heavy, cinematic feel
   const smoothProgress = useSpring(progress, {
@@ -71,6 +73,29 @@ export const Hero: React.FC = () => {
     restDelta: 0.0001
   });
 
+  // reset inactivity timer
+  const resetInactivityTimer = () => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
+      setIsMasterSplit(false);
+    }, 60000); // 1 minute
+  };
+
+  useEffect(() => {
+    const handleActivity = () => resetInactivityTimer();
+    window.addEventListener('mousemove', handleActivity);
+    window.addEventListener('click', handleActivity);
+    window.addEventListener('wheel', handleActivity);
+    resetInactivityTimer();
+
+    return () => {
+      window.removeEventListener('mousemove', handleActivity);
+      window.removeEventListener('click', handleActivity);
+      window.removeEventListener('wheel', handleActivity);
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
+
   useEffect(() => {
     smoothProgress.set(progress);
   }, [progress, smoothProgress]);
@@ -78,6 +103,13 @@ export const Hero: React.FC = () => {
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
       if (!containerRef.current) return;
+
+      // If split, first scroll re-assembles
+      if (isMasterSplit) {
+        setIsMasterSplit(false);
+        e.preventDefault();
+        return;
+      }
 
       // Check if we are at the top of the page
       const isAtTop = window.scrollY === 0;
@@ -102,7 +134,7 @@ export const Hero: React.FC = () => {
     return () => {
       window.removeEventListener('wheel', handleWheel);
     };
-  }, [progress]);
+  }, [progress, isMasterSplit]);
 
   // Phase 1: Header & UI move out (0.0 to 0.25)
   useEffect(() => {
@@ -124,6 +156,7 @@ export const Hero: React.FC = () => {
           <Canvas
             shadows
             gl={{ antialias: true, alpha: true }}
+            onPointerMissed={() => setIsMasterSplit(false)}
           >
             <Suspense fallback={null}>
               <PerspectiveCamera makeDefault position={[0, 1.4, 8]} fov={45} />
@@ -137,7 +170,11 @@ export const Hero: React.FC = () => {
                 shadow-mapSize={[2048, 2048]}
               />
               <hemisphereLight intensity={1} />
-              <CinematicController progress={smoothProgress} />
+              <CinematicController
+                progress={smoothProgress}
+                isMasterSplit={isMasterSplit}
+                onBodyClick={() => setIsMasterSplit(true)}
+              />
             </Suspense>
           </Canvas>
         </SceneErrorBoundary>
@@ -179,7 +216,11 @@ export const Hero: React.FC = () => {
 
 
 
-const CinematicController: React.FC<{ progress: MotionValue<number> }> = ({ progress }) => {
+const CinematicController: React.FC<{
+  progress: MotionValue<number>;
+  isMasterSplit: boolean;
+  onBodyClick: () => void;
+}> = ({ progress, isMasterSplit, onBodyClick }) => {
   const airplaneRef = useRef<THREE.Group>(null);
   const controlsRef = useRef<any>(null);
   const [hoveredObject, setHoveredObject] = useState<THREE.Object3D | null>(null);
@@ -188,7 +229,6 @@ const CinematicController: React.FC<{ progress: MotionValue<number> }> = ({ prog
   useFrame((state) => {
     const p = progress.get();
     const camera = state.camera;
-    const time = state.clock.elapsedTime;
 
     // --- ROBUST BOUNDARY CONSTANTS ---
     const startPos = { x: 0, y: 6.0, z: 0 };    // High-altitude
@@ -210,26 +250,18 @@ const CinematicController: React.FC<{ progress: MotionValue<number> }> = ({ prog
       airplane.scale.setScalar(0.25);
       airplane.rotation.set(0, 0, 0);
 
-      const hoverY = Math.sin(time * 0.8) * 0.05;
-      const breathingX = Math.cos(time * 0.5) * 0.02;
-      const breathingZ = Math.sin(time * 0.4) * 0.03;
-
       if (p <= 0.25) {
         const subP = p / 0.25;
         const currentY = THREE.MathUtils.lerp(startPos.y, settledPos.y, subP);
         const currentZ = THREE.MathUtils.lerp(startPos.z, settledPos.z, subP);
-        airplane.position.set(startPos.x, currentY + hoverY, currentZ);
-        airplane.rotation.x = breathingX;
-        airplane.rotation.z = breathingZ;
+        airplane.position.set(startPos.x, currentY, currentZ);
         airplane.scale.setScalar(0.25);
       }
       else if (p <= 0.6) {
         const subP = (p - 0.25) / 0.35;
         const currentZ = THREE.MathUtils.lerp(settledPos.z, midPos.z, subP);
-        airplane.position.set(midPos.x, settledPos.y + hoverY, currentZ);
+        airplane.position.set(midPos.x, settledPos.y, currentZ);
         airplane.scale.setScalar(THREE.MathUtils.lerp(0.25, 0.35, subP));
-        airplane.rotation.x = breathingX;
-        airplane.rotation.z = breathingZ;
       }
       else {
         const subP = (p - 0.6) / 0.4;
@@ -272,11 +304,14 @@ const CinematicController: React.FC<{ progress: MotionValue<number> }> = ({ prog
       targetLookAt.set(0, settledPos.y, lookAtZ);
     }
 
-    if (!isInteracting && controlsRef.current) {
+    // If master split is active, we allow OrbitControls to fully manage the camera
+    // withoutFighting the cinematic path. We only apply smooth cinematic tracking
+    // when NOT in master split mode and NOT interacting.
+    if (!isMasterSplit && !isInteracting && controlsRef.current) {
       camera.position.lerp(targetCamPos, 0.1);
       controlsRef.current.target.lerp(targetLookAt, 0.1);
       controlsRef.current.update();
-    } else if (!controlsRef.current) {
+    } else if (!controlsRef.current && !isMasterSplit) {
       camera.position.copy(targetCamPos);
       camera.lookAt(targetLookAt);
     }
@@ -294,6 +329,8 @@ const CinematicController: React.FC<{ progress: MotionValue<number> }> = ({ prog
       />
       <group ref={airplaneRef}>
         <AirplaneModel
+          isMasterSplit={isMasterSplit}
+          onBodyClick={onBodyClick}
           hoveredObject={hoveredObject}
           onPointerMove={(e: ThreeEvent<PointerEvent>) =>
             setHoveredObject(e.object)
@@ -304,4 +341,5 @@ const CinematicController: React.FC<{ progress: MotionValue<number> }> = ({ prog
     </>
   );
 };
+
 

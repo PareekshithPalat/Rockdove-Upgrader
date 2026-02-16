@@ -127,7 +127,7 @@ const specializedProducts = [
 const AssetManagement = (): JSX.Element => {
   return (
     <PageLayout>
-      <div className="bg-black overflow-hidden w-full">
+      <div className="bg-black overflow-hidden w-full font-[Poppins]">
         {/* Hero Section */}
         <section className="relative flex flex-col md:flex-row items-center justify-center px-4 sm:px-6 md:px-12 lg:px-[160px] pt-24 pb-24 gap-8 md:gap-16">
           {/* Left Content */}
@@ -204,7 +204,7 @@ const AssetManagement = (): JSX.Element => {
               <img
                 src="https://c.animaapp.com/mh31x2ueWQqHGB/img/now-that-looks-fun-removebg-preview--1--1.png"
                 alt="Jet Engine"
-                className="absolute -top-10 md:-top-14 left-1/2 -translate-x-[55%] md:translate-x-0 md:-left-20 w-[500px] md:w-[700px] scale-[1.1] md:scale-[1.15] object-cover max-w-none"
+                className="absolute -top-10 md:-top-16 left-1/2 -translate-x-[50%] md:translate-x-0 md:-left-24 w-[90%] md:w-[600px] lg:w-[650px] object-contain max-w-none md:max-w-full"
               />
             </div>
           </div>
@@ -272,7 +272,7 @@ const AssetManagement = (): JSX.Element => {
             basic hardware (nuts, bolts, seals) to advanced systems (avionics,
             landing gear, propulsion). Sourced from trusted OEMs and aftermarket
           </p>
-          <Button className="h-auto rounded-[40px] border-0 bg-[linear-gradient(180deg,rgba(92,198,208,1)_0%,rgba(20,145,155,1)_100%)] px-10 py-3 text-white font-semibold text-lg hover:opacity-90 transition-opacity">
+          <Button className="h-auto rounded-[40px] border-0 bg-[linear-gradient(180deg,rgba(92,198,208,1)_0%,rgba(20,145,155,1)_100%)] px-10 py-3 text-white font-semibold text-lg sm:text-xl md:text-2xl hover:opacity-90 transition-opacity">
             Request a quote
           </Button>
         </section>
