@@ -171,6 +171,60 @@ const MRO: React.FC = () => {
           </div>
         </section>
 
+        {/* Global Presence & Events Gallery */}
+        <section className="py-24 px-8 overflow-hidden">
+          <div className="max-w-7xl mx-auto">
+            <FadeInUp>
+              <div className="text-center mb-16">
+                <h2 className="text-4xl md:text-5xl font-bold mb-6">Our Global Presence</h2>
+                <div className="w-24 h-1 bg-[#5cc6d0] mx-auto mb-8"></div>
+                <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+                  Showcase of our participation in premier aviation events, exhibitions, and maintenance symposia worldwide.
+                  Connecting with industry leaders to drive innovation in MRO.
+                </p>
+              </div>
+            </FadeInUp>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[250px]">
+              {[
+                { src: "/events/event1.png", title: "Aviation Expo 2024", span: "md:col-span-2 md:row-span-2" },
+                { src: "/events/event2.png", title: "Tech Symposium", span: "md:col-span-1 md:row-span-1" },
+                { src: "/events/event3.png", title: "Global Tarmac Show", span: "md:col-span-1 md:row-span-1" },
+                { src: "/events/event4.png", title: "Industry Workshop", span: "md:col-span-1 md:row-span-1" },
+                { src: "/events/event5.png", title: "Aerospace Convention", span: "md:col-span-1 md:row-span-1" },
+                { src: "/events/event7.jpg", title: "Exhibition Stand", span: "md:col-span-1 md:row-span-1" },
+                { src: "/events/event8.jpg", title: "Partnership Event", span: "md:col-span-1 md:row-span-1" },
+                { src: "/events/event6.png", title: "Innovation Forum", span: "md:col-span-2 md:row-span-1" },
+              ].map((event, index) => (
+                <FadeInUp key={index} delay={index * 100}>
+                  <div className={`group relative overflow-hidden rounded-3xl bg-[#0b0d10] border border-white/10 ${event.span} h-full`}>
+                    <img
+                      src={event.src}
+                      alt={event.title}
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-80 group-hover:opacity-100"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0b0d10] via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-300"></div>
+
+                    <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-8 h-[2px] bg-[#5cc6d0]"></div>
+                        <span className="text-xs font-bold tracking-widest text-[#5cc6d0] uppercase">MRO Event</span>
+                      </div>
+                      <h3 className="text-xl font-bold text-white mb-1">{event.title}</h3>
+                      <p className="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                        Showcasing innovation and excellence in global aviation maintenance.
+                      </p>
+                    </div>
+
+                    {/* Interactive border glow */}
+                    <div className="absolute inset-0 border border-white/0 group-hover:border-[#5cc6d0]/30 rounded-3xl transition-colors duration-500"></div>
+                  </div>
+                </FadeInUp>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Contact Section with Final Animations */}
         <section className="py-20 px-8">
           <div className="max-w-4xl mx-auto text-center">
