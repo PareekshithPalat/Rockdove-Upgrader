@@ -4,7 +4,6 @@ import { Button } from '../components/ui/button';
 import { motion } from 'framer-motion';
 import { cn } from '../lib/utils';
 import { GlowEffect } from '../components/ui/GlowEffect';
-import { Meteors } from '../components/ui/meteors';
 import { Card, CardContent } from '../components/ui/card';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -26,7 +25,6 @@ const ServiceStepCard = ({
       className
     )}
   >
-    <Meteors number={20} />
     <div className="relative z-10">{children}</div>
   </div>
 );
