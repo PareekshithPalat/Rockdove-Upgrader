@@ -2,6 +2,7 @@ import React, { Suspense, useRef, useState, useEffect } from "react";
 import { Canvas, useFrame, ThreeEvent } from "@react-three/fiber";
 import { motion, useSpring, useTransform, MotionValue } from "framer-motion";
 import * as THREE from "three";
+import { Link } from "react-router-dom";
 import { AirplaneModel } from "./animations/AirplaneModel";
 import { Button } from "./ui/button";
 import { PerspectiveCamera, OrbitControls } from "@react-three/drei";
@@ -193,14 +194,16 @@ export const Hero: React.FC = () => {
             The one-stop destination for all your aircraft components and
             servicing for a safe flight.
           </p>
-          <Button
-            className="h-[48px] px-8 rounded-xl text-white font-semibold text-lg pointer-events-auto"
-            style={{
-              background: "linear-gradient(180deg, #5CC6D0 0%, #05848E 100%)",
-            }}
-          >
-            Know more
-          </Button>
+          <Link to="/rfq" className="pointer-events-auto">
+            <Button
+              className="h-[48px] px-8 rounded-xl text-white font-semibold text-lg"
+              style={{
+                background: "linear-gradient(180deg, #5CC6D0 0%, #05848E 100%)",
+              }}
+            >
+              Know more
+            </Button>
+          </Link>
         </motion.div>
       </div>
 

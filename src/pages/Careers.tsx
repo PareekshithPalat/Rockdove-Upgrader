@@ -69,9 +69,8 @@ const Career = (): JSX.Element => {
 
             {/* Hero Section */}
             <section className="flex flex-col items-center px-8 md:px-9 pt-32 md:pt-48 pb-16 animate-fade-in">
-              <h1 className="[font-family:'Poppins',Helvetica] font-bold text-[40px] text-center leading-[60px] mb-6">
-                <span className="text-[#5cc6d0]">Soar with</span>
-                <br />
+              <h1 className="[font-family:'Poppins',Helvetica] font-bold text-3xl md:text-[40px] text-center leading-tight md:leading-[60px] mb-6 max-w-4xl mx-auto">
+                <span className="text-[#5cc6d0]">Soar with</span>{" "}
                 <span className="text-white">Rockdove Aviation</span>
               </h1>
               <p className="[font-family:'Poppins',Helvetica] font-medium text-white text-[24px] md:text-[32px] text-center max-w-[931px]">

@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 
 export const Contact: React.FC = () => {
@@ -31,41 +32,45 @@ export const Contact: React.FC = () => {
             support to keep your aircraft soaring without interruption.
           </p>
 
-          <Button
-            className="
-              relative isolate overflow-hidden group
-              bg-gradient-to-b from-[#5CC6D0] to-[#14919B]
-              text-white font-[Poppins] font-semibold
-              text-lg md:text-xl px-12 py-4 rounded-xl
-              border border-[#5CC6D0]/40
-              transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
-              hover:scale-[1.04] active:scale-[0.98]
-              focus:ring-2 focus:ring-[#5CC6D0]/50 focus:ring-offset-2 focus:ring-offset-black
-            "
-          >
-            <span className="relative z-10">Explore</span>
+          <div className="flex justify-center">
+            <Link to="/contact">
+              <Button
+                className="
+                  relative isolate overflow-hidden group
+                  bg-gradient-to-b from-[#5CC6D0] to-[#14919B]
+                  text-white font-[Poppins] font-semibold
+                  text-lg md:text-xl px-12 py-4 rounded-xl
+                  border border-[#5CC6D0]/40
+                  transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
+                  hover:scale-[1.04] active:scale-[0.98]
+                  focus:ring-2 focus:ring-[#5CC6D0]/50 focus:ring-offset-2 focus:ring-offset-black
+                "
+              >
+                <span className="relative z-10">Explore</span>
 
-            {/* Soft shimmer overlay */}
-            <span
-              className="
-                absolute inset-0
-                bg-gradient-to-t from-transparent via-white/20 to-transparent
-                opacity-0 group-hover:opacity-100
-                transition-opacity duration-700 ease-out
-              "
-            ></span>
+                {/* Soft shimmer overlay */}
+                <span
+                  className="
+                    absolute inset-0
+                    bg-gradient-to-t from-transparent via-white/20 to-transparent
+                    opacity-0 group-hover:opacity-100
+                    transition-opacity duration-700 ease-out
+                  "
+                ></span>
 
-            {/* Animated light streak */}
-            <span
-              className="
-                absolute top-0 left-[-100%] w-[60%] h-full
-                bg-gradient-to-r from-transparent via-white/30 to-transparent
-                transform skew-x-[-20deg]
-                transition-all duration-700 ease-in-out
-                group-hover:left-[120%]
-              "
-            ></span>
-          </Button>
+                {/* Animated light streak */}
+                <span
+                  className="
+                    absolute top-0 left-[-100%] w-[60%] h-full
+                    bg-gradient-to-r from-transparent via-white/30 to-transparent
+                    transform skew-x-[-20deg]
+                    transition-all duration-700 ease-in-out
+                    group-hover:left-[120%]
+                  "
+                ></span>
+              </Button>
+            </Link>
+          </div>
         </motion.div>
       </div>
     </section>

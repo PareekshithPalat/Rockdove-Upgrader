@@ -35,13 +35,6 @@ const MRO: React.FC = () => {
   ];
 
 
-  const certifications = [
-    "FAA Part 145 Repair Station",
-    "EASA Part 145 Approved",
-    "ISO 9001:2015 Certified",
-    "AS9100D Aerospace Quality",
-    "NADCAP Accredited"
-  ];
 
   return (
     <PageLayout>
@@ -115,71 +108,6 @@ const MRO: React.FC = () => {
         </section>
 
 
-        {/* Certifications Section with Alternating Animations */}
-        <section className="py-20 px-8">
-          <div className="max-w-6xl mx-auto">
-            {/* Animated section title */}
-            <FadeInUp delay={200}>
-              <h2 className="text-4xl font-bold text-center mb-16">Certifications & Approvals</h2>
-            </FadeInUp>
-
-            {/* Alternating left/right animations for certifications */}
-            <div className="grid md:grid-cols-3 gap-8">
-              {certifications.map((cert, index) => {
-                const AnimationComponent = index % 2 === 0 ? FadeInLeft : FadeInRight;
-                return (
-                  <AnimationComponent key={index} delay={index * 150}>
-                    <div className="bg-[#0b0d10]/50 border border-[#1a1d22] rounded-xl p-6 text-center hover:bg-[#0b0d10]/70 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#5cc6d0]/20">
-                      <Shield className="w-12 h-12 text-[#5cc6d0] mx-auto mb-4" />
-                      <h3 className="text-lg font-semibold text-[#5cc6d0]">{cert}</h3>
-                    </div>
-                  </AnimationComponent>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* Why Choose Us Section with Staggered Stats */}
-        <section className="py-20 px-8 bg-[#0b0d10]/30">
-          <div className="max-w-6xl mx-auto">
-            {/* Animated section title */}
-            <FadeInUp delay={200}>
-              <h2 className="text-4xl font-bold text-center mb-16">Why Choose RockDove MRO?</h2>
-            </FadeInUp>
-
-            {/* Staggered benefit cards with scale animation */}
-            <StaggeredContainer delay={200}>
-              <div className="grid md:grid-cols-3 gap-8">
-                {[
-                  {
-                    title: "Proven Track Record",
-                    description: "Over 10,000 successful maintenance events with 99.8% on-time delivery",
-                    stat: "10,000+"
-                  },
-                  {
-                    title: "Global Network",
-                    description: "Worldwide facilities and partnerships for comprehensive coverage",
-                    stat: "15+"
-                  },
-                  {
-                    title: "Cost Efficiency",
-                    description: "Competitive pricing with transparent cost structures and no hidden fees",
-                    stat: "30%"
-                  }
-                ].map((benefit, index) => (
-                  <ScaleIn key={index} delay={index * 200} scale={0.85}>
-                    <div className="text-center bg-[#0b0d10]/50 border border-[#1a1d22] rounded-xl p-8 hover:bg-[#0b0d10]/70 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#5cc6d0]/20">
-                      <div className="text-4xl font-bold text-[#5cc6d0] mb-4">{benefit.stat}</div>
-                      <h3 className="text-2xl font-semibold mb-4 text-[#5cc6d0]">{benefit.title}</h3>
-                      <p className="text-gray-300">{benefit.description}</p>
-                    </div>
-                  </ScaleIn>
-                ))}
-              </div>
-            </StaggeredContainer>
-          </div>
-        </section>
 
         {/* Global Presence & Events Gallery */}
         <section className="py-24 px-8 overflow-hidden">
@@ -256,7 +184,7 @@ const MRO: React.FC = () => {
                 <div className="bg-[#0b0d10]/50 border border-[#1a1d22] rounded-xl p-6 hover:bg-[#0b0d10]/70 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#5cc6d0]/20">
                   <Phone className="w-8 h-8 text-[#5cc6d0] mx-auto mb-4" />
                   <h3 className="text-xl font-semibold mb-2 text-[#5cc6d0]">Call Our MRO Team</h3>
-                  <p className="text-2xl font-bold">+1-800-MRO-HELP</p>
+                  <p className="text-2xl font-bold">+971 505056093</p>
                   <p className="text-sm text-gray-400 mt-2">Available 24/7 for emergency support</p>
                 </div>
               </FadeInLeft>
@@ -265,8 +193,8 @@ const MRO: React.FC = () => {
                 <div className="bg-[#0b0d10]/50 border border-[#1a1d22] rounded-xl p-6 hover:bg-[#0b0d10]/70 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#5cc6d0]/20">
                   <Mail className="w-8 h-8 text-[#5cc6d0] mx-auto mb-4" />
                   <h3 className="text-xl font-semibold mb-2 text-[#5cc6d0]">Email Consultation</h3>
-                  <p className="text-2xl font-bold">mro@rockdove.com</p>
-                  <p className="text-sm text-gray-400 mt-2">Response within 2 hours</p>
+                  <p className="text-2xl font-bold">sales@rockdoveaviation.com</p>
+                  <p className="text-sm text-gray-400 mt-2">Response within 24 hours</p>
                 </div>
               </FadeInRight>
             </div>
