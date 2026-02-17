@@ -42,7 +42,7 @@ export const FAQ: React.FC = () => {
   };
 
   return (
-    <section className="bg-black text-white pt-24 pb-12">
+    <section className="bg-black text-white pt-40 pb-20">
       {/* Container with same width & side gaps as other sections */}
       <div className="w-full max-w-[1200px] mx-auto grid md:grid-cols-2 gap-12 md:gap-20 px-[5vw] items-start">
         {/* Left Section (vertical offset) */}

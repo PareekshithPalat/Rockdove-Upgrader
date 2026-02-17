@@ -60,7 +60,7 @@ const Features: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[80vh] bg-black text-white flex flex-col items-center justify-start py-24 pb-12 font-[Poppins]"
+      className="relative min-h-[80vh] bg-black text-white flex flex-col items-center justify-start py-24 pb-48 font-[Poppins]"
     >
       {/* Title */}
       <h2 className="text-[48px] font-semibold text-center leading-[100%] text-white mb-32">

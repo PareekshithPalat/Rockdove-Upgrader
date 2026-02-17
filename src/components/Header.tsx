@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { cn } from "../lib/utils";
 
 type NavLink = { label: string; href: string; icon?: string; desc?: string };
 
@@ -57,18 +56,8 @@ const COMPANY: NavLink[] = [
 const Header: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [scrolled, setScrolled] = useState(false);
   const containerRef = useRef<HTMLElement | null>(null);
   const hoverTimeout = useRef<NodeJS.Timeout | null>(null);
-
-  // Handle scroll for background
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // Close dropdowns when clicking outside
   useEffect(() => {
@@ -111,12 +100,7 @@ const Header: React.FC = () => {
     <>
       <header
         ref={containerRef}
-        className={cn(
-          "fixed w-full top-0 left-0 z-[100] font-[Poppins] transition-all duration-500",
-          scrolled
-            ? "bg-black/80 backdrop-blur-md border-b border-white/5 py-2 shadow-xl"
-            : "bg-transparent py-4"
-        )}
+        className="fixed w-full top-0 left-0 z-[100] font-[Poppins] transition-all duration-500 bg-transparent py-4"
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="h-28 flex items-center justify-between">
