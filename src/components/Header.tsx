@@ -113,18 +113,18 @@ const Header: React.FC = () => {
         className={cn(
           "fixed w-full top-0 left-0 z-[100] font-[Poppins] transition-all duration-500",
           scrolled
-            ? "bg-black/60 backdrop-blur-lg border-b border-white/5 py-4 shadow-2xl"
-            : "bg-transparent py-4"
+            ? "bg-black/60 backdrop-blur-lg border-b border-white/5 py-1 shadow-2xl"
+            : "bg-transparent py-3"
         )}
       >
         <div className="max-w-7xl mx-auto px-6">
-          <div className="h-28 flex items-center justify-between">
+          <div className="h-16 flex items-center justify-between">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2">
               <img
                 src="/rockdove-logo.png"
                 alt="RockDove Logo"
-                className="h-14 w-auto"
+                className="h-9 w-auto"
               />
             </Link>
 

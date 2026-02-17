@@ -102,7 +102,7 @@ export const ContactUs: React.FC = () => {
         {/* ================= CONTACT FORM HEADER ================= */}
         <div className="text-center mb-16 md:mb-24">
           <FadeInUp delay={200}>
-            <h2 className="text-white text-2xl md:text-3xl font-bold leading-tight max-w-3xl mx-auto">
+            <h2 className="text-white text-2xl md:text-3xl font-bold leading-tight max-w-5xl mx-auto px-4">
               If required, please use the form below to contact us.
               <span className="block text-[#5cc6d0] text-lg md:text-xl font-medium mt-4">A representative from our company will respond soon.</span>
             </h2>
