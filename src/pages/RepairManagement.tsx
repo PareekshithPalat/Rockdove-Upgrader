@@ -7,8 +7,7 @@ import { GlowEffect } from '../components/ui/GlowEffect';
 import { Card, CardContent } from '../components/ui/card';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Header from '../components/Header';
-import { Footer } from '../components/Footer';
+import { PageLayout } from '../components/PageLayout';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -113,8 +112,7 @@ const RepairManagementPage = () => {
   ];
 
   return (
-    <>
-      <Header />
+    <PageLayout>
       <div className="flex flex-col overflow-hidden bg-black text-white relative">
         {/* Background Glow */}
         <div
@@ -324,8 +322,7 @@ const RepairManagementPage = () => {
           </div>
         </section>
       </div>
-      <Footer />
-    </>
+    </PageLayout>
   );
 };
 
