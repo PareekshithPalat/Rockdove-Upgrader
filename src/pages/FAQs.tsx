@@ -131,7 +131,7 @@ const FAQs: React.FC = () => {
             </p>
             <div className="flex justify-center">
               <a href="mailto:sales@rockdoveaviation.com">
-                <Button className="bg-[#5cc6d0] text-black px-10 py-4 text-lg font-semibold hover:bg-[#4ab5bf] transition-all duration-300 hover:scale-105 h-auto rounded-xl">
+                <Button className="bg-gradient-to-b from-[#5CC6D0] to-[#05848E] text-white px-10 py-4 text-lg font-semibold hover:scale-105 transition-all duration-300 h-auto rounded-xl shadow-[0_4px_14px_rgba(92,198,208,0.4)] border-0">
                   sales@rockdoveaviation.com
                 </Button>
               </a>

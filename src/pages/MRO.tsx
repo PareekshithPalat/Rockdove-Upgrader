@@ -1,6 +1,5 @@
 import React from "react";
 import { Wrench, Users, Clock, Shield, Calendar, Phone, Mail } from "lucide-react";
-import { Button } from "../components/ui/button";
 import { PageLayout } from "../components/PageLayout";
 import {
   FadeInUp,
@@ -125,14 +124,17 @@ const MRO: React.FC = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[250px]">
               {[
-                { src: "/events/event1.png", title: "Aviation Expo 2024", span: "md:col-span-2 md:row-span-2" },
-                { src: "/events/event2.png", title: "Tech Symposium", span: "md:col-span-1 md:row-span-1" },
-                { src: "/events/event3.png", title: "Global Tarmac Show", span: "md:col-span-1 md:row-span-1" },
-                { src: "/events/event4.png", title: "Industry Workshop", span: "md:col-span-1 md:row-span-1" },
-                { src: "/events/event5.png", title: "Aerospace Convention", span: "md:col-span-1 md:row-span-1" },
-                { src: "/events/event7.jpg", title: "Exhibition Stand", span: "md:col-span-1 md:row-span-1" },
-                { src: "/events/event8.jpg", title: "Partnership Event", span: "md:col-span-1 md:row-span-1" },
-                { src: "/events/event6.png", title: "Innovation Forum", span: "md:col-span-2 md:row-span-1" },
+                { src: "/WhatsApp Image 2025-09-17 at 7.24.56 AM (1).jpg", title: "Global Aviation Summit", span: "md:col-span-2 md:row-span-2" },
+                { src: "/WhatsApp Image 2025-09-17 at 9.40.43 AM (1).jpg", title: "MRO Middle East", span: "md:col-span-1 md:row-span-1" },
+                { src: "/WhatsApp Image 2026-02-17 at 10.51.39 (2).jpeg", title: "Industry Networking", span: "md:col-span-1 md:row-span-1" },
+                { src: "/WhatsApp Image 2026-02-17 at 10.51.39 (4).jpeg", title: "Maintenance Forum", span: "md:col-span-2 md:row-span-1" },
+                { src: "/WhatsApp Image 2026-02-17 at 10.51.39.jpeg", title: "Strategic Partnerships", span: "md:col-span-1 md:row-span-1" },
+                { src: "/WhatsApp Image 2026-02-17 at 10.51.40 (1).jpeg", title: "Aviation Excellence", span: "md:col-span-1 md:row-span-1" },
+                { src: "/WhatsApp Image 2026-02-17 at 10.51.40 (2).jpeg", title: "Global Logistics Expo", span: "md:col-span-2 md:row-span-2" },
+                { src: "/WhatsApp Image 2026-02-17 at 10.51.40 (3).jpeg", title: "Support Infrastructure", span: "md:col-span-1 md:row-span-1" },
+                { src: "/WhatsApp Image 2026-02-17 at 10.51.40 (4).jpeg", title: "Innovation Workshop", span: "md:col-span-1 md:row-span-1" },
+                { src: "/WhatsApp Image 2026-02-17 at 10.51.40 (5).jpeg", title: "Aerospace Exhibition", span: "md:col-span-1 md:row-span-1" },
+                { src: "/WhatsApp Image 2026-02-17 at 10.51.40.jpeg", title: "Fleet Management", span: "md:col-span-1 md:row-span-1" },
               ].map((event, index) => (
                 <FadeInUp key={index} delay={index * 100}>
                   <div className={`group relative overflow-hidden rounded-3xl bg-[#0b0d10] border border-white/10 ${event.span} h-full`}>
@@ -148,7 +150,7 @@ const MRO: React.FC = () => {
                         <div className="w-8 h-[2px] bg-[#5cc6d0]"></div>
                         <span className="text-xs font-bold tracking-widest text-[#5cc6d0] uppercase">MRO Event</span>
                       </div>
-                      <h3 className="text-xl font-bold text-white mb-1">{event.title}</h3>
+                      <h3 className="text-xl font-bold text-white mb-1 leading-tight">{event.title}</h3>
                       <p className="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
                         Showcasing innovation and excellence in global aviation maintenance.
                       </p>
@@ -199,17 +201,6 @@ const MRO: React.FC = () => {
               </FadeInRight>
             </div>
 
-            {/* Animated buttons */}
-            <FadeInUp delay={800}>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-[#5cc6d0] text-black px-8 py-4 text-lg font-semibold hover:bg-[#4ab5bf] transition-all duration-300 hover:scale-105">
-                  Schedule Consultation
-                </Button>
-                <Button variant="outline" className="border-[#5cc6d0] text-[#5cc6d0] px-8 py-4 text-lg font-semibold hover:bg-[#5cc6d0] hover:text-black transition-all duration-300">
-                  Request Quote
-                </Button>
-              </div>
-            </FadeInUp>
           </div>
         </section>
       </div>
