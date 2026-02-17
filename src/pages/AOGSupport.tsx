@@ -121,16 +121,7 @@ const AOGSupport: React.FC = () => {
           ref={heroRef}
           className="relative w-full h-screen flex flex-col justify-center items-center overflow-hidden"
         >
-          {/* Background Glow */}
-          <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0"
-            style={{ width: "55vw", height: "55vh" }}
-          >
-            <div
-              className="w-full h-full rounded-full bg-[#5cc6d0] opacity-30"
-              style={{ filter: "blur(100px)" }}
-            ></div>
-          </div>
+
 
           <div
             ref={illustrationRef}
@@ -146,10 +137,21 @@ const AOGSupport: React.FC = () => {
                 h-[50vh] sm:h-[60vh]
               "
             >
+              {/* Background Glow directly behind the image */}
+              <div
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0"
+                style={{ width: "120%", height: "120%" }}
+              >
+                <div
+                  className="w-full h-full rounded-full bg-[#5cc6d0] opacity-30"
+                  style={{ filter: "blur(80px)" }}
+                ></div>
+              </div>
+
               <img
                 src="/undraw_aircraft_usu4.svg"
                 alt="AOG Support Illustration"
-                className="w-full h-full object-contain"
+                className="relative z-10 w-full h-full object-contain"
               />
             </div>
           </div>

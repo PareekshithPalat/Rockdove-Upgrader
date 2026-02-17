@@ -1,7 +1,6 @@
 import React from "react";
 import { PageLayout } from "../components/PageLayout";
 import { FadeInUp } from "../components/animations";
-import { Link } from "react-router-dom";
 
 const founders = [
   {
@@ -245,34 +244,7 @@ const TheStory: React.FC = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="bg-black text-white px-6 sm:px-10 md:px-20 py-20 text-center">
-          <FadeInUp delay={200}>
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold mb-4">
-              Ready to experience seamless aviation support?
-            </h2>
-          </FadeInUp>
 
-          <FadeInUp delay={400}>
-            <div className="flex flex-wrap justify-center items-center gap-2 text-[#5cc6d0] font-semibold text-base sm:text-lg md:text-xl">
-              <span className="text-white">|</span>
-              <Link
-                to="/services"
-                className="hover:underline hover:text-[#6fdbe5] transition-colors duration-300"
-              >
-                Explore Services
-              </Link>
-              <span className="text-white">|</span>
-              <Link
-                to="/contact"
-                className="hover:underline hover:text-[#6fdbe5] transition-colors duration-300"
-              >
-                Contact Us
-              </Link>
-              <span className="text-white">|</span>
-            </div>
-          </FadeInUp>
-        </section>
       </div>
     </PageLayout>
   );

@@ -370,9 +370,20 @@ const Career = (): JSX.Element => {
                 </div>
 
                 {/* Right Image beside radio section */}
-                <div className="flex justify-center items-start lg:pt-[50px]">
+                <div className="flex justify-center items-start lg:pt-[50px] relative">
+                  {/* Background Glow directly behind the image */}
+                  <div
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none"
+                    style={{ width: "120%", height: "120%" }}
+                  >
+                    <div
+                      className="w-full h-full rounded-full bg-[#5cc6d0] opacity-30"
+                      style={{ filter: "blur(80px)" }}
+                    ></div>
+                  </div>
+
                   <img
-                    className="w-full max-w-[420px] object-contain"
+                    className="relative z-10 w-full max-w-[420px] object-contain"
                     alt="Hiring illustration"
                     src="https://c.animaapp.com/mh6jeg64gltCdD/img/undraw-hiring-8szx-1.svg"
                   />
