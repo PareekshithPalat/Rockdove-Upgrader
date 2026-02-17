@@ -115,7 +115,18 @@ const RepairManagementPage = () => {
   return (
     <>
       <Header />
-      <div className="flex flex-col overflow-hidden bg-black text-white">
+      <div className="flex flex-col overflow-hidden bg-black text-white relative">
+        {/* Background Glow */}
+        <div
+          className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-0"
+          style={{ width: "55vw", height: "55vh" }}
+        >
+          <div
+            className="w-full h-full rounded-full bg-[#5cc6d0] opacity-30"
+            style={{ filter: "blur(100px)" }}
+          ></div>
+        </div>
+
         <ContainerScroll
           titleComponent={
             <>

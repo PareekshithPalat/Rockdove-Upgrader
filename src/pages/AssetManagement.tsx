@@ -130,6 +130,16 @@ const AssetManagement = (): JSX.Element => {
       <div className="bg-black overflow-hidden w-full font-[Poppins]">
         {/* Hero Section */}
         <section className="relative flex flex-col md:flex-row items-center justify-center px-4 sm:px-6 md:px-12 lg:px-[160px] pt-24 pb-24 gap-8 md:gap-16">
+          {/* Background Glow */}
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0"
+            style={{ width: "55vw", height: "55vh" }}
+          >
+            <div
+              className="w-full h-full rounded-full bg-[#5cc6d0] opacity-30"
+              style={{ filter: "blur(100px)" }}
+            ></div>
+          </div>
           {/* Left Content */}
           <div className="flex-1 text-center md:text-left max-w-xl">
             <h1 className="font-bold text-[#5cc6d0] text-3xl sm:text-4xl md:text-5xl mb-4">

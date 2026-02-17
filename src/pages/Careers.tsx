@@ -55,7 +55,18 @@ const Career = (): JSX.Element => {
     <PageLayout>
       <div className="bg-black overflow-hidden w-full min-h-screen relative">
         <div className="max-w-[1440px] mx-auto">
-          <main>
+          <main className="relative">
+            {/* Background Glow */}
+            <div
+              className="absolute top-[20%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none"
+              style={{ width: "55vw", height: "55vh" }}
+            >
+              <div
+                className="w-full h-full rounded-full bg-[#5cc6d0] opacity-20"
+                style={{ filter: "blur(120px)" }}
+              ></div>
+            </div>
+
             {/* Hero Section */}
             <section className="flex flex-col items-center px-8 md:px-9 pt-32 md:pt-48 pb-16 animate-fade-in">
               <h1 className="[font-family:'Poppins',Helvetica] font-bold text-[40px] text-center leading-[60px] mb-6">

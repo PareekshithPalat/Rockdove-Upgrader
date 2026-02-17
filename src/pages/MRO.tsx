@@ -47,7 +47,17 @@ const MRO: React.FC = () => {
     <PageLayout>
       <div className="min-h-screen bg-black text-white">
         {/* Hero Section */}
-        <section className="relative pt-32 pb-20 px-8">
+        <section className="relative pt-32 pb-20 px-8 overflow-hidden">
+          {/* Background Glow */}
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none"
+            style={{ width: "55vw", height: "55vh" }}
+          >
+            <div
+              className="w-full h-full rounded-full bg-[#5cc6d0] opacity-20"
+              style={{ filter: "blur(120px)" }}
+            ></div>
+          </div>
           <div className="max-w-6xl mx-auto">
             {/* Animated title and icon */}
             <FadeInUp delay={200}>
