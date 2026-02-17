@@ -129,16 +129,12 @@ const FAQs: React.FC = () => {
               Our team is here to help. Contact us for personalized assistance
               with your specific needs.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-[#5cc6d0] text-black px-8 py-4 text-lg font-semibold hover:bg-[#4ab5bf] transition-all duration-300 hover:scale-105">
-                Contact Support
-              </Button>
-              <Button
-                variant="outline"
-                className="border-[#5cc6d0] text-[#5cc6d0] px-8 py-4 text-lg font-semibold hover:bg-[#5cc6d0] hover:text-black transition-all duration-300"
-              >
-                Schedule Call
-              </Button>
+            <div className="flex justify-center">
+              <a href="mailto:sales@rockdoveaviation.com">
+                <Button className="bg-[#5cc6d0] text-black px-10 py-4 text-lg font-semibold hover:bg-[#4ab5bf] transition-all duration-300 hover:scale-105 h-auto rounded-xl">
+                  sales@rockdoveaviation.com
+                </Button>
+              </a>
             </div>
           </div>
         </section>
