@@ -124,7 +124,7 @@ const Header: React.FC = () => {
               <img
                 src="/rockdove-logo.png"
                 alt="RockDove Logo"
-                className="h-9 w-auto"
+                className="h-24 w-auto object-contain transition-transform duration-300 hover:scale-110"
               />
             </Link>
 
@@ -349,7 +349,7 @@ const Header: React.FC = () => {
                 <img
                   src="/rockdove-logo.png"
                   alt="RockDove Logo"
-                  className="h-12 w-auto"
+                  className="h-28 w-auto"
                 />
                 <button
                   onClick={() => setMobileOpen(false)}
