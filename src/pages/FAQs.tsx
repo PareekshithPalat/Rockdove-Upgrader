@@ -47,6 +47,34 @@ const FAQs: React.FC = () => {
       answer:
         "No, we do not accept customer-supplied PMA units for our processes. We handle all background verification, sourcing, and compliance work to ensure traceability and quality.",
     },
+    {
+      question: "What certifications and documentation accompany the products you supply?",
+      answer: `All supplied parts come with appropriate certification, including:
+
+OEM/Manufacturer Certificate of Conformance (COC)
+Airworthiness Review Certificate (ARC)`,
+    },
+    {
+      question: "What is the warranty period for the units you supply?",
+      answer: `Warranty periods vary by condition:
+
+New units: 1 year
+Serviceable units: 3–6 months
+Repaired units: 1–3 months
+Overhauled units: 6–9 months
+
+Warranties begin from the date of delivery (or installation, where applicable) and cover defects in materials and workmanship.`,
+    },
+    {
+      question: "What is the average shelf life for consumable parts you supply?",
+      answer:
+        "We supply consumables with a minimum remaining shelf life of 70% or above, ensuring maximum usability and compliance.",
+    },
+    {
+      question: "How quickly can RDA deliver parts for an urgent Aircraft on Ground (AOG) situation?",
+      answer:
+        "RDA guarantees parts preparation for pickup within 90 minutes for urgent AOG situations. This is supported by our extensive UAE warehouse stocking over 400,000 parts and our dedicated 24/7 AOG response team.",
+    },
   ];
 
   const toggleFAQ = (index: number) => {
@@ -109,7 +137,7 @@ const FAQs: React.FC = () => {
                     </button>
                     {isOpen && (
                       <div className="px-6 pb-6">
-                        <p className="text-gray-300 leading-relaxed">
+                        <p className="text-gray-300 leading-relaxed whitespace-pre-line">
                           {faq.answer}
                         </p>
                       </div>
