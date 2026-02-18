@@ -190,7 +190,7 @@ export const ContactUs: React.FC = () => {
           </FadeInUp>
 
           {/* IMAGE STACK (blue rectangle + man) */}
-          <FadeInUp delay={600} className="w-full max-w-lg lg:max-w-xl">
+          <FadeInUp delay={600} className="w-full max-w-[200px] lg:max-w-[300px] lg:-mt-20">
             <div className="relative flex justify-center items-center">
               <img
                 src="/undraw_business-call_w1gr.svg"

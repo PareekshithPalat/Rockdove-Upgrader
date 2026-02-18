@@ -58,7 +58,7 @@ const RFQ: React.FC = () => {
         <section className="px-6 sm:px-10 md:px-20 lg:px-20 xl:px-32 pt-40 md:pt-48 pb-20 flex flex-col lg:flex-row justify-between items-center gap-12">
           <div className="max-w-4xl space-y-8 text-center lg:text-left">
             <FadeInUp>
-              <h1 className="text-3xl md:text-4xl lg:text-[48px] font-bold leading-tight whitespace-nowrap">
+              <h1 className="text-3xl md:text-5xl lg:text-[56px] font-bold leading-tight">
                 <span className="text-[#5cc6d0]">Request for Quote</span>{" "}
                 <span className="text-white">(RFQ)</span>
               </h1>
@@ -82,14 +82,14 @@ const RFQ: React.FC = () => {
             </FadeInUp>
           </div>
 
-          <FadeInUp delay={600} className="w-full lg:w-auto relative">
+          <FadeInUp delay={600} className="w-full lg:w-1/2 relative flex justify-center">
             {/* Blue Shade Background Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-[#5cc6d0]/10 blur-[120px] rounded-full pointer-events-none z-0" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[#5cc6d0]/10 blur-[100px] rounded-full pointer-events-none z-0" />
 
             <img
               src="/undraw_work-chat_hc3y.svg"
               alt="RFQ Illustration"
-              className="w-full max-w-[850px] h-auto opacity-95 drop-shadow-[0_0_30px_rgba(92,198,208,0.2)] relative z-10"
+              className="w-full max-w-[450px] h-auto opacity-95 drop-shadow-[0_0_30px_rgba(92,198,208,0.2)] relative z-10"
             />
           </FadeInUp>
         </section>

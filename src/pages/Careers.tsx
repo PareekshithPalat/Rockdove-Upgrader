@@ -382,7 +382,7 @@ const Career = (): JSX.Element => {
                   </div>
 
                   <img
-                    className="relative z-10 w-full max-w-[420px] object-contain"
+                    className="relative z-10 w-full max-w-[320px] object-contain"
                     alt="Hiring illustration"
                     src="https://c.animaapp.com/mh6jeg64gltCdD/img/undraw-hiring-8szx-1.svg"
                   />

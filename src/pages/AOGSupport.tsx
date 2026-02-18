@@ -133,8 +133,8 @@ const AOGSupport: React.FC = () => {
             <div
               className="
                 relative flex justify-center items-center
-                w-[90vw] sm:w-[80vw] md:w-[70vw] lg:w-[60vw]
-                h-[50vh] sm:h-[60vh]
+                w-[70vw] sm:w-[50vw] md:w-[40vw] lg:w-[35vw]
+                h-[40vh] sm:h-[50vh]
               "
             >
               {/* Background Glow directly behind the image */}

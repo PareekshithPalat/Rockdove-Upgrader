@@ -156,7 +156,7 @@ const AssetManagement = (): JSX.Element => {
               ></div>
             </div>
 
-            <div className="relative z-10 w-[300px] sm:w-[380px] md:w-[420px] h-[300px] sm:h-[380px] md:h-[420px]">
+            <div className="relative z-10 w-[200px] sm:w-[280px] md:w-[320px] h-[200px] sm:h-[280px] md:h-[320px]">
               <img
                 src="/undraw_logistics_8vri.svg"
                 alt="Asset Management Illustration"
@@ -216,7 +216,7 @@ const AssetManagement = (): JSX.Element => {
               <img
                 src="https://c.animaapp.com/mh31x2ueWQqHGB/img/now-that-looks-fun-removebg-preview--1--1.png"
                 alt="Jet Engine"
-                className="absolute -top-10 md:-top-16 left-1/2 -translate-x-[50%] md:translate-x-0 md:-left-24 w-[90%] md:w-[600px] lg:w-[650px] object-contain max-w-none md:max-w-full"
+                className="absolute -top-10 md:-top-16 left-1/2 -translate-x-[50%] md:translate-x-0 md:-left-24 w-[85%] md:w-[450px] lg:w-[500px] object-contain max-w-none md:max-w-full"
               />
             </div>
           </div>
