@@ -1,7 +1,32 @@
+import { useState, useEffect, useRef } from "react";
+import { useInView, animate } from "framer-motion";
 import { Button } from "../components/ui/button";
 import { PageLayout } from "../components/PageLayout";
 
 
+const Counter = ({ value, duration = 2.5, delay = 0 }: { value: number; duration?: number; delay?: number }) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+
+  useEffect(() => {
+    if (inView) {
+      const controls = animate(0, value, {
+        duration: duration,
+        delay: delay,
+        ease: [0.16, 1, 0.3, 1], // easeOutExpo for high-end feel
+        onUpdate: (latest) => setCount(Math.floor(latest)),
+      });
+      return () => controls.stop();
+    }
+  }, [inView, value, duration, delay]);
+
+  return (
+    <span ref={ref} className="tabular-nums inline-block min-w-[0.6em] text-center">
+      {count.toLocaleString()}
+    </span>
+  );
+};
 
 const inventoryCategories = [
   {
@@ -183,9 +208,9 @@ const AssetManagement = (): JSX.Element => {
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
               <div className="flex flex-row items-center justify-center md:justify-start gap-10 sm:gap-14">
                 {/* Inventories */}
-                <div>
+                <div className="min-w-[80px] sm:min-w-[100px]">
                   <p className="font-bold text-[#55cccc] text-3xl sm:text-[38px] leading-tight mb-1">
-                    27k+
+                    <Counter value={27} />k+
                   </p>
                   <p className="text-white text-lg sm:text-xl font-medium">
                     Inventories
@@ -196,9 +221,9 @@ const AssetManagement = (): JSX.Element => {
                 <div className="h-14 w-[2px] bg-white hidden sm:block" />
 
                 {/* Parts */}
-                <div>
+                <div className="min-w-[140px] sm:min-w-[180px]">
                   <p className="font-bold text-[#55cccc] text-3xl sm:text-[38px] leading-tight mb-1">
-                    400,000+
+                    <Counter value={400000} delay={0.4} />+
                   </p>
                   <p className="text-white text-lg sm:text-xl font-medium">
                     Parts
@@ -216,7 +241,7 @@ const AssetManagement = (): JSX.Element => {
               <img
                 src="https://c.animaapp.com/mh31x2ueWQqHGB/img/now-that-looks-fun-removebg-preview--1--1.png"
                 alt="Jet Engine"
-                className="absolute -top-10 md:-top-16 left-1/2 -translate-x-[50%] md:translate-x-0 md:-left-24 w-[85%] md:w-[450px] lg:w-[500px] object-contain max-w-none md:max-w-full"
+                className="absolute -top-10 md:-top-16 left-1/2 -translate-x-[50%] md:translate-x-0 md:-left-12 w-[85%] md:w-[450px] lg:w-[500px] object-contain max-w-none md:max-w-full"
               />
             </div>
           </div>
@@ -284,7 +309,12 @@ const AssetManagement = (): JSX.Element => {
             basic hardware (nuts, bolts, seals) to advanced systems (avionics,
             landing gear, propulsion). Sourced from trusted OEMs and aftermarket
           </p>
-          <Button className="h-auto rounded-[40px] border-0 bg-[linear-gradient(180deg,rgba(92,198,208,1)_0%,rgba(20,145,155,1)_100%)] px-10 py-3 text-white font-semibold text-lg sm:text-xl md:text-2xl hover:opacity-90 transition-opacity">
+          <Button
+            className="h-[48px] px-12 rounded-xl border-0 transition-all duration-300 ease-out hover:scale-105 active:scale-[0.98] shadow-[0_4px_14px_rgba(92,198,208,0.4)] hover:shadow-[0_6px_20px_rgba(92,198,208,0.6)] text-white font-bold text-lg uppercase tracking-wider"
+            style={{
+              background: "linear-gradient(180deg, #5CC6D0 0%, #05848E 100%)",
+            }}
+          >
             Request a quote
           </Button>
         </section>

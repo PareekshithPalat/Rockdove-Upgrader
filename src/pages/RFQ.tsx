@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Send, Phone, Mail, CheckCircle2, ArrowDown } from "lucide-react";
+import { Send, Phone, Mail, CheckCircle2 } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { PageLayout } from "../components/PageLayout";
 import { FadeInUp } from "../components/animations";
@@ -47,9 +47,7 @@ const RFQ: React.FC = () => {
     }
   };
 
-  const scrollToForm = () => {
-    formRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
+
 
   return (
     <PageLayout>
@@ -72,19 +70,12 @@ const RFQ: React.FC = () => {
               </p>
             </FadeInUp>
 
-            <FadeInUp delay={400}>
-              <Button
-                onClick={scrollToForm}
-                className="bg-[#5cc6d0] text-black px-10 py-6 rounded-full font-bold text-lg hover:bg-[#4ab5bf] transition-all shadow-lg shadow-[#5cc6d0]/20 flex items-center gap-2 mx-auto lg:mx-0"
-              >
-                Scroll down to form <ArrowDown className="w-5 h-5" />
-              </Button>
-            </FadeInUp>
+
           </div>
 
           <FadeInUp delay={600} className="w-full lg:w-1/2 relative flex justify-center">
             {/* Blue Shade Background Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[#5cc6d0]/10 blur-[100px] rounded-full pointer-events-none z-0" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-[#5cc6d0]/20 blur-[115px] rounded-full pointer-events-none z-0" />
 
             <img
               src="/undraw_work-chat_hc3y.svg"
@@ -95,7 +86,7 @@ const RFQ: React.FC = () => {
         </section>
 
         {/* ============ PARTS INFORMATION FORM ============ */}
-        <section ref={formRef} className="px-6 sm:px-10 md:px-20 lg:px-40 xl:px-64 py-24 bg-white/[0.02] border-y border-white/5">
+        <section ref={formRef} className="px-6 sm:px-10 md:px-20 lg:px-40 xl:px-64 py-24">
           <FadeInUp>
             <div className="flex items-center gap-4 mb-12 justify-center lg:justify-start">
               <div className="h-10 w-2 bg-[#5cc6d0] rounded-full"></div>
@@ -110,34 +101,39 @@ const RFQ: React.FC = () => {
               {[
                 {
                   name: "partNumber",
-                  label: "Part Number*",
+                  label: "Part Number",
                   placeholder: "Enter the part number",
+                  required: true,
                 },
                 {
                   name: "condition",
-                  label: "Condition*",
+                  label: "Condition",
                   placeholder: "NE, OH, SV, etc.",
+                  required: false,
                 },
                 {
                   name: "description",
-                  label: "Description*",
+                  label: "Description",
                   placeholder: "What is this part?",
+                  required: true,
                 },
                 {
                   name: "certificate",
-                  label: "Certificate*",
+                  label: "Certificate",
                   placeholder: "FAA 8130, EASA Form 1, etc.",
+                  required: false,
                 },
                 {
                   name: "quality",
-                  label: "Quantity*",
+                  label: "Quantity",
                   placeholder: "Number of units",
+                  required: true,
                 },
               ].map((field, idx) => (
                 <FadeInUp key={field.name} delay={idx * 100}>
                   <div className="group">
                     <label className="block text-sm font-bold text-[#5cc6d0] uppercase tracking-widest mb-3 ml-2 transition-all group-focus-within:translate-x-1">
-                      {field.label.replace("*", "")}<span className="text-red-500">*</span>
+                      {field.label}{field.required && <span className="text-red-500">*</span>}
                     </label>
                     <input
                       name={field.name}
@@ -145,7 +141,7 @@ const RFQ: React.FC = () => {
                       onChange={handleChange}
                       placeholder={field.placeholder}
                       className="w-full bg-white/5 border border-white/10 text-white px-6 py-4 rounded-2xl outline-none focus:border-[#5cc6d0]/50 transition-all placeholder:text-white/20 hover:bg-white/[0.08]"
-                      required
+                      required={field.required}
                     />
                   </div>
                 </FadeInUp>
@@ -172,14 +168,17 @@ const RFQ: React.FC = () => {
                 <Button
                   id="submit-btn"
                   type="submit"
-                  className="bg-[#5cc6d0] text-black px-12 py-7 rounded-full font-black text-lg flex items-center gap-3 hover:bg-[#4ab5bf] transition-all transform hover:scale-[1.02] active:scale-95 shadow-xl shadow-[#5cc6d0]/10 w-full sm:w-auto uppercase tracking-widest"
+                  className="h-[48px] px-8 rounded-xl border-0 transition-all duration-300 ease-out hover:scale-105 active:scale-[0.98] shadow-[0_4px_14px_rgba(92,198,208,0.4)] hover:shadow-[0_6px_20px_rgba(92,198,208,0.6)] text-white font-bold text-lg w-full sm:w-auto flex items-center gap-3 uppercase tracking-wider"
+                  style={{
+                    background: "linear-gradient(180deg, #5CC6D0 0%, #05848E 100%)",
+                  }}
                 >
                   <Send className="w-5 h-5" />
-                  Submit RFQ
+                  SUBMIT RFQ
                 </Button>
                 <div className="flex items-center gap-2 text-gray-400">
                   <CheckCircle2 className="w-5 h-5 text-[#5cc6d0]" />
-                  <span className="text-sm font-medium tracking-wide">Professional Response within 2 hours</span>
+                  <span className="text-sm font-medium tracking-wide"> Response within 24 hours</span>
                 </div>
               </div>
             </FadeInUp>
