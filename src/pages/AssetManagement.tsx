@@ -327,9 +327,9 @@ const AssetManagement = (): JSX.Element => {
 
           <div className="w-24 h-1 bg-[#5cc6d0] mx-auto mb-12" />
           <p className="font-medium text-white text-lg sm:text-xl md:text-2xl mb-28">
-            We manage critical assets with
+            We manage critical assets with expert maintenance,
             <br />
-            expert maintenance, ensuring top performance and safety
+            ensuring top performance and safety
           </p>
 
           {/* Grid Container */}
