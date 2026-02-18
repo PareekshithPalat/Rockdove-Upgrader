@@ -314,7 +314,7 @@ const RepairManagementPage = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <Button
-                className="bg-[linear-gradient(180deg,#5CC6D0_0%,#14919B_100%)] text-white px-8 py-4 sm:px-12 sm:py-8 text-base sm:text-xl md:text-2xl font-semibold rounded-2xl shadow-[0_4px_0_0_#0D5D64] hover:brightness-110 transition-all active:translate-y-1 active:shadow-none h-auto border-none"
+                className="bg-[linear-gradient(180deg,#5CC6D0_0%,#14919B_100%)] text-white px-6 py-2.5 text-base sm:text-lg font-semibold rounded-xl shadow-[0_3px_0_0_#0D5D64] hover:brightness-110 transition-all active:translate-y-1 active:shadow-none h-auto border-none"
               >
                 Schedule a Repair Consultation
               </Button>
