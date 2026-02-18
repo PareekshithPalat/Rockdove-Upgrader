@@ -19,16 +19,7 @@ const TheStory: React.FC = () => {
       <div className="bg-black text-white w-full overflow-x-hidden">
         {/* Hero Section */}
         <section className="relative flex flex-col items-center text-center px-6 sm:px-10 md:px-20 pt-32 pb-48 overflow-hidden">
-          {/* Background Glow */}
-          <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none"
-            style={{ width: "55vw", height: "55vh" }}
-          >
-            <div
-              className="w-full h-full rounded-full bg-[#5cc6d0] opacity-20"
-              style={{ filter: "blur(120px)" }}
-            ></div>
-          </div>
+
           <FadeInUp delay={200}>
             <h1 className="font-bold leading-tight text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
               <span className="block">From Vision to Victory –</span>
