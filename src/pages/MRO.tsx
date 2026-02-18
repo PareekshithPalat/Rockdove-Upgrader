@@ -115,38 +115,27 @@ const MRO: React.FC = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[250px]">
               {[
-                { src: "/WhatsApp Image 2025-09-17 at 7.24.56 AM (1).jpg", title: "Global Aviation Summit", span: "md:col-span-2 md:row-span-2" },
-                { src: "/WhatsApp Image 2025-09-17 at 9.40.43 AM (1).jpg", title: "MRO Middle East", span: "md:col-span-1 md:row-span-1" },
-                { src: "/WhatsApp Image 2026-02-17 at 10.51.39 (2).jpeg", title: "Industry Networking", span: "md:col-span-1 md:row-span-1" },
-                { src: "/WhatsApp Image 2026-02-17 at 10.51.39 (4).jpeg", title: "Maintenance Forum", span: "md:col-span-2 md:row-span-1" },
-                { src: "/WhatsApp Image 2026-02-17 at 10.51.39.jpeg", title: "Strategic Partnerships", span: "md:col-span-1 md:row-span-1" },
-                { src: "/WhatsApp Image 2026-02-17 at 10.51.40 (1).jpeg", title: "Aviation Excellence", span: "md:col-span-1 md:row-span-1" },
-                { src: "/WhatsApp Image 2026-02-17 at 10.51.40 (2).jpeg", title: "Global Logistics Expo", span: "md:col-span-2 md:row-span-2" },
-                { src: "/WhatsApp Image 2026-02-17 at 10.51.40 (3).jpeg", title: "Support Infrastructure", span: "md:col-span-1 md:row-span-1" },
-                { src: "/WhatsApp Image 2026-02-17 at 10.51.40 (4).jpeg", title: "Innovation Workshop", span: "md:col-span-1 md:row-span-1" },
-                { src: "/WhatsApp Image 2026-02-17 at 10.51.40 (5).jpeg", title: "Aerospace Exhibition", span: "md:col-span-1 md:row-span-1" },
-                { src: "/WhatsApp Image 2026-02-17 at 10.51.40.jpeg", title: "Fleet Management", span: "md:col-span-1 md:row-span-1" },
+                { src: "/WhatsApp Image 2025-09-17 at 7.24.56 AM (1).jpg" },
+                { src: "/WhatsApp Image 2025-09-17 at 9.40.43 AM (1).jpg" },
+                { src: "/WhatsApp Image 2026-02-17 at 10.51.39 (2).jpeg" },
+                { src: "/WhatsApp Image 2026-02-17 at 10.51.39 (4).jpeg" },
+                { src: "/WhatsApp Image 2026-02-17 at 10.51.39.jpeg" },
+                { src: "/WhatsApp Image 2026-02-17 at 10.51.40 (1).jpeg" },
+                { src: "/WhatsApp Image 2026-02-17 at 10.51.40 (2).jpeg" },
+                { src: "/WhatsApp Image 2026-02-17 at 10.51.40 (3).jpeg" },
+                { src: "/WhatsApp Image 2026-02-17 at 10.51.40 (4).jpeg" },
+                { src: "/WhatsApp Image 2026-02-17 at 10.51.40 (5).jpeg" },
+                { src: "/WhatsApp Image 2026-02-17 at 10.51.40.jpeg" },
+                { src: "/image.png" },
+
               ].map((event, index) => (
                 <FadeInUp key={index} delay={index * 100}>
                   <div className={`group relative overflow-hidden rounded-3xl bg-[#0b0d10] border border-white/10 ${event.span} h-full`}>
                     <img
                       src={event.src}
-                      alt={event.title}
+                      alt={event.src}
                       className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-80 group-hover:opacity-100"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0b0d10] via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-300"></div>
-
-                    <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="w-8 h-[2px] bg-[#5cc6d0]"></div>
-                        <span className="text-xs font-bold tracking-widest text-[#5cc6d0] uppercase">MRO Event</span>
-                      </div>
-                      <h3 className="text-xl font-bold text-white mb-1 leading-tight">{event.title}</h3>
-                      <p className="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                        Showcasing innovation and excellence in global aviation maintenance.
-                      </p>
-                    </div>
-
                     {/* Interactive border glow */}
                     <div className="absolute inset-0 border border-white/0 group-hover:border-[#5cc6d0]/30 rounded-3xl transition-colors duration-500"></div>
                   </div>
