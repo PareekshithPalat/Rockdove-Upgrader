@@ -158,8 +158,8 @@ const AOGSupport: React.FC = () => {
 
           {/* Animated Heading */}
           <div
-            className={`absolute inset-0 flex items-start justify-center pt-40 sm:pt-40 md:pt-40 z-20 transition-opacity duration-1000 ${showHeading ? "opacity-100" : "opacity-0"
-              } md:transform md:-translate-y-16`}
+            className={`absolute inset-0 flex items-start justify-center pt-52 sm:pt-56 md:pt-60 z-20 transition-opacity duration-1000 ${showHeading ? "opacity-100" : "opacity-0"
+              }`}
           >
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center px-6 leading-tight max-w-[90vw] md:max-w-full">
               <span className="text-[#5cc6d0]">24/7 AOG Support </span>
