@@ -182,18 +182,9 @@ const AOGSupport: React.FC = () => {
               downtime during Aircraft-on-Ground emergencies
             </p>
             <Button
-              className="shadow-lg w-full sm:w-auto"
+              className="h-[48px] px-12 rounded-xl border-0 transition-all duration-300 ease-out hover:scale-105 active:scale-[0.98] shadow-[0_4px_14px_rgba(92,198,208,0.4)] hover:shadow-[0_6px_20px_rgba(92,198,208,0.6)] text-white font-bold text-lg w-full sm:w-auto uppercase tracking-wider"
               style={{
-                maxWidth: 367,
-                height: 40,
-                borderRadius: 40,
-                background:
-                  "linear-gradient(180deg, #5CC6D0 0%, #14919B 100%)",
-                color: "#ffffff",
-                fontFamily: "Poppins, sans-serif",
-                fontWeight: 500,
-                fontSize: "clamp(16px, 5vw, 20px)",
-                lineHeight: "100%",
+                background: "linear-gradient(180deg, #5CC6D0 0%, #05848E 100%)",
               }}
             >
               Request AOG Assistance Now
@@ -256,23 +247,20 @@ const AOGSupport: React.FC = () => {
             seamlessly assist during Aircraft-on-Ground scenarios.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 max-w-6xl">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
             {processSteps.map((step, index) => (
-              <div key={index} className="flex flex-col items-center text-center">
-                <div className="w-[100px] h-[100px] rounded-full border-2 border-[#5cc6d0] flex items-center justify-center mb-10 transition-transform duration-300 hover:scale-110">
-                  <span className="text-[#5cc6d0] font-bold text-3xl">
+              <div key={index} className="group">
+                <div className="w-full h-[320px] bg-white/5 border border-white/10 rounded-[40px] p-8 flex flex-col justify-end transition-all duration-500 hover:bg-[#5cc6d0]/5 hover:border-[#5cc6d0]/30 hover:-translate-y-2 relative overflow-hidden text-left">
+                  <div className="absolute top-8 left-8 text-6xl font-black text-white/15 group-hover:text-[#5cc6d0]/30 transition-colors">
                     {step.number}
-                  </span>
+                  </div>
+                  <h3 className="text-[#5cc6d0] text-xl font-bold mb-3 relative z-10">
+                    {step.title}
+                  </h3>
+                  <p className="text-gray-400 leading-relaxed font-light text-sm relative z-10">
+                    {step.description}
+                  </p>
                 </div>
-                <span className="text-white font-semibold text-xl mb-4 leading-snug">
-                  {step.title}
-                </span>
-                <p
-                  className="text-white text-base font-medium leading-relaxed"
-                  style={{ maxWidth: "260px", color: "#E5E5E5" }}
-                >
-                  {step.description}
-                </p>
               </div>
             ))}
           </div>
