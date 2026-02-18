@@ -190,20 +190,12 @@ export const ContactUs: React.FC = () => {
           </FadeInUp>
 
           {/* IMAGE STACK (blue rectangle + man) */}
-          <FadeInUp delay={600} className="w-full max-w-[400px]">
-            <div className="relative h-[350px] sm:h-[400px] flex justify-center items-center lg:justify-end">
-              {/* Blue background rectangle */}
-              <div
-                className="absolute w-full h-full opacity-40 lg:right-[-40px] rounded-3xl"
-                style={{
-                  background: "linear-gradient(180deg, #5CC6D0 0%, #05848E 100%)",
-                }}
-              />
-              {/* Man image on top */}
+          <FadeInUp delay={600} className="w-full max-w-lg lg:max-w-xl">
+            <div className="relative flex justify-center items-center">
               <img
-                src="/manbusiness.png"
-                alt="Business Man"
-                className="absolute w-[250px] sm:w-[320px] h-auto object-contain z-10 filter drop-shadow-[0_20px_50px_rgba(92,198,208,0.3)]"
+                src="/undraw_business-call_w1gr.svg"
+                alt="Business Illustration"
+                className="w-full h-auto object-contain z-10 filter drop-shadow-[0_20px_50px_rgba(92,198,208,0.2)]"
               />
             </div>
           </FadeInUp>
