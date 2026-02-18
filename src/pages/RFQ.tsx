@@ -55,7 +55,7 @@ const RFQ: React.FC = () => {
     <PageLayout>
       <div className="bg-black text-white min-h-screen font-[Poppins] relative overflow-x-hidden">
         {/* ============ HERO SECTION ============ */}
-        <section className="px-6 sm:px-10 md:px-20 lg:px-20 xl:px-32 pt-32 md:pt-48 pb-20 flex flex-col lg:flex-row justify-between items-center gap-12">
+        <section className="px-6 sm:px-10 md:px-20 lg:px-20 xl:px-32 pt-40 md:pt-48 pb-20 flex flex-col lg:flex-row justify-between items-center gap-12">
           <div className="max-w-4xl space-y-8 text-center lg:text-left">
             <FadeInUp>
               <h1 className="text-3xl md:text-4xl lg:text-[48px] font-bold leading-tight whitespace-nowrap">

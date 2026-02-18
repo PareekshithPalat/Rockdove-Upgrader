@@ -118,13 +118,13 @@ const Header: React.FC = () => {
         )}
       >
         <div className="max-w-7xl mx-auto px-6">
-          <div className="h-16 flex items-center justify-between">
+          <div className="h-20 md:h-24 flex items-center justify-between">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2">
               <img
                 src="/rockdove-logo.png"
                 alt="RockDove Logo"
-                className="h-32 w-auto object-contain transition-transform duration-300 hover:scale-110"
+                className="h-20 md:h-32 w-auto object-contain transition-transform duration-300 hover:scale-110"
               />
             </Link>
 

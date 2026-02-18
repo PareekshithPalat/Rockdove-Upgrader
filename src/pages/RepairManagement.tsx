@@ -42,7 +42,7 @@ const RepairManagementPage = () => {
     if (!section || !plane || !blueLine) return;
 
     const isMobile = window.innerWidth < 768;
-    const distance = isMobile ? 1200 : 850;
+    const distance = isMobile ? 1600 : 850;
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -229,12 +229,12 @@ const RepairManagementPage = () => {
           {/* Lines & Plane */}
           <div
             ref={whiteLineRef}
-            className="absolute top-[204px] md:top-[364px] left-[30px] md:left-1/2 w-[4px] md:w-[10px] h-[1200px] md:h-[850px] bg-white/10 rounded-full -translate-x-1/2"
+            className="absolute top-[320px] md:top-[364px] left-[30px] md:left-1/2 w-[4px] md:w-[10px] h-[1600px] md:h-[850px] bg-white/10 rounded-full -translate-x-1/2"
           ></div>
 
           <div
             ref={blueLineRef}
-            className="absolute top-[204px] md:top-[364px] left-[30px] md:left-1/2 w-[4px] md:w-[10px] h-0 bg-[#7DF9FF] rounded-full -translate-x-1/2 will-change-transform"
+            className="absolute top-[320px] md:top-[364px] left-[30px] md:left-1/2 w-[4px] md:w-[10px] h-0 bg-[#7DF9FF] rounded-full -translate-x-1/2 will-change-transform"
             style={{
               boxShadow: '0 0 15px #7DF9FF, 0 0 30px #7DF9FF',
             }}
@@ -244,11 +244,11 @@ const RepairManagementPage = () => {
             ref={planeRef}
             src="/sliderplane.png"
             alt="Plane"
-            className="absolute top-[164px] md:top-[324px] left-[30px] md:left-1/2 w-[50px] h-[50px] md:w-[120px] md:h-[120px] -translate-x-1/2 will-change-transform z-10"
+            className="absolute top-[280px] md:top-[324px] left-[30px] md:left-1/2 w-[50px] h-[50px] md:w-[120px] md:h-[120px] -translate-x-1/2 will-change-transform z-10"
           />
 
           {/* Zigzag features */}
-          <div className="mt-0 md:mt-20 flex flex-col gap-24 md:gap-[150px] w-full max-w-[1200px] px-6">
+          <div className="mt-20 md:mt-20 flex flex-col gap-24 md:gap-[150px] w-full max-w-[1200px] px-6">
             {[
               {
                 id: '01',

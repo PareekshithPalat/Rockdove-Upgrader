@@ -129,7 +129,7 @@ const AssetManagement = (): JSX.Element => {
     <PageLayout>
       <div className="bg-black overflow-hidden w-full font-[Poppins]">
         {/* Hero Section */}
-        <section className="relative flex flex-col md:flex-row items-center justify-center px-4 sm:px-6 md:px-12 lg:px-[160px] pt-24 pb-24 gap-8 md:gap-16">
+        <section className="relative flex flex-col md:flex-row items-center justify-center px-4 sm:px-6 md:px-12 lg:px-[160px] pt-40 pb-24 gap-8 md:gap-16">
 
           {/* Left Content */}
           <div className="flex-1 text-center md:text-left max-w-xl">

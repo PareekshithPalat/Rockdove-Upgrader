@@ -39,7 +39,7 @@ const MRO: React.FC = () => {
     <PageLayout>
       <div className="min-h-screen bg-black text-white">
         {/* Hero Section */}
-        <section className="relative pt-32 pb-20 px-8 overflow-hidden">
+        <section className="relative pt-40 pb-20 px-8 overflow-hidden">
 
           <div className="max-w-6xl mx-auto">
             {/* Animated title and icon */}

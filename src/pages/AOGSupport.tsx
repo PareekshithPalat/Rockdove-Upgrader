@@ -158,7 +158,7 @@ const AOGSupport: React.FC = () => {
 
           {/* Animated Heading */}
           <div
-            className={`absolute inset-0 flex items-start justify-center pt-32 sm:pt-32 md:pt-40 z-20 transition-opacity duration-1000 ${showHeading ? "opacity-100" : "opacity-0"
+            className={`absolute inset-0 flex items-start justify-center pt-40 sm:pt-40 md:pt-40 z-20 transition-opacity duration-1000 ${showHeading ? "opacity-100" : "opacity-0"
               } md:transform md:-translate-y-16`}
           >
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center px-6 leading-tight max-w-[90vw] md:max-w-full">

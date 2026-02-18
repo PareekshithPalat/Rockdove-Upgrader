@@ -18,7 +18,7 @@ const TheStory: React.FC = () => {
     <PageLayout>
       <div className="bg-black text-white w-full overflow-x-hidden">
         {/* Hero Section */}
-        <section className="relative flex flex-col items-center text-center px-6 sm:px-10 md:px-20 pt-32 pb-48 overflow-hidden">
+        <section className="relative flex flex-col items-center text-center px-6 sm:px-10 md:px-20 pt-40 pb-48 overflow-hidden">
 
           <FadeInUp delay={200}>
             <h1 className="font-bold leading-tight text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl">

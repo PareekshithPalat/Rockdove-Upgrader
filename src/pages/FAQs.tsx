@@ -57,7 +57,7 @@ const FAQs: React.FC = () => {
     <PageLayout>
       <div className="min-h-screen bg-black text-white">
         {/* Hero Section */}
-        <section className="relative pt-32 md:pt-48 pb-20 px-8 overflow-hidden">
+        <section className="relative pt-40 md:pt-48 pb-20 px-8 overflow-hidden">
           {/* Background Glow */}
           <div
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none"

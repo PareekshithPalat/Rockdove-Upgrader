@@ -12,7 +12,7 @@ export const ContactUs: React.FC = () => {
   return (
     <div className="bg-black text-white min-h-screen font-[Poppins] overflow-hidden">
       {/* ================= TITLE SECTION ================= */}
-      <section className="px-4 sm:px-6 md:px-12 lg:px-[220px] pt-12 lg:pt-[120px] pb-8 lg:pb-[80px]">
+      <section className="px-4 sm:px-6 md:px-12 lg:px-[220px] pt-40 lg:pt-[120px] pb-8 lg:pb-[80px]">
         {/* Centered Title */}
         <h1 className="text-[#5cc6d0] font-bold text-3xl md:text-5xl text-center mb-12 md:mb-24 uppercase tracking-wider">
           Contact Us
