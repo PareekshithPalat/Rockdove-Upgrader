@@ -21,7 +21,7 @@ export const Footer: React.FC = () => {
             <img
               src="/rda-black-logo.png"
               alt="ROCKDOVE"
-              className="w-64 object-contain hover:opacity-80 transition"
+              className="w-80 object-contain hover:opacity-80 transition"
             />
           </Link>
 
