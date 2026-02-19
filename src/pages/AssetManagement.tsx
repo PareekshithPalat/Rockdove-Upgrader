@@ -196,8 +196,7 @@ const AssetManagement = (): JSX.Element => {
         <section className="px-8 sm:px-16 lg:px-[220px] py-20 flex flex-col items-center text-center">
           {/* Section Title */}
           <h2 className="text-white font-medium text-3xl sm:text-4xl lg:text-[36px] leading-snug mb-28">
-            Expert Asset Management <br />
-            for Seamless <br />
+            Expert Asset Management for Seamless <br />
             <span className="text-[#5cc6d0] font-bold">
               Aviation Operations
             </span>

@@ -18,7 +18,7 @@ const Features: React.FC = () => {
     if (!section || !plane || !blueLine) return;
 
     const isMobile = window.innerWidth < 768;
-    const distance = isMobile ? 1200 : 850;
+    const distance = isMobile ? 1800 : 1300;
 
     // Scroll animation for plane and blue line growth
     const tl = gsap.timeline({
@@ -70,7 +70,7 @@ const Features: React.FC = () => {
       {/* Static White Line */}
       <div
         ref={whiteLineRef}
-        className="absolute top-[204px] md:top-[364px] left-[20px] md:left-1/2 w-[4px] md:w-[10px] h-[1200px] md:h-[850px] bg-white/10 rounded-full -translate-x-1/2"
+        className="absolute top-[204px] md:top-[364px] left-[20px] md:left-1/2 w-[4px] md:w-[10px] h-[1800px] md:h-[1300px] bg-white/10 rounded-full -translate-x-1/2"
       ></div>
 
       {/* Glowing Cyan Line (grows + glows continuously) */}

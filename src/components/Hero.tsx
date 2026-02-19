@@ -259,7 +259,7 @@ export const Hero: React.FC = () => {
             The one-stop destination for all your aircraft components and
             servicing for a safe flight.
           </p>
-          <Link to="/rfq" className="pointer-events-auto">
+          <Link to="/mro" className="pointer-events-auto">
             <Button
               className="h-[48px] px-8 rounded-xl text-white font-semibold text-lg"
               style={{
@@ -425,7 +425,6 @@ const CinematicController: React.FC<{
           isMasterSplit={isMasterSplit}
           onBodyClick={onBodyClick}
           hoveredObject={hoveredObject}
-          onPointerDown={(e: ThreeEvent<PointerEvent>) => setHoveredObject(e.object)}
           onPointerMove={(e: ThreeEvent<PointerEvent>) =>
             setHoveredObject(e.object)
           }

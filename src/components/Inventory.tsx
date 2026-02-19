@@ -23,7 +23,7 @@ export const Inventory: React.FC = () => {
           </p>
 
           <div className="flex justify-center lg:justify-start">
-            <Link to="/repair-management">
+            <Link to="/asset-management">
               <Button
                 className="
                   relative overflow-hidden
