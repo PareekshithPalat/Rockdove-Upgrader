@@ -9,6 +9,7 @@ interface AirplaneModelProps {
     onBodyClick?: () => void;
     onPointerMove?: (e: ThreeEvent<PointerEvent>) => void;
     onPointerOut?: (e: ThreeEvent<PointerEvent>) => void;
+    isMobile?: boolean;
 }
 
 /**
@@ -34,6 +35,7 @@ export const AirplaneModel: React.FC<AirplaneModelProps> = ({
     onBodyClick,
     onPointerMove,
     onPointerOut,
+    isMobile = false,
 }) => {
     const { scene } = useGLTF('/flymodel.glb');
 
@@ -142,10 +144,11 @@ export const AirplaneModel: React.FC<AirplaneModelProps> = ({
 
     return (
         <group>
-            {/* STABLE HITBOXES (Static ghost scene) */}
+            {/* STABLE HITBOXES (Static ghost scene) - Reduced hitbox on mobile */}
             <primitive
                 object={ghostScene}
                 visible={false}
+                scale={isMobile ? 0.45 : 1.0}
                 onPointerMove={(e: ThreeEvent<PointerEvent>) => {
                     e.stopPropagation();
                     onPointerMove?.(e);

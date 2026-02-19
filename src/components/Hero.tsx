@@ -65,7 +65,18 @@ export const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
   const [isMasterSplit, setIsMasterSplit] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isInteracting, setIsInteracting] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const touchStartY = useRef<number | null>(null);
+
+  // Detect mobile
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Smooth progress spring for heavy, cinematic feel
   const smoothProgress = useSpring(progress, {
@@ -105,6 +116,9 @@ export const Hero: React.FC = () => {
     const handleWheel = (e: WheelEvent) => {
       if (!containerRef.current) return;
 
+      // Block scripted scroll if interacting with 3D model
+      if (isInteracting) return;
+
       // If split, first scroll re-assembles
       if (isMasterSplit) {
         setIsMasterSplit(false);
@@ -132,8 +146,52 @@ export const Hero: React.FC = () => {
     };
 
     window.addEventListener('wheel', handleWheel, { passive: false });
+
+    // --- TOUCH SUPPORT FOR MOBILE ---
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartY.current = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!containerRef.current || touchStartY.current === null) return;
+      if (isInteracting) return;
+
+      const touchY = e.touches[0].clientY;
+      const deltaY = touchStartY.current - touchY; // Up swipe = positive delta (like scroll down)
+
+      // Reset touch start for continuous delta (like wheel)
+      touchStartY.current = touchY;
+
+      // Logic mirrors handleWheel
+      if (isMasterSplit) {
+        setIsMasterSplit(false);
+        // e.preventDefault(); // Optional: might want to let them see re-assembly
+        return;
+      }
+
+      const isAtTop = window.scrollY === 0;
+
+      // Only hijack if we are in the animation phase
+      if (progress < 1 || (isAtTop && deltaY < 0 && progress > 0)) {
+        // allow page scroll if at limits
+        if (deltaY < 0 && progress <= 0) return;
+        if (deltaY > 0 && progress >= 1) return;
+
+        if (e.cancelable) e.preventDefault();
+
+        // Mobile sensitivity needs to be higher/tuned differently than wheel
+        const sensitivity = 0.003;
+        setProgress((prev) => Math.min(1, Math.max(0, prev + deltaY * sensitivity)));
+      }
+    };
+
+    window.addEventListener('touchstart', handleTouchStart, { passive: false });
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+
     return () => {
       window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
     };
   }, [progress, isMasterSplit]);
 
@@ -152,7 +210,10 @@ export const Hero: React.FC = () => {
       <NeonBackground />
 
       {/* 3D SCENE */}
-      <div className="absolute inset-0 w-full h-full z-10">
+      <div
+        className="absolute inset-0 w-full h-full z-10"
+        style={{ touchAction: (progress >= 0.99 && !isMasterSplit) ? 'pan-y' : 'none' }}
+      >
         <SceneErrorBoundary>
           <Canvas
             shadows
@@ -175,6 +236,10 @@ export const Hero: React.FC = () => {
                 progress={smoothProgress}
                 isMasterSplit={isMasterSplit}
                 onBodyClick={() => setIsMasterSplit(true)}
+                isMobile={isMobile}
+                showControls={progress < 0.05 || isMasterSplit}
+                isInteracting={isInteracting}
+                setIsInteracting={setIsInteracting}
               />
             </Suspense>
           </Canvas>
@@ -185,7 +250,7 @@ export const Hero: React.FC = () => {
       <div className="relative z-20 h-full w-full flex flex-col items-center justify-end pb-20 pointer-events-none">
         <motion.div
           style={{ opacity: textOpacity, y: textY }}
-          className="text-center px-4 flex flex-col items-center"
+          className="text-center px-4 flex flex-col items-center pointer-events-auto"
         >
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]">
             Parts, Service and <span className="text-[#5cc6D0]">Solution</span>
@@ -223,26 +288,46 @@ const CinematicController: React.FC<{
   progress: MotionValue<number>;
   isMasterSplit: boolean;
   onBodyClick: () => void;
-}> = ({ progress, isMasterSplit, onBodyClick }) => {
+  isMobile: boolean;
+  showControls: boolean;
+  isInteracting: boolean;
+  setIsInteracting: (value: boolean) => void;
+}> = ({ progress, isMasterSplit, onBodyClick, isMobile, showControls, isInteracting, setIsInteracting }) => {
   const airplaneRef = useRef<THREE.Group>(null);
   const controlsRef = useRef<any>(null);
   const [hoveredObject, setHoveredObject] = useState<THREE.Object3D | null>(null);
-  const [isInteracting, setIsInteracting] = useState(false);
 
   useFrame((state) => {
     const p = progress.get();
     const camera = state.camera;
 
     // --- ROBUST BOUNDARY CONSTANTS ---
-    const startPos = { x: 0, y: 6.0, z: 0 };    // High-altitude
-    const settledPos = { x: 0, y: 0.8, z: 1 };   // P=0.25 (Standard cruise)
-    const midPos = { x: 0, y: 0.8, z: 45 };     // P=0.6
-    const endPos = { x: 0, y: 0.8, z: 150 };    // P=1.0
+    // --- ROBUST BOUNDARY CONSTANTS (DESKTOP) ---
+    const desktopStart = { x: 0, y: 6.0, z: 0 };
+    const desktopSettled = { x: 0, y: 0.8, z: 1 };
+    const desktopMid = { x: 0, y: 0.8, z: 45 };
+    const desktopEnd = { x: 0, y: 0.8, z: 150 };
+
+    // --- MOBILE SPECIFIC CONSTANTS (Lower & Smaller) ---
+    // Start higher up, but settle much lower to avoid text overlap
+    const mobileStart = { x: 0, y: 6.5, z: 0 };
+    const mobileSettled = { x: 0, y: -0.5, z: 0 };
+    const mobileMid = { x: 0, y: -0.5, z: 45 };
+    const mobileEnd = { x: 0, y: -0.5, z: 150 };
+
+    const startPos = isMobile ? mobileStart : desktopStart;
+    const settledPos = isMobile ? mobileSettled : desktopSettled;
+    const midPos = isMobile ? mobileMid : desktopMid;
+    const endPos = isMobile ? mobileEnd : desktopEnd;
 
     // Camera Reference Points
     const camInitial = { x: 0, y: 6.5, z: 9 };
     const camMidTarget = { x: 0, y: 2.5, z: 8 };
     const camLanding = { x: 0, y: 4, z: 22 };
+
+    // Mobile Camera adjustment (Maybe slightly titled or zoomed out/in)
+    // We can reuse the main camera points but let's keep them consistent for now
+    // or adjust camMidTarget.y if needed.
 
     const targetCamPos = new THREE.Vector3();
     const targetLookAt = new THREE.Vector3();
@@ -250,7 +335,8 @@ const CinematicController: React.FC<{
     // 1. Airplane Logistics
     if (airplaneRef.current) {
       const airplane = airplaneRef.current;
-      airplane.scale.setScalar(0.25);
+      const baseScale = isMobile ? 0.15 : 0.25; // Smaller on mobile
+      airplane.scale.setScalar(baseScale);
       airplane.rotation.set(0, 0, 0);
 
       if (p <= 0.25) {
@@ -258,19 +344,19 @@ const CinematicController: React.FC<{
         const currentY = THREE.MathUtils.lerp(startPos.y, settledPos.y, subP);
         const currentZ = THREE.MathUtils.lerp(startPos.z, settledPos.z, subP);
         airplane.position.set(startPos.x, currentY, currentZ);
-        airplane.scale.setScalar(0.25);
+        airplane.scale.setScalar(baseScale);
       }
       else if (p <= 0.6) {
         const subP = (p - 0.25) / 0.35;
         const currentZ = THREE.MathUtils.lerp(settledPos.z, midPos.z, subP);
         airplane.position.set(midPos.x, settledPos.y, currentZ);
-        airplane.scale.setScalar(THREE.MathUtils.lerp(0.25, 0.35, subP));
+        airplane.scale.setScalar(THREE.MathUtils.lerp(baseScale, baseScale * 1.4, subP));
       }
       else {
         const subP = (p - 0.6) / 0.4;
         const currentZ = THREE.MathUtils.lerp(midPos.z, endPos.z, subP);
         airplane.position.set(midPos.x, midPos.y, currentZ);
-        airplane.scale.setScalar(0.35 * (1 - subP * 0.98));
+        airplane.scale.setScalar((baseScale * 1.4) * (1 - subP * 0.98));
         airplane.rotation.z = Math.sin(subP * 15) * 0.03;
       }
       airplane.visible = p < 0.99;
@@ -310,6 +396,7 @@ const CinematicController: React.FC<{
     // If master split is active, we allow OrbitControls to fully manage the camera
     // withoutFighting the cinematic path. We only apply smooth cinematic tracking
     // when NOT in master split mode and NOT interacting.
+
     if (!isMasterSplit && !isInteracting && controlsRef.current) {
       camera.position.lerp(targetCamPos, 0.1);
       controlsRef.current.target.lerp(targetLookAt, 0.1);
@@ -322,23 +409,28 @@ const CinematicController: React.FC<{
 
   return (
     <>
-      <OrbitControls
-        ref={controlsRef}
-        enablePan={false}
-        enableZoom={false}
-        rotateSpeed={0.5}
-        onStart={() => setIsInteracting(true)}
-        onEnd={() => setIsInteracting(false)}
-      />
+      {showControls && (
+        <OrbitControls
+          ref={controlsRef}
+          enabled={!!hoveredObject || isInteracting || isMasterSplit}
+          enablePan={false}
+          enableZoom={false}
+          rotateSpeed={0.5}
+          onStart={() => setIsInteracting(true)}
+          onEnd={() => setIsInteracting(false)}
+        />
+      )}
       <group ref={airplaneRef}>
         <AirplaneModel
           isMasterSplit={isMasterSplit}
           onBodyClick={onBodyClick}
           hoveredObject={hoveredObject}
+          onPointerDown={(e: ThreeEvent<PointerEvent>) => setHoveredObject(e.object)}
           onPointerMove={(e: ThreeEvent<PointerEvent>) =>
             setHoveredObject(e.object)
           }
           onPointerOut={() => setHoveredObject(null)}
+          isMobile={isMobile}
         />
       </group>
     </>

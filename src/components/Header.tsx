@@ -341,7 +341,7 @@ const Header: React.FC = () => {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="md:hidden fixed inset-0 z-[150] bg-black bg-opacity-98 backdrop-blur-md overflow-y-auto"
+            className="md:hidden fixed inset-0 z-[999] bg-black bg-opacity-98 backdrop-blur-md overflow-y-auto overscroll-contain"
           >
             <div className="flex flex-col min-h-screen">
               {/* Header inside mobile menu */}
@@ -361,19 +361,19 @@ const Header: React.FC = () => {
 
               {/* Links */}
               <div className="flex flex-col px-8 pb-12 space-y-8">
-                <div className="space-y-2">
+                <div className="space-y-1">
                   <p className="text-gray-500 uppercase text-xs font-bold tracking-widest px-4 mb-4">Services</p>
-                  <Link to="/asset-management" className="block p-4 text-2xl font-bold text-white hover:text-[#5CC6D0] transition" onClick={() => setMobileOpen(false)}>Asset Management</Link>
-                  <Link to="/repair-management" className="block p-4 text-2xl font-bold text-white hover:text-[#5CC6D0] transition" onClick={() => setMobileOpen(false)}>Repair Management</Link>
-                  <Link to="/aog-support" className="block p-4 text-2xl font-bold text-white hover:text-[#5CC6D0] transition" onClick={() => setMobileOpen(false)}>AOG Support</Link>
+                  <Link to="/asset-management" className="block px-4 py-3 text-xl font-bold text-white hover:text-[#5CC6D0] hover:bg-white/5 rounded-xl transition" onClick={() => setMobileOpen(false)}>Asset Management</Link>
+                  <Link to="/repair-management" className="block px-4 py-3 text-xl font-bold text-white hover:text-[#5CC6D0] hover:bg-white/5 rounded-xl transition" onClick={() => setMobileOpen(false)}>Repair Management</Link>
+                  <Link to="/aog-support" className="block px-4 py-3 text-xl font-bold text-white hover:text-[#5CC6D0] hover:bg-white/5 rounded-xl transition" onClick={() => setMobileOpen(false)}>AOG Support</Link>
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-1">
                   <p className="text-gray-500 uppercase text-xs font-bold tracking-widest px-4 mb-4">Company</p>
-                  <Link to="/the-story" className="block p-4 text-xl font-semibold text-white/90 hover:text-[#5CC6D0] transition" onClick={() => setMobileOpen(false)}>The Story</Link>
-                  <Link to="/careers" className="block p-4 text-xl font-semibold text-white/90 hover:text-[#5CC6D0] transition" onClick={() => setMobileOpen(false)}>Careers</Link>
-                  <Link to="/mro" className="block p-4 text-xl font-semibold text-white/90 hover:text-[#5CC6D0] transition" onClick={() => setMobileOpen(false)}>MRO</Link>
-                  <Link to="/faqs" className="block p-4 text-xl font-semibold text-white/90 hover:text-[#5CC6D0] transition" onClick={() => setMobileOpen(false)}>FAQs</Link>
+                  <Link to="/the-story" className="block px-4 py-3 text-lg font-semibold text-white/90 hover:text-[#5CC6D0] hover:bg-white/5 rounded-xl transition" onClick={() => setMobileOpen(false)}>The Story</Link>
+                  <Link to="/careers" className="block px-4 py-3 text-lg font-semibold text-white/90 hover:text-[#5CC6D0] hover:bg-white/5 rounded-xl transition" onClick={() => setMobileOpen(false)}>Careers</Link>
+                  <Link to="/mro" className="block px-4 py-3 text-lg font-semibold text-white/90 hover:text-[#5CC6D0] hover:bg-white/5 rounded-xl transition" onClick={() => setMobileOpen(false)}>MRO</Link>
+                  <Link to="/faqs" className="block px-4 py-3 text-lg font-semibold text-white/90 hover:text-[#5CC6D0] hover:bg-white/5 rounded-xl transition" onClick={() => setMobileOpen(false)}>FAQs</Link>
                 </div>
 
                 <div className="pt-8 grid grid-cols-2 gap-4 px-4">
