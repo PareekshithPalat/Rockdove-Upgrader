@@ -39,9 +39,8 @@ const MRO: React.FC = () => {
     <PageLayout>
       <div className="min-h-screen bg-black text-white">
         {/* Hero Section */}
-        <section className="relative pt-40 pb-20 px-8 overflow-hidden">
-
-          <div className="max-w-6xl mx-auto">
+        <section className="relative pt-40 pb-20 overflow-hidden">
+          <div className="max-w-7xl mx-auto px-6">
             {/* Animated title and icon */}
             <FadeInUp delay={200}>
               <div className="flex items-center gap-4 mb-8">

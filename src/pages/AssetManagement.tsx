@@ -155,283 +155,293 @@ const AssetManagement = (): JSX.Element => {
     <PageLayout>
       <div className="bg-black overflow-hidden w-full font-[Poppins]">
         {/* Hero Section */}
-        <section className="relative flex flex-col md:flex-row items-center justify-center px-4 sm:px-6 md:px-12 lg:px-[160px] pt-52 pb-24 gap-8 md:gap-16">
-
-          {/* Left Content */}
-          <div className="flex-1 text-center md:text-left max-w-xl">
-            <h1 className="font-bold text-[#5cc6d0] text-3xl sm:text-4xl md:text-5xl mb-4">
-              Asset Management
-            </h1>
-            <p className="font-medium text-white text-[24px] leading-relaxed">
-              With over 400,000 parts in our dedicated warehouse and broad
-              inventories covering Rotables, consumables, and more, we ensure
-              your aircraft stays Non-stop.
-            </p>
-          </div>
-
-          {/* Right Mascot / Spline Section */}
-          <div className="flex-shrink-0 w-full md:w-auto flex justify-center md:justify-end relative">
-            {/* Background Glow directly behind the image */}
-            <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none"
-              style={{ width: "120%", height: "120%" }}
-            >
-              <div
-                className="w-full h-full rounded-full bg-[#5cc6d0] opacity-40"
-                style={{ filter: "blur(80px)" }}
-              ></div>
+        <section className="relative pt-52 pb-24 px-6">
+          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16">
+            {/* Left Content */}
+            <div className="flex-1 text-center md:text-left">
+              <h1 className="font-bold text-[#5cc6d0] text-3xl sm:text-4xl md:text-5xl mb-4">
+                Asset Management
+              </h1>
+              <p className="font-medium text-white text-[24px] leading-relaxed">
+                With over 400,000 parts in our dedicated warehouse and broad
+                inventories covering Rotables, consumables, and more, we ensure
+                your aircraft stays Non-stop.
+              </p>
             </div>
 
-            <div className="relative z-10 w-[200px] sm:w-[280px] md:w-[320px] h-[200px] sm:h-[280px] md:h-[320px]">
-              <img
-                src="/undraw_logistics_8vri.svg"
-                alt="Asset Management Illustration"
-                className="w-full h-full object-contain"
-              />
+            {/* Right Mascot / Spline Section */}
+            <div className="flex-shrink-0 w-full md:w-auto flex justify-center md:justify-end relative">
+              {/* Background Glow directly behind the image */}
+              <div
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none"
+                style={{ width: "120%", height: "120%" }}
+              >
+                <div
+                  className="w-full h-full rounded-full bg-[#5cc6d0] opacity-40"
+                  style={{ filter: "blur(80px)" }}
+                ></div>
+              </div>
+
+              <div className="relative z-10 w-[200px] sm:w-[280px] md:w-[320px] h-[200px] sm:h-[280px] md:h-[320px]">
+                <img
+                  src="/undraw_logistics_8vri.svg"
+                  alt="Asset Management Illustration"
+                  className="w-full h-full object-contain"
+                />
+              </div>
             </div>
           </div>
         </section>
 
         {/* Expert Asset Management Section */}
-        <section className="px-8 sm:px-16 lg:px-[220px] py-20 flex flex-col items-center text-center">
-          {/* Section Title */}
-          <h2 className="text-white font-medium text-3xl sm:text-4xl lg:text-[36px] leading-snug mb-28">
-            Expert Asset Management for Seamless <br />
-            <span className="text-[#5cc6d0] font-bold">
-              Aviation Operations
-            </span>
-          </h2>
+        <section className="py-20 px-6">
+          <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
+            {/* Section Title */}
+            <h2 className="text-white font-medium text-3xl sm:text-4xl lg:text-[36px] leading-snug mb-28">
+              Expert Asset Management for Seamless <br />
+              <span className="text-[#5cc6d0] font-bold">
+                Aviation Operations
+              </span>
+            </h2>
 
-          {/* Content Row */}
-          <div className="flex flex-col md:flex-row items-center justify-center gap-16 md:gap-[200px] w-full">
-            {/* Left Side - Stats */}
-            <div className="flex flex-col items-center md:items-start text-center md:text-left">
-              <div className="flex flex-row items-center justify-center md:justify-start gap-10 sm:gap-14">
-                {/* Inventories */}
-                <div className="min-w-[80px] sm:min-w-[100px]">
-                  <p className="font-bold text-[#55cccc] text-3xl sm:text-[38px] leading-tight mb-1">
-                    <Counter value={27} />k+
-                  </p>
-                  <p className="text-white text-lg sm:text-xl font-medium">
-                    Inventories
-                  </p>
-                </div>
+            {/* Content Row */}
+            <div className="flex flex-col md:flex-row items-center justify-center gap-16 md:gap-[200px] w-full">
+              {/* Left Side - Stats */}
+              <div className="flex flex-col items-center md:items-start text-center md:text-left">
+                <div className="flex flex-row items-center justify-center md:justify-start gap-10 sm:gap-14">
+                  {/* Inventories */}
+                  <div className="min-w-[80px] sm:min-w-[100px]">
+                    <p className="font-bold text-[#55cccc] text-3xl sm:text-[38px] leading-tight mb-1">
+                      <Counter value={27} />k+
+                    </p>
+                    <p className="text-white text-lg sm:text-xl font-medium">
+                      Inventories
+                    </p>
+                  </div>
 
-                {/* Divider */}
-                <div className="h-14 w-[2px] bg-white hidden sm:block" />
+                  {/* Divider */}
+                  <div className="h-14 w-[2px] bg-white hidden sm:block" />
 
-                {/* Parts */}
-                <div className="min-w-[140px] sm:min-w-[180px]">
-                  <p className="font-bold text-[#55cccc] text-3xl sm:text-[38px] leading-tight mb-1">
-                    <Counter value={400000} delay={0.4} />+
-                  </p>
-                  <p className="text-white text-lg sm:text-xl font-medium">
-                    Parts
-                  </p>
+                  {/* Parts */}
+                  <div className="min-w-[140px] sm:min-w-[180px]">
+                    <p className="font-bold text-[#55cccc] text-3xl sm:text-[38px] leading-tight mb-1">
+                      <Counter value={400000} delay={0.4} />+
+                    </p>
+                    <p className="text-white text-lg sm:text-xl font-medium">
+                      Parts
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Right Side - Engine Image */}
-            <div className="relative flex justify-center md:justify-start md:ml-[-80px] overflow-visible w-full md:w-auto">
-              {/* Gradient Base */}
-              <div className="w-[280px] h-[160px] md:w-[250px] md:h-[150px] lg:w-[320px] lg:h-[170px] rounded-2xl bg-[linear-gradient(180deg,rgba(92,198,208,1)_0%,rgba(47,101,106,1)_100%)]" />
+              {/* Right Side - Engine Image */}
+              <div className="relative flex justify-center md:justify-start md:ml-[-80px] overflow-visible w-full md:w-auto">
+                {/* Gradient Base */}
+                <div className="w-[280px] h-[160px] md:w-[250px] md:h-[150px] lg:w-[320px] lg:h-[170px] rounded-2xl bg-[linear-gradient(180deg,rgba(92,198,208,1)_0%,rgba(47,101,106,1)_100%)]" />
 
-              {/* Jet Engine Image */}
-              <img
-                src="https://c.animaapp.com/mh31x2ueWQqHGB/img/now-that-looks-fun-removebg-preview--1--1.png"
-                alt="Jet Engine"
-                className="absolute -top-10 md:-top-16 left-1/2 -translate-x-[50%] md:translate-x-0 md:-left-12 w-[85%] md:w-[450px] lg:w-[500px] object-contain max-w-none md:max-w-full"
-              />
+                {/* Jet Engine Image */}
+                <img
+                  src="https://c.animaapp.com/mh31x2ueWQqHGB/img/now-that-looks-fun-removebg-preview--1--1.png"
+                  alt="Jet Engine"
+                  className="absolute -top-10 md:-top-16 left-1/2 -translate-x-[50%] md:translate-x-0 md:-left-12 w-[85%] md:w-[450px] lg:w-[500px] object-contain max-w-none md:max-w-full"
+                />
+              </div>
             </div>
           </div>
         </section>
 
         {/* Broad Inventory Section */}
-        <section className="px-4 sm:px-6 md:px-12 lg:px-[228px] py-16">
-          <h2 className="font-extrabold text-[#5cc6d0] text-3xl sm:text-4xl md:text-5xl text-center mb-36">
-            Broad Inventory
-          </h2>
+        <section className="py-16 px-6">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="font-extrabold text-[#5cc6d0] text-3xl sm:text-4xl md:text-5xl text-center mb-36">
+              Broad Inventory
+            </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 text-center">
-            {inventoryCategories.map((category, index) => (
-              <div key={index} className="flex flex-col items-center">
-                {/* Icon on top of heading */}
-                <img
-                  src={category.icon}
-                  alt={`${category.title} Icon`}
-                  className="w-12 h-12 mb-4 object-contain"
-                />
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 text-center">
+              {inventoryCategories.map((category, index) => (
+                <div key={index} className="flex flex-col items-center">
+                  {/* Icon on top of heading */}
+                  <img
+                    src={category.icon}
+                    alt={`${category.title} Icon`}
+                    className="w-12 h-12 mb-4 object-contain"
+                  />
 
-                {/* Heading */}
-                <h3 className="font-bold text-white text-lg sm:text-xl mb-3">
-                  {category.title}
-                </h3>
+                  {/* Heading */}
+                  <h3 className="font-bold text-white text-lg sm:text-xl mb-3">
+                    {category.title}
+                  </h3>
 
-                {/* Items */}
-                <div className="space-y-1">
-                  {category.items.map((item, idx) => (
-                    <p key={idx} className="font-medium text-white text-base">
-                      {item}
-                    </p>
-                  ))}
+                  {/* Items */}
+                  <div className="space-y-1">
+                    {category.items.map((item, idx) => (
+                      <p key={idx} className="font-medium text-white text-base">
+                        {item}
+                      </p>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </section>
 
         {/* Brand Logos Section */}
-        <section className="px-4 sm:px-6 md:px-12 lg:px-[228px] py-16 text-center">
-          <h3 className="font-medium text-white text-[40px] mb-20">
-            These inventories support Major{" "}
-            <span className="text-[#5cc6d0]">Brands</span>
-          </h3>
-          <div className="flex flex-wrap justify-center gap-6">
-            {brandLogos.map((logo, index) => (
-              <img
-                key={index}
-                className="w-40 h-auto object-contain"
-                alt={logo.alt}
-                src={logo.src}
-              />
-            ))}
+        <section className="py-16 px-6 text-center">
+          <div className="max-w-7xl mx-auto">
+            <h3 className="font-medium text-white text-[40px] mb-20">
+              These inventories support Major{" "}
+              <span className="text-[#5cc6d0]">Brands</span>
+            </h3>
+            <div className="flex flex-wrap justify-center gap-12">
+              {brandLogos.map((logo, index) => (
+                <img
+                  key={index}
+                  className="w-40 h-auto object-contain"
+                  alt={logo.alt}
+                  src={logo.src}
+                />
+              ))}
+            </div>
           </div>
         </section>
 
         {/* A to Z Parts Solutions Section */}
-        <section className="px-4 sm:px-6 md:px-12 lg:px-[228px] py-16 text-center">
-          <h2 className="font-bold text-[#5cc6d0] text-3xl sm:text-4xl md:text-5xl mb-16">
-            A to Z Parts Solutions
-          </h2>
-          <p className="font-medium text-white text-lg sm:text-xl md:text-2xl max-w-[1080px] mx-auto mb-8">
-            Not limited to high-end specialties; we provide everything from
-            basic hardware (nuts, bolts, seals) to advanced systems (avionics,
-            landing gear, propulsion). Sourced from trusted OEMs and aftermarket
-          </p>
-          <Link to="/rfq">
-            <Button
-              className="h-[48px] px-12 rounded-xl border-0 transition-all duration-300 ease-out hover:scale-105 active:scale-[0.98] shadow-[0_4px_14px_rgba(92,198,208,0.4)] hover:shadow-[0_6px_20px_rgba(92,198,208,0.6)] text-white font-bold text-lg uppercase tracking-wider"
-              style={{
-                background: "linear-gradient(180deg, #5CC6D0 0%, #05848E 100%)",
-              }}
-            >
-              Request a quote
-            </Button>
-          </Link>
-        </section>
-
-        {/* We Are Specialized In Section */}
-        <section className="px-4 sm:px-6 md:px-12 lg:px-[228px] py-16 text-center overflow-visible">
-          <h2 className="font-bold text-[#5cc6d0] text-3xl sm:text-4xl md:text-5xl mb-12">
-            We are specialized in
-          </h2>
-
-          <div className="w-24 h-1 bg-[#5cc6d0] mx-auto mb-12" />
-          <p className="font-medium text-white text-lg sm:text-xl md:text-2xl mb-28">
-            We manage critical assets with expert maintenance,
-            <br />
-            ensuring top performance and safety
-          </p>
-
-          {/* Grid Container */}
-          <div className="flex flex-wrap justify-center gap-x-24 gap-y-28 max-w-[1300px] mx-auto overflow-visible">
-            {specializedProducts.map((product, index) => {
-              const isAPU = product.title === "APUs";
-              const isBrakes = product.title === "Brakes";
-              const isStarter = product.title === "Starters";
-              const isThrustReverser = product.title === "ThrustReverser";
-              const isEngine = product.title === "Engine";
-
-              // 🎯 Balanced image sizing
-              const imageWidth = isAPU
-                ? 660 // increased APU
-                : isBrakes || isStarter
-                  ? 250 // moderate reduction
-                  : isThrustReverser
-                    ? 270
-                    : isEngine
-                      ? 290
-                      : 370;
-
-              const imageHeight = isAPU
-                ? 580
-                : isBrakes || isStarter
-                  ? 150
-                  : isThrustReverser
-                    ? 170
-                    : 230;
-
-              const scale = isAPU
-                ? "scale-[1.7]"
-                : isStarter || isThrustReverser
-                  ? "scale-[1.0]"
-                  : isEngine
-                    ? "scale-[1.27]"
-                    : isBrakes
-                      ? "scale-[1.2]"
-                      : "scale-[1.15]";
-
-              // 🧭 Position adjustments
-              const topOffset = isAPU
-                ? "-top-60"
-                : isStarter
-                  ? "-top-0"
-                  : isBrakes
-                    ? "-top-4"
-                    : isEngine
-                      ? "-top-14"
-                      : isThrustReverser
-                        ? "-top-6"
-                        : "-top-16";
-
-              const leftOffset = isEngine
-                ? "left-1/2 -translate-x-[55%] md:translate-x-0 md:left-[-80px]"
-                : "left-1/2 -translate-x-1/2 md:translate-x-0 md:-left-16";
-
-              // 💡 Custom hover scale depending on the product
-              const hoverScale = isAPU
-                ? "group-hover:scale-[1.8]"
-                : isEngine
-                  ? "group-hover:scale-[1.33]"
-                  : isBrakes
-                    ? "group-hover:scale-[1.28]" // subtle increase (from 1.45 → 1.5)
-                    : "group-hover:scale-110"; // others use normal 10% increase
-
-              return (
-                <div
-                  key={index}
-                  className="relative w-[280px] flex flex-col items-center md:items-start gap-4 overflow-visible group"
-                >
-                  {/* Card Container */}
-                  <div className="w-[200px] h-[120px] bg-white rounded-2xl flex items-center justify-center transition-all duration-300 ease-in-out group-hover:bg-[#5cc6d0]" />
-
-                  {/* Product Image */}
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className={`absolute ${topOffset} ${leftOffset} z-10 object-contain transition-transform duration-300 ease-in-out ${hoverScale} ${scale}`}
-                    style={{
-                      width: `${imageWidth}px`,
-                      height: `${imageHeight}px`,
-                    }}
-                  />
-
-                  {/* Transparent hover layer */}
-                  <div className="absolute inset-0 z-20 cursor-pointer" />
-
-                  {/* Product Title */}
-                  <div className="flex flex-col items-center md:items-start justify-start w-full">
-                    <h3 className="mt-5 text-white text-lg font-semibold text-center md:text-left min-h-[28px] flex items-start">
-                      {product.title}
-                    </h3>
-                  </div>
-                </div>
-              );
-            })}
+        <section className="py-16 px-6 text-center">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="font-bold text-[#5cc6d0] text-3xl sm:text-4xl md:text-5xl mb-16">
+              A to Z Parts Solutions
+            </h2>
+            <p className="font-medium text-white text-lg sm:text-xl md:text-2xl max-w-[1080px] mx-auto mb-16 leading-relaxed">
+              Not limited to high-end specialties; we provide everything from
+              basic hardware (nuts, bolts, seals) to advanced systems (avionics,
+              landing gear, propulsion). Sourced from trusted OEMs and aftermarket
+            </p>
+            <Link to="/rfq">
+              <Button
+                className="h-[48px] px-12 rounded-xl border-0 transition-all duration-300 ease-out hover:scale-105 active:scale-[0.98] shadow-[0_4px_14px_rgba(92,198,208,0.4)] hover:shadow-[0_6px_20px_rgba(92,198,208,0.6)] text-white font-bold text-lg uppercase tracking-wider"
+                style={{
+                  background: "linear-gradient(180deg, #5CC6D0 0%, #05848E 100%)",
+                }}
+              >
+                Request a quote
+              </Button>
+            </Link>
           </div>
         </section>
-        <section className="h-56" />
+
+        {/* Specialized In Section */}
+        <section className="py-24 px-6">
+          <div className="max-w-7xl mx-auto text-center">
+            <h2 className="font-bold text-[#5cc6d0] text-3xl sm:text-4xl md:text-5xl mb-12">
+              We are specialized in
+            </h2>
+            <div className="w-24 h-1 bg-[#5cc6d0] mx-auto mb-12" />
+            <p className="font-medium text-white text-lg sm:text-xl md:text-2xl mb-40">
+              We manage critical assets with expert maintenance,
+              <br />
+              ensuring top performance and safety
+            </p>
+
+            {/* Grid Container */}
+            <div className="flex flex-wrap justify-center gap-x-24 gap-y-28 overflow-visible">
+              {specializedProducts.map((product, index) => {
+                const isAPU = product.title === "APUs";
+                const isBrakes = product.title === "Brakes";
+                const isStarter = product.title === "Starters";
+                const isThrustReverser = product.title === "ThrustReverser";
+                const isEngine = product.title === "Engine";
+
+                // 🎯 Balanced image sizing
+                const imageWidth = isAPU
+                  ? 660 // increased APU
+                  : isBrakes || isStarter
+                    ? 250 // moderate reduction
+                    : isThrustReverser
+                      ? 270
+                      : isEngine
+                        ? 290
+                        : 370;
+
+                const imageHeight = isAPU
+                  ? 580
+                  : isBrakes || isStarter
+                    ? 150
+                    : isThrustReverser
+                      ? 170
+                      : 230;
+
+                const scale = isAPU
+                  ? "scale-[1.7]"
+                  : isStarter || isThrustReverser
+                    ? "scale-[1.0]"
+                    : isEngine
+                      ? "scale-[1.27]"
+                      : isBrakes
+                        ? "scale-[1.2]"
+                        : "scale-[1.15]";
+
+                // 🧭 Position adjustments
+                const topOffset = isAPU
+                  ? "-top-60"
+                  : isStarter
+                    ? "-top-0"
+                    : isBrakes
+                      ? "-top-4"
+                      : isEngine
+                        ? "-top-14"
+                        : isThrustReverser
+                          ? "-top-6"
+                          : "-top-16";
+
+                const leftOffset = isEngine
+                  ? "left-1/2 -translate-x-[55%] md:translate-x-0 md:left-[-80px]"
+                  : "left-1/2 -translate-x-1/2 md:translate-x-0 md:-left-16";
+
+                // 💡 Custom hover scale depending on the product
+                const hoverScale = isAPU
+                  ? "group-hover:scale-[1.8]"
+                  : isEngine
+                    ? "group-hover:scale-[1.33]"
+                    : isBrakes
+                      ? "group-hover:scale-[1.28]" // subtle increase (from 1.45 → 1.5)
+                      : "group-hover:scale-110"; // others use normal 10% increase
+
+                return (
+                  <div
+                    key={index}
+                    className="relative w-[280px] flex flex-col items-center md:items-start gap-4 overflow-visible group"
+                  >
+                    {/* Card Container */}
+                    <div className="w-[200px] h-[120px] bg-white rounded-2xl flex items-center justify-center transition-all duration-300 ease-in-out group-hover:bg-[#5cc6d0]" />
+
+                    {/* Product Image */}
+                    <img
+                      src={product.image}
+                      alt={product.title}
+                      className={`absolute ${topOffset} ${leftOffset} z-10 object-contain transition-transform duration-300 ease-in-out ${hoverScale} ${scale}`}
+                      style={{
+                        width: `${imageWidth}px`,
+                        height: `${imageHeight}px`,
+                      }}
+                    />
+
+                    {/* Transparent hover layer */}
+                    <div className="absolute inset-0 z-20 cursor-pointer" />
+
+                    {/* Product Title */}
+                    <div className="flex flex-col items-center md:items-start justify-start w-full">
+                      <h3 className="mt-5 text-white text-lg font-semibold text-center md:text-left min-h-[28px] flex items-start">
+                        {product.title}
+                      </h3>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+        <section className="h-40" />
       </div>
     </PageLayout>
   );
