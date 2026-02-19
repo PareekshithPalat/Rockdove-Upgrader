@@ -222,27 +222,26 @@ const RepairManagementPage = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-[18px]">
             {partnerCards.map((partner, index) => {
-              const isCyan = index === 1;
               return (
                 <Card
                   key={index}
-                  className={`group relative ${isCyan ? 'bg-[#0097A1] text-white' : 'bg-[#d9d9d9] text-black'} rounded-[20px] border-none cursor-pointer transition-all duration-300 hover:-translate-y-2 overflow-hidden h-[340px] md:h-[403px]`}
+                  className="group relative bg-[#d9d9d9] text-black rounded-[20px] border-none cursor-pointer transition-all duration-300 hover:-translate-y-2 overflow-hidden h-[340px] md:h-[403px]"
                 >
-                  <div className={`absolute inset-0 ${isCyan ? 'opacity-100' : 'opacity-0'} group-hover:opacity-100 bg-[#0097A1] transition-opacity duration-500 rounded-[20px]`}></div>
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-[#0097A1] transition-opacity duration-500 rounded-[20px]"></div>
                   <CardContent className="relative z-10 flex flex-col items-center justify-between h-full p-6 text-center">
                     <div className="flex-1 flex items-center justify-center">
                       <img
-                        className={`${partner.logoClass} object-contain ${isCyan ? 'brightness-0 invert' : ''}`}
+                        className={`${partner.logoClass} object-contain group-hover:brightness-0 group-hover:invert`}
                         alt={partner.title}
                         src={partner.logo}
                       />
                     </div>
                     <div>
-                      <h3 className={`font-[Poppins] font-bold text-lg md:text-xl mb-3 transition-colors duration-300 ${isCyan ? 'text-white' : 'text-black group-hover:text-white'}`}>
+                      <h3 className="font-[Poppins] font-bold text-lg md:text-xl mb-3 transition-colors duration-300 text-black group-hover:text-white">
                         {partner.title}
                       </h3>
-                      <div className={`w-6 h-0.5 mx-auto mb-3 transition-colors duration-300 ${isCyan ? 'bg-white' : 'bg-black group-hover:bg-white'}`} />
-                      <p className={`font-[Poppins] font-medium text-sm md:text-base transition-colors duration-300 ${isCyan ? 'text-white' : 'text-black group-hover:text-white'}`}>
+                      <div className="w-6 h-0.5 mx-auto mb-3 transition-colors duration-300 bg-black group-hover:bg-white" />
+                      <p className="font-[Poppins] font-medium text-sm md:text-base transition-colors duration-300 text-black group-hover:text-white">
                         {partner.description}
                       </p>
                     </div>

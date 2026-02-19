@@ -75,25 +75,24 @@ const Services: React.FC = () => {
             path: "/aog-support",
           },
         ].map((card, index) => {
-          const isCyan = index === 1;
           return (
             <Link
               key={index}
               to={card.path}
-              className={`
-                group relative ${isCyan ? 'bg-[#0097A1] text-white' : 'bg-gray-200 text-black'} rounded-[20px]
+              className="
+                group relative bg-gray-200 text-black rounded-[20px]
                 w-[300px] sm:w-[320px] md:w-[341px]
                 h-[390px] sm:h-[400px] md:h-[412px]
                 p-8 flex flex-col justify-between
                 cursor-pointer transition-all duration-300 hover:-translate-y-2 overflow-hidden block
-              `}
+              "
             >
               {/* Hover Gradient */}
-              <div className={`absolute inset-0 ${isCyan ? 'opacity-100' : 'opacity-0'} group-hover:opacity-100 bg-gradient-to-b from-[#5CC6D0] to-[#0097A1] transition-opacity duration-500 rounded-[20px]`}></div>
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-b from-[#5CC6D0] to-[#0097A1] transition-opacity duration-500 rounded-[20px]"></div>
 
               {/* Content */}
               <div className="relative z-10">
-                <h3 className={`font-semibold text-[22px] sm:text-[24px] leading-[110%] mb-4 transition-colors duration-300 ${isCyan ? 'text-white' : 'group-hover:text-white'}`}>
+                <h3 className="font-semibold text-[22px] sm:text-[24px] leading-[110%] mb-4 transition-colors duration-300 group-hover:text-white">
                   {card.title}
                 </h3>
                 <p className="font-normal text-[15px] sm:text-[16px] leading-snug mt-10">
@@ -103,8 +102,8 @@ const Services: React.FC = () => {
 
               {/* Arrow Button */}
               <div className="relative z-10 flex justify-end">
-                <div className={`w-10 h-10 flex items-center justify-center ${isCyan ? 'bg-white/20' : 'bg-black/10'} rounded-full transition-transform duration-300 group-hover:translate-x-1`}>
-                  <span className={`text-xl font-bold ${isCyan ? 'text-white' : 'group-hover:text-white'}`}>
+                <div className="w-10 h-10 flex items-center justify-center bg-black/10 rounded-full transition-transform duration-300 group-hover:translate-x-1 group-hover:bg-white/20">
+                  <span className="text-xl font-bold group-hover:text-white">
                     ➜
                   </span>
                 </div>
