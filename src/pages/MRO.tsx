@@ -1,5 +1,5 @@
 import React from "react";
-import { Wrench, Users, Clock, Shield, Calendar, Phone, Mail } from "lucide-react";
+import { Wrench, Users, Clock, Shield, Calendar, Phone, Mail, AlertCircle } from "lucide-react";
 import { PageLayout } from "../components/PageLayout";
 import {
   FadeInUp,
@@ -130,7 +130,7 @@ const MRO: React.FC = () => {
 
               ].map((event, index) => (
                 <FadeInUp key={index} delay={index * 100}>
-                  <div className={`group relative overflow-hidden rounded-3xl bg-[#0b0d10] border border-white/10 ${event.span} h-full`}>
+                  <div className={`group relative overflow-hidden rounded-3xl bg-[#0b0d10] border border-white/10 h-full`}>
                     <img
                       src={event.src}
                       alt={event.src}
@@ -176,7 +176,10 @@ const MRO: React.FC = () => {
                   <Mail className="w-8 h-8 text-[#5cc6d0] mx-auto mb-4" />
                   <h3 className="text-xl font-semibold mb-2 text-[#5cc6d0]">Email Consultation</h3>
                   <p className="text-2xl font-bold">sales@rockdoveaviation.com</p>
-                  <p className="text-sm text-gray-400 mt-2">Response within 24 hours</p>
+                  <div className="flex items-center justify-center gap-2 mt-2">
+                    <AlertCircle className="w-4 h-4 text-[#5cc6d0]" />
+                    <p className="text-sm text-gray-400">Response within 24 hours!</p>
+                  </div>
                 </div>
               </FadeInRight>
             </div>

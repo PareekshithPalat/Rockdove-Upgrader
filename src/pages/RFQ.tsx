@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Send, Phone, Mail, CheckCircle2 } from "lucide-react";
+import { Send, Phone, Mail, AlertCircle } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { PageLayout } from "../components/PageLayout";
 import { FadeInUp } from "../components/animations";
@@ -177,8 +177,8 @@ const RFQ: React.FC = () => {
                   SUBMIT RFQ
                 </Button>
                 <div className="flex items-center gap-2 text-gray-400">
-                  <CheckCircle2 className="w-5 h-5 text-[#5cc6d0]" />
-                  <span className="text-sm font-medium tracking-wide"> Response within 24 hours</span>
+                  <AlertCircle className="w-5 h-5 text-[#5cc6d0]" />
+                  <span className="text-sm font-medium tracking-wide"> Response within 24 hours!</span>
                 </div>
               </div>
             </FadeInUp>

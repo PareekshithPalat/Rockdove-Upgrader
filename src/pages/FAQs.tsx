@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { HelpCircle, ChevronDown, ChevronUp } from "lucide-react";
+import { AlertCircle, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { PageLayout } from "../components/PageLayout";
 
@@ -98,7 +98,7 @@ Warranties begin from the date of delivery (or installation, where applicable) a
           </div>
           <div className="max-w-7xl mx-auto relative z-10 text-center">
             <div className="flex flex-col items-center gap-4 mb-8">
-              <HelpCircle className="w-12 h-12 text-[#5cc6d0]" />
+              <AlertCircle className="w-12 h-12 text-[#5cc6d0]" />
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-white md:whitespace-nowrap">
                 Frequently Asked Questions
               </h1>

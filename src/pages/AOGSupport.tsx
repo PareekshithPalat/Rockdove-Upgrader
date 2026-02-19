@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { PageLayout } from "../components/PageLayout";
 import { Button } from "../components/ui/button";
 import { gsap } from "gsap";
@@ -181,14 +182,16 @@ const AOGSupport: React.FC = () => {
               minutes, delivering fast, cost-effective solutions to minimize
               downtime during Aircraft-on-Ground emergencies
             </p>
-            <Button
-              className="h-[48px] px-12 rounded-xl border-0 transition-all duration-300 ease-out hover:scale-105 active:scale-[0.98] shadow-[0_4px_14px_rgba(92,198,208,0.4)] hover:shadow-[0_6px_20px_rgba(92,198,208,0.6)] text-white font-bold text-lg w-full sm:w-auto uppercase tracking-wider"
-              style={{
-                background: "linear-gradient(180deg, #5CC6D0 0%, #05848E 100%)",
-              }}
-            >
-              Request AOG Assistance Now
-            </Button>
+            <Link to="/rfq" className="w-full sm:w-auto">
+              <Button
+                className="h-[48px] px-12 rounded-xl border-0 transition-all duration-300 ease-out hover:scale-105 active:scale-[0.98] shadow-[0_4px_14px_rgba(92,198,208,0.4)] hover:shadow-[0_6px_20px_rgba(92,198,208,0.6)] text-white font-bold text-lg w-full uppercase tracking-wider"
+                style={{
+                  background: "linear-gradient(180deg, #5CC6D0 0%, #05848E 100%)",
+                }}
+              >
+                Request AOG Assistance Now
+              </Button>
+            </Link>
           </div>
 
 
