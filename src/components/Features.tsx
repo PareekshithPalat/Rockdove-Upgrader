@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState, useLayoutEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -9,31 +9,59 @@ const Features: React.FC = () => {
   const planeRef = useRef<HTMLImageElement | null>(null);
   const whiteLineRef = useRef<HTMLDivElement | null>(null);
   const blueLineRef = useRef<HTMLDivElement | null>(null);
+  const lastBlockRef = useRef<HTMLDivElement | null>(null);
+  const [distance, setDistance] = useState(0);
+
+  useLayoutEffect(() => {
+    const calculateDistance = () => {
+      if (!sectionRef.current || !lastBlockRef.current || !whiteLineRef.current) return;
+
+      const lastBlock = lastBlockRef.current;
+      const section = sectionRef.current;
+      const whiteLine = whiteLineRef.current;
+
+      const sectionRect = section.getBoundingClientRect();
+      const lastBlockRect = lastBlock.getBoundingClientRect();
+      const lineRect = whiteLine.getBoundingClientRect();
+
+      // Calculate the distance from the start of the line to the center-bottom of the last block
+      // Line starts at some top relative to section
+      const lineStartTop = lineRect.top - sectionRect.top;
+      const lastBlockBottom = (lastBlockRect.top - sectionRect.top) + lastBlockRect.height;
+
+      const newDistance = lastBlockBottom - lineStartTop;
+      setDistance(newDistance);
+    };
+
+    calculateDistance();
+    window.addEventListener("resize", calculateDistance);
+    return () => window.removeEventListener("resize", calculateDistance);
+  }, []);
 
   useEffect(() => {
+    if (distance === 0) return;
+
     const section = sectionRef.current;
     const plane = planeRef.current;
     const blueLine = blueLineRef.current;
 
     if (!section || !plane || !blueLine) return;
 
-    const isMobile = window.innerWidth < 768;
-    const distance = isMobile ? 1450 : 1050;
-
     // Scroll animation for plane and blue line growth
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
         start: "top center",
-        end: `+=${distance}`, // Ends animation exactly when distance is reached
+        end: `+=${distance}`,
         scrub: 1,
+        invalidateOnRefresh: true,
       },
     });
 
     // Plane movement along the line
     tl.to(plane, { y: distance, ease: "none" }, 0);
 
-    // Line growth animation - animate height for better sync
+    // Line growth animation
     tl.to(blueLine, { height: distance, ease: "none" }, 0);
 
     // Fade-in animations for text blocks on scroll
@@ -55,7 +83,14 @@ const Features: React.FC = () => {
         }
       );
     });
-  }, []);
+
+    return () => {
+      tl.kill();
+      ScrollTrigger.getAll().forEach(st => {
+        if (st.vars.trigger === section) st.kill();
+      });
+    };
+  }, [distance]);
 
   return (
     <section
@@ -70,7 +105,8 @@ const Features: React.FC = () => {
       {/* Static White Line */}
       <div
         ref={whiteLineRef}
-        className="absolute top-[204px] md:top-[364px] left-[20px] md:left-1/2 w-[4px] md:w-[10px] h-[1450px] md:h-[1050px] bg-white/10 rounded-full -translate-x-1/2"
+        className="absolute top-[204px] md:top-[364px] left-[20px] md:left-1/2 w-[4px] md:w-[10px] bg-white/10 rounded-full -translate-x-1/2"
+        style={{ height: distance > 0 ? `${distance}px` : "1000px" }}
       ></div>
 
       {/* Glowing Cyan Line (grows + glows continuously) */}
@@ -91,9 +127,8 @@ const Features: React.FC = () => {
       />
 
       {/* Feature Blocks */}
-      {/* Feature Blocks */}
       <div className="mt-0 md:mt-20 flex flex-col gap-24 md:gap-[150px] w-full max-w-[1400px] px-6 sm:px-10 z-20">
-        {/* 01 - Mobile: Right of line, Desktop: Left */}
+        {/* 01 */}
         <div className="feature-block flex justify-end md:justify-start md:ml-0">
           <div className="w-full pl-12 md:pl-0 max-w-none md:max-w-[480px] text-left space-y-3">
             <div className="text-[#00E5FF] font-bold text-[32px] md:text-[40px] leading-[100%]">
@@ -111,7 +146,7 @@ const Features: React.FC = () => {
           </div>
         </div>
 
-        {/* 02 - Mobile: Right of line, Desktop: Right */}
+        {/* 02 */}
         <div className="feature-block flex justify-end">
           <div className="w-full pl-12 md:pl-0 max-w-none md:max-w-[480px] md:mt-[-15vh] text-left md:text-right space-y-3">
             <div className="text-[#7DF9FF] font-bold text-[32px] md:text-[40px] leading-[100%]">
@@ -129,7 +164,7 @@ const Features: React.FC = () => {
           </div>
         </div>
 
-        {/* 03 - Mobile: Right of line, Desktop: Left */}
+        {/* 03 */}
         <div className="feature-block flex justify-end md:justify-start">
           <div className="w-full pl-12 md:pl-0 max-w-none md:max-w-[480px] md:mt-[-10vh] text-left space-y-3">
             <div className="text-[#7DF9FF] font-bold text-[32px] md:text-[40px] leading-[100%]">
@@ -147,8 +182,8 @@ const Features: React.FC = () => {
           </div>
         </div>
 
-        {/* 04 - Mobile: Right of line, Desktop: Right */}
-        <div className="feature-block flex justify-end">
+        {/* 04 */}
+        <div ref={lastBlockRef} className="feature-block flex justify-end">
           <div className="w-full pl-12 md:pl-0 max-w-none md:max-w-[480px] md:mt-[-15vh] text-left md:text-right space-y-3">
             <div className="text-[#7DF9FF] font-bold text-[32px] md:text-[40px] leading-[100%]">
               04

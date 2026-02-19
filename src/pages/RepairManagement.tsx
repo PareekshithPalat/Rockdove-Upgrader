@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState, useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ContainerScroll } from '../components/ui/container-scroll-animation';
 import { Button } from '../components/ui/button';
@@ -34,16 +34,41 @@ const RepairManagementPage = () => {
   const planeRef = useRef<HTMLImageElement | null>(null);
   const whiteLineRef = useRef<HTMLDivElement | null>(null);
   const blueLineRef = useRef<HTMLDivElement | null>(null);
+  const lastBlockRef = useRef<HTMLDivElement | null>(null);
+  const [distance, setDistance] = useState(0);
+
+  useLayoutEffect(() => {
+    const calculateDistance = () => {
+      if (!sectionRef.current || !lastBlockRef.current || !whiteLineRef.current) return;
+
+      const lastBlock = lastBlockRef.current;
+      const section = sectionRef.current;
+      const whiteLine = whiteLineRef.current;
+
+      const sectionRect = section.getBoundingClientRect();
+      const lastBlockRect = lastBlock.getBoundingClientRect();
+      const lineRect = whiteLine.getBoundingClientRect();
+
+      const lineStartTop = lineRect.top - sectionRect.top;
+      const lastBlockBottom = (lastBlockRect.top - sectionRect.top) + lastBlockRect.height;
+
+      const newDistance = lastBlockBottom - lineStartTop;
+      setDistance(newDistance);
+    };
+
+    calculateDistance();
+    window.addEventListener("resize", calculateDistance);
+    return () => window.removeEventListener("resize", calculateDistance);
+  }, []);
 
   useEffect(() => {
+    if (distance === 0) return;
+
     const section = sectionRef.current;
     const plane = planeRef.current;
     const blueLine = blueLineRef.current;
 
     if (!section || !plane || !blueLine) return;
-
-    const isMobile = window.innerWidth < 768;
-    const distance = isMobile ? 1450 : 1050;
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -51,10 +76,10 @@ const RepairManagementPage = () => {
         start: "top center",
         end: `+=${distance}`,
         scrub: 1,
+        invalidateOnRefresh: true,
       },
     });
 
-    // Animate height instead of scaleY for better sync and rounded caps
     tl.to(blueLine, { height: distance, ease: "none" }, 0);
     tl.to(plane, { y: distance, ease: "none" }, 0);
 
@@ -76,7 +101,14 @@ const RepairManagementPage = () => {
         }
       );
     });
-  }, []);
+
+    return () => {
+      tl.kill();
+      ScrollTrigger.getAll().forEach(st => {
+        if (st.vars.trigger === section) st.kill();
+      });
+    };
+  }, [distance]);
 
   const serviceSteps = [
     { title: 'Assessment & Diagnosis', description: 'Thorough inspection of components like thrust reversers and actuators.' },
@@ -233,7 +265,8 @@ const RepairManagementPage = () => {
           {/* Lines & Plane */}
           <div
             ref={whiteLineRef}
-            className="absolute top-[320px] md:top-[364px] left-[30px] md:left-1/2 w-[4px] md:w-[10px] h-[1450px] md:h-[1050px] bg-white/10 rounded-full -translate-x-1/2"
+            className="absolute top-[320px] md:top-[364px] left-[30px] md:left-1/2 w-[4px] md:w-[10px] bg-white/10 rounded-full -translate-x-1/2"
+            style={{ height: distance > 0 ? `${distance}px` : "1000px" }}
           ></div>
 
           <div
@@ -281,6 +314,7 @@ const RepairManagementPage = () => {
             ].map((feature, i) => (
               <div
                 key={i}
+                ref={i === 3 ? lastBlockRef : null}
                 className={`feature-block flex justify-end ${feature.align === 'right' ? 'md:justify-end' : 'md:justify-start'
                   }`}
               >
