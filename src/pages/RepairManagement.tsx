@@ -43,7 +43,7 @@ const RepairManagementPage = () => {
     if (!section || !plane || !blueLine) return;
 
     const isMobile = window.innerWidth < 768;
-    const distance = isMobile ? 1800 : 1300;
+    const distance = isMobile ? 1450 : 1050;
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -233,7 +233,7 @@ const RepairManagementPage = () => {
           {/* Lines & Plane */}
           <div
             ref={whiteLineRef}
-            className="absolute top-[320px] md:top-[364px] left-[30px] md:left-1/2 w-[4px] md:w-[10px] h-[1800px] md:h-[1300px] bg-white/10 rounded-full -translate-x-1/2"
+            className="absolute top-[320px] md:top-[364px] left-[30px] md:left-1/2 w-[4px] md:w-[10px] h-[1450px] md:h-[1050px] bg-white/10 rounded-full -translate-x-1/2"
           ></div>
 
           <div
@@ -275,7 +275,7 @@ const RepairManagementPage = () => {
               {
                 id: '04',
                 title: 'Accreditation',
-                desc: 'Partnerships with SAT, Logisky, Shanghai Junxun Aviation, and JS-Tooling elevate our repair, tooling, and distribution services.',
+                desc: 'Partnerships with SAT, Logosky, Shanghai Junxun Aviation, and JS-Tooling elevate our repair, tooling, and distribution services.',
                 align: 'right',
               },
             ].map((feature, i) => (

@@ -18,7 +18,7 @@ const Features: React.FC = () => {
     if (!section || !plane || !blueLine) return;
 
     const isMobile = window.innerWidth < 768;
-    const distance = isMobile ? 1800 : 1300;
+    const distance = isMobile ? 1450 : 1050;
 
     // Scroll animation for plane and blue line growth
     const tl = gsap.timeline({
@@ -70,7 +70,7 @@ const Features: React.FC = () => {
       {/* Static White Line */}
       <div
         ref={whiteLineRef}
-        className="absolute top-[204px] md:top-[364px] left-[20px] md:left-1/2 w-[4px] md:w-[10px] h-[1800px] md:h-[1300px] bg-white/10 rounded-full -translate-x-1/2"
+        className="absolute top-[204px] md:top-[364px] left-[20px] md:left-1/2 w-[4px] md:w-[10px] h-[1450px] md:h-[1050px] bg-white/10 rounded-full -translate-x-1/2"
       ></div>
 
       {/* Glowing Cyan Line (grows + glows continuously) */}
@@ -157,7 +157,7 @@ const Features: React.FC = () => {
               Accreditation
             </h3>
             <p className="text-[15px] md:text-[16px] text-gray-300 leading-[160%] tracking-wide">
-              Partnerships with SAT, Logisky, Shanghai Junuun Aviation, and
+              Partnerships with SAT, Logosky, Shanghai Junuun Aviation, and
               JS-Tooling elevate our repair, tooling, and distribution services.
               We ensure fast turnaround, high precision, and unmatched service
               standards.
