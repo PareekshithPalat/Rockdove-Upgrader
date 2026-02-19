@@ -1,9 +1,7 @@
-import { lazy, Suspense } from "react";
 import { Button } from "../components/ui/button";
-import { Card, CardContent } from "../components/ui/card";
 import { PageLayout } from "../components/PageLayout";
 
-const Spline = lazy(() => import("@splinetool/react-spline"));
+
 
 const inventoryCategories = [
   {
@@ -129,9 +127,10 @@ const specializedProducts = [
 const AssetManagement = (): JSX.Element => {
   return (
     <PageLayout>
-      <div className="bg-black overflow-hidden w-full">
+      <div className="bg-black overflow-hidden w-full font-[Poppins]">
         {/* Hero Section */}
-        <section className="relative flex flex-col md:flex-row items-center justify-center px-4 sm:px-6 md:px-12 lg:px-[160px] pt-24 pb-24 gap-8 md:gap-16">
+        <section className="relative flex flex-col md:flex-row items-center justify-center px-4 sm:px-6 md:px-12 lg:px-[160px] pt-40 pb-24 gap-8 md:gap-16">
+
           {/* Left Content */}
           <div className="flex-1 text-center md:text-left max-w-xl">
             <h1 className="font-bold text-[#5cc6d0] text-3xl sm:text-4xl md:text-5xl mb-4">
@@ -145,17 +144,24 @@ const AssetManagement = (): JSX.Element => {
           </div>
 
           {/* Right Mascot / Spline Section */}
-          <div className="flex-shrink-0 w-full md:w-auto flex justify-center md:justify-end">
-            <div className="w-[300px] sm:w-[380px] md:w-[420px] h-[300px] sm:h-[380px] md:h-[420px]">
-              <Suspense
-                fallback={
-                  <div className="flex items-center justify-center text-gray-400 text-sm h-full">
-                    Loading 3D model...
-                  </div>
-                }
-              >
-                <Spline scene="https://prod.spline.design/eKIr9KALeaHgOFXP/scene.splinecode" />
-              </Suspense>
+          <div className="flex-shrink-0 w-full md:w-auto flex justify-center md:justify-end relative">
+            {/* Background Glow directly behind the image */}
+            <div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none"
+              style={{ width: "120%", height: "120%" }}
+            >
+              <div
+                className="w-full h-full rounded-full bg-[#5cc6d0] opacity-40"
+                style={{ filter: "blur(80px)" }}
+              ></div>
+            </div>
+
+            <div className="relative z-10 w-[300px] sm:w-[380px] md:w-[420px] h-[300px] sm:h-[380px] md:h-[420px]">
+              <img
+                src="/undraw_logistics_8vri.svg"
+                alt="Asset Management Illustration"
+                className="w-full h-full object-contain"
+              />
             </div>
           </div>
         </section>
@@ -202,15 +208,15 @@ const AssetManagement = (): JSX.Element => {
             </div>
 
             {/* Right Side - Engine Image */}
-            <div className="relative flex justify-start md:ml-[-80px] overflow-visible">
+            <div className="relative flex justify-center md:justify-start md:ml-[-80px] overflow-visible w-full md:w-auto">
               {/* Gradient Base */}
-              <div className="w-[250px] h-[150px] lg:w-[320px] lg:h-[170px] rounded-2xl bg-[linear-gradient(180deg,rgba(92,198,208,1)_0%,rgba(47,101,106,1)_100%)]" />
+              <div className="w-[280px] h-[160px] md:w-[250px] md:h-[150px] lg:w-[320px] lg:h-[170px] rounded-2xl bg-[linear-gradient(180deg,rgba(92,198,208,1)_0%,rgba(47,101,106,1)_100%)]" />
 
               {/* Jet Engine Image */}
               <img
                 src="https://c.animaapp.com/mh31x2ueWQqHGB/img/now-that-looks-fun-removebg-preview--1--1.png"
                 alt="Jet Engine"
-                className="absolute -top-14 -left-20 w-[700px] scale-[1.15] object-cover"
+                className="absolute -top-10 md:-top-16 left-1/2 -translate-x-[50%] md:translate-x-0 md:-left-24 w-[90%] md:w-[600px] lg:w-[650px] object-contain max-w-none md:max-w-full"
               />
             </div>
           </div>
@@ -278,7 +284,7 @@ const AssetManagement = (): JSX.Element => {
             basic hardware (nuts, bolts, seals) to advanced systems (avionics,
             landing gear, propulsion). Sourced from trusted OEMs and aftermarket
           </p>
-          <Button className="h-auto rounded-[40px] border-0 bg-[linear-gradient(180deg,rgba(92,198,208,1)_0%,rgba(20,145,155,1)_100%)] px-10 py-3 text-white font-semibold text-lg hover:opacity-90 transition-opacity">
+          <Button className="h-auto rounded-[40px] border-0 bg-[linear-gradient(180deg,rgba(92,198,208,1)_0%,rgba(20,145,155,1)_100%)] px-10 py-3 text-white font-semibold text-lg sm:text-xl md:text-2xl hover:opacity-90 transition-opacity">
             Request a quote
           </Button>
         </section>
@@ -347,7 +353,9 @@ const AssetManagement = (): JSX.Element => {
                         ? "-top-6"
                         : "-top-16";
 
-              const leftOffset = isEngine ? "left-[-80px]" : "-left-16";
+              const leftOffset = isEngine
+                ? "left-1/2 -translate-x-[55%] md:translate-x-0 md:left-[-80px]"
+                : "left-1/2 -translate-x-1/2 md:translate-x-0 md:-left-16";
 
               // 💡 Custom hover scale depending on the product
               const hoverScale = isAPU
@@ -361,7 +369,7 @@ const AssetManagement = (): JSX.Element => {
               return (
                 <div
                   key={index}
-                  className="relative w-[260px] flex flex-col items-start gap-4 overflow-visible group"
+                  className="relative w-[280px] flex flex-col items-center md:items-start gap-4 overflow-visible group"
                 >
                   {/* Card Container */}
                   <div className="w-[200px] h-[120px] bg-white rounded-2xl flex items-center justify-center transition-all duration-300 ease-in-out group-hover:bg-[#5cc6d0]" />
@@ -381,8 +389,8 @@ const AssetManagement = (): JSX.Element => {
                   <div className="absolute inset-0 z-20 cursor-pointer" />
 
                   {/* Product Title */}
-                  <div className="flex flex-col items-start justify-start w-full">
-                    <h3 className="mt-5 text-white text-lg font-semibold text-left min-h-[28px] flex items-start">
+                  <div className="flex flex-col items-center md:items-start justify-start w-full">
+                    <h3 className="mt-5 text-white text-lg font-semibold text-center md:text-left min-h-[28px] flex items-start">
                       {product.title}
                     </h3>
                   </div>

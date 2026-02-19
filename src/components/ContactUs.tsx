@@ -12,7 +12,7 @@ export const ContactUs: React.FC = () => {
   return (
     <div className="bg-black text-white min-h-screen font-[Poppins] overflow-hidden">
       {/* ================= TITLE SECTION ================= */}
-      <section className="px-4 sm:px-6 md:px-12 lg:px-[220px] pt-12 lg:pt-[120px] pb-8 lg:pb-[80px]">
+      <section className="px-4 sm:px-6 md:px-12 lg:px-[220px] pt-40 lg:pt-[120px] pb-8 lg:pb-[80px]">
         {/* Centered Title */}
         <h1 className="text-[#5cc6d0] font-bold text-3xl md:text-5xl text-center mb-12 md:mb-24 uppercase tracking-wider">
           Contact Us
@@ -102,7 +102,7 @@ export const ContactUs: React.FC = () => {
         {/* ================= CONTACT FORM HEADER ================= */}
         <div className="text-center mb-16 md:mb-24">
           <FadeInUp delay={200}>
-            <h2 className="text-white text-2xl md:text-3xl font-bold leading-tight max-w-3xl mx-auto">
+            <h2 className="text-white text-2xl md:text-3xl font-bold leading-tight max-w-5xl mx-auto px-4">
               If required, please use the form below to contact us.
               <span className="block text-[#5cc6d0] text-lg md:text-xl font-medium mt-4">A representative from our company will respond soon.</span>
             </h2>
@@ -190,20 +190,12 @@ export const ContactUs: React.FC = () => {
           </FadeInUp>
 
           {/* IMAGE STACK (blue rectangle + man) */}
-          <FadeInUp delay={600} className="w-full max-w-[400px]">
-            <div className="relative h-[350px] sm:h-[400px] flex justify-center items-center lg:justify-end">
-              {/* Blue background rectangle */}
-              <div
-                className="absolute w-full h-full opacity-40 lg:right-[-40px] rounded-3xl"
-                style={{
-                  background: "linear-gradient(180deg, #5CC6D0 0%, #05848E 100%)",
-                }}
-              />
-              {/* Man image on top */}
+          <FadeInUp delay={600} className="w-full max-w-lg lg:max-w-xl">
+            <div className="relative flex justify-center items-center">
               <img
-                src="/manbusiness.png"
-                alt="Business Man"
-                className="absolute w-[250px] sm:w-[320px] h-auto object-contain z-10 filter drop-shadow-[0_20px_50px_rgba(92,198,208,0.3)]"
+                src="/undraw_business-call_w1gr.svg"
+                alt="Business Illustration"
+                className="w-full h-auto object-contain z-10 filter drop-shadow-[0_20px_50px_rgba(92,198,208,0.2)]"
               />
             </div>
           </FadeInUp>

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Send, Phone, Mail, CheckCircle2 } from "lucide-react";
+import { Send, Phone, Mail, CheckCircle2, ArrowDown } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { PageLayout } from "../components/PageLayout";
 import { FadeInUp } from "../components/animations";
@@ -55,38 +55,42 @@ const RFQ: React.FC = () => {
     <PageLayout>
       <div className="bg-black text-white min-h-screen font-[Poppins] relative overflow-x-hidden">
         {/* ============ HERO SECTION ============ */}
-        <section className="px-6 sm:px-10 md:px-20 lg:px-40 xl:px-64 pt-32 md:pt-48 pb-20 flex flex-col lg:flex-row justify-between items-center gap-12">
-          <div className="max-w-2xl space-y-8 text-center lg:text-left">
+        <section className="px-6 sm:px-10 md:px-20 lg:px-20 xl:px-32 pt-40 md:pt-48 pb-20 flex flex-col lg:flex-row justify-between items-center gap-12">
+          <div className="max-w-4xl space-y-8 text-center lg:text-left">
             <FadeInUp>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#5cc6d0] leading-tight">
-                Request for Quote <br className="hidden md:block" />
+              <h1 className="text-3xl md:text-4xl lg:text-[48px] font-bold leading-tight whitespace-nowrap">
+                <span className="text-[#5cc6d0]">Request for Quote</span>{" "}
                 <span className="text-white">(RFQ)</span>
               </h1>
             </FadeInUp>
 
             <FadeInUp delay={200}>
-              <p className="text-gray-300 text-lg md:text-xl leading-relaxed">
+              <p className="text-gray-300 text-lg md:text-xl leading-relaxed max-w-2xl">
                 Submit your parts requirements and receive competitive quotes from
                 our global network. Expect a professional response within{" "}
-                <span className="text-[#5cc6d0] font-semibold">2 hours.</span>
+                <span className="text-[#5cc6d0] font-semibold">24 hours.</span>
               </p>
             </FadeInUp>
 
             <FadeInUp delay={400}>
               <Button
                 onClick={scrollToForm}
-                className="bg-[#5cc6d0] text-black px-10 py-6 rounded-full font-bold text-lg hover:bg-[#4ab5bf] transition-all shadow-lg shadow-[#5cc6d0]/20"
+                className="bg-[#5cc6d0] text-black px-10 py-6 rounded-full font-bold text-lg hover:bg-[#4ab5bf] transition-all shadow-lg shadow-[#5cc6d0]/20 flex items-center gap-2 mx-auto lg:mx-0"
               >
-                Start Your Quote
+                Scroll down to form <ArrowDown className="w-5 h-5" />
               </Button>
             </FadeInUp>
           </div>
 
-          <FadeInUp delay={600} className="w-full lg:w-auto">
-            <div className="w-full sm:w-[320px] md:w-[400px] h-[300px] md:h-[400px] bg-white/5 border border-white/10 backdrop-blur-sm rounded-3xl flex items-center justify-center relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#5cc6d0]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-              <span className="text-[#5cc6d0] text-xl font-bold uppercase tracking-widest relative z-10">Mascot Model</span>
-            </div>
+          <FadeInUp delay={600} className="w-full lg:w-auto relative">
+            {/* Blue Shade Background Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-[#5cc6d0]/10 blur-[120px] rounded-full pointer-events-none z-0" />
+
+            <img
+              src="/undraw_work-chat_hc3y.svg"
+              alt="RFQ Illustration"
+              className="w-full max-w-[850px] h-auto opacity-95 drop-shadow-[0_0_30px_rgba(92,198,208,0.2)] relative z-10"
+            />
           </FadeInUp>
         </section>
 
@@ -198,7 +202,7 @@ const RFQ: React.FC = () => {
             ].map((item, idx) => (
               <FadeInUp key={idx} delay={idx * 200} className="group">
                 <div className="w-full h-[280px] bg-white/5 border border-white/10 rounded-[40px] p-10 flex flex-col justify-end transition-all duration-500 hover:bg-[#5cc6d0]/5 hover:border-[#5cc6d0]/30 hover:-translate-y-2 relative overflow-hidden">
-                  <div className="absolute top-8 left-8 text-6xl font-black text-white/5 group-hover:text-[#5cc6d0]/10 transition-colors">0{idx + 1}</div>
+                  <div className="absolute top-8 left-8 text-6xl font-black text-white/15 group-hover:text-[#5cc6d0]/30 transition-colors">0{idx + 1}</div>
                   <h3 className="text-[#5cc6d0] text-2xl font-bold mb-3 relative z-10">{item.title}</h3>
                   <p className="text-gray-400 leading-relaxed font-light relative z-10">{item.text}</p>
                 </div>
@@ -213,7 +217,7 @@ const RFQ: React.FC = () => {
             <h3 className="text-[#5cc6d0] text-2xl md:text-4xl font-black mb-6 uppercase tracking-widest">
               Need Direct Assistance?
             </h3>
-            <p className="text-gray-300 mb-16 text-lg md:text-xl max-w-2xl mx-auto font-light">
+            <p className="text-gray-300 mb-16 text-lg md:text-xl mx-auto font-light">
               Our support team is available 24/7 to help you with urgent parts requirements.
             </p>
           </FadeInUp>

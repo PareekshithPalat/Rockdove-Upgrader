@@ -1,8 +1,6 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Services: React.FC = () => {
-  const navigate = useNavigate();
-
   return (
     <section className="relative w-full min-h-screen flex flex-col items-center justify-center bg-black pt-20 pb-24 -mt-20 sm:pt-16 sm:pb-28 px-6 sm:px-10 md:px-20 overflow-hidden font-[Poppins]">
       {/* Title */}
@@ -77,15 +75,15 @@ const Services: React.FC = () => {
             path: "/aog-support",
           },
         ].map((card, index) => (
-          <div
+          <Link
             key={index}
-            onClick={() => navigate(card.path)}
+            to={card.path}
             className="
               group relative bg-gray-200 text-black rounded-[20px]
               w-[300px] sm:w-[320px] md:w-[341px]
               h-[390px] sm:h-[400px] md:h-[412px]
               p-8 flex flex-col justify-between
-              cursor-pointer transition-all duration-300 hover:-translate-y-2 overflow-hidden
+              cursor-pointer transition-all duration-300 hover:-translate-y-2 overflow-hidden block
             "
           >
             {/* Hover Gradient */}
@@ -109,7 +107,7 @@ const Services: React.FC = () => {
                 </span>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 

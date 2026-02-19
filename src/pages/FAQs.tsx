@@ -8,84 +8,72 @@ const FAQs: React.FC = () => {
 
   const faqs = [
     {
-      category: "General",
-      questions: [
-        {
-          question: "What is RockDove Aviation?",
-          answer:
-            "RockDove Aviation is a leading global supplier of aircraft parts and components, serving airlines, MROs, and operators worldwide with reliable, high-quality parts and exceptional service.",
-        },
-        {
-          question: "How long has RockDove been in business?",
-          answer:
-            "RockDove Aviation was founded in 2015 and has grown to become a trusted partner for over 500 global clients in the aviation industry.",
-        },
-        {
-          question: "What types of aircraft parts do you supply?",
-          answer:
-            "We supply a comprehensive range of aircraft parts including engines, avionics, landing gear, hydraulic systems, structural components, and more for commercial, cargo, and military aircraft.",
-        },
-      ],
+      question: "Are your quoted prices negotiable?",
+      answer:
+        "Yes, our quotes are negotiable. We aim to offer competitive pricing and are happy to discuss options based on volume, long-term partnerships, or specific requirements.",
     },
     {
-      category: "Services",
-      questions: [
-        {
-          question: "Do you offer 24/7 AOG support?",
-          answer:
-            "Yes, we provide round-the-clock Aircraft on Ground (AOG) support with our dedicated emergency hotline and global network of certified technicians and parts suppliers.",
-        },
-        {
-          question: "What is your delivery success rate?",
-          answer:
-            "We maintain a 99.8% delivery success rate, ensuring reliable and timely delivery of critical aircraft parts to our clients worldwide.",
-        },
-        {
-          question: "Do you provide repair services?",
-          answer:
-            "Yes, we offer comprehensive repair management services including engine overhaul, avionics repair, landing gear service, and component testing through our certified repair facilities.",
-        },
-      ],
+      question: "Do you offer exchange, lease, or loan options for parts?",
+      answer:
+        "Yes, exchange, lease, and loan options are available for eligible parts. Please contact our team with your requirements for tailored solutions.",
     },
     {
-      category: "Quality & Compliance",
-      questions: [
-        {
-          question: "Are your parts certified and traceable?",
-          answer:
-            "All our parts come with complete certification and traceability documentation, ensuring full compliance with aviation regulations and quality standards.",
-        },
-        {
-          question: "What quality standards do you follow?",
-          answer:
-            "We adhere to strict quality standards including FAA, EASA, and other international aviation regulatory requirements, with comprehensive quality assurance processes.",
-        },
-        {
-          question: "Do you provide warranty on parts?",
-          answer:
-            "Yes, all our parts come with comprehensive warranty coverage and we stand behind the quality and reliability of every component we supply.",
-        },
-      ],
+      question: "How long is a quotation valid?",
+      answer:
+        "Our quotations are typically valid for 20–30 days from the date of issue, subject to stock availability and market conditions. We recommend confirming validity when placing an order.",
     },
     {
-      category: "Support",
-      questions: [
-        {
-          question: "How can I contact your support team?",
-          answer:
-            "You can reach our support team through our 24/7 emergency hotline at +1-800-AOG-HELP, email support, or through our online portal for non-emergency inquiries.",
-        },
-        {
-          question: "Do you offer training for your systems?",
-          answer:
-            "Yes, we provide comprehensive training programs for our inventory management platform and other systems to ensure our clients can maximize their operational efficiency.",
-        },
-        {
-          question: "What is your response time for inquiries?",
-          answer:
-            "We respond to all inquiries within 15 minutes for emergency requests and within 2 hours for general inquiries during business hours.",
-        },
-      ],
+      question: "Do you provide repair services for customer-owned components?",
+      answer:
+        "Yes, we offer comprehensive repair services for customer-supplied components. Our experienced team handles repairs to the highest industry standards.",
+    },
+    {
+      question: "What quality certifications and memberships does RDA hold?",
+      answer:
+        "We are proud members of the Aviation Suppliers Association (ASA) and hold ISO 9001 certification. We are also proud to be associated with the National Business Aviation Association (NBAA), ensuring compliance with global aviation quality and safety standards.",
+    },
+    {
+      question: "How quickly can you deliver parts?",
+      answer:
+        "We prioritise speed and aim to deliver as quickly as possible. For standard orders, lead times depend on part availability and location. For urgent needs, see our AOG response below.",
+    },
+    {
+      question: "What happens if there is a delay in the quoted lead time?",
+      answer:
+        "We maintain close communication with the unit manufacturer and provide updates within 1 day of any potential delay. You'll receive prompt notification so you can plan accordingly and meet your operational requirements.",
+    },
+    {
+      question: "Can I supply a PMA (Parts Manufacturer Approval) unit for your services?",
+      answer:
+        "No, we do not accept customer-supplied PMA units for our processes. We handle all background verification, sourcing, and compliance work to ensure traceability and quality.",
+    },
+    {
+      question: "What certifications and documentation accompany the products you supply?",
+      answer: `All supplied parts come with appropriate certification, including:
+
+OEM/Manufacturer Certificate of Conformance (COC)
+Airworthiness Review Certificate (ARC)`,
+    },
+    {
+      question: "What is the warranty period for the units you supply?",
+      answer: `Warranty periods vary by condition:
+
+New units: 1 year
+Serviceable units: 3–6 months
+Repaired units: 1–3 months
+Overhauled units: 6–9 months
+
+Warranties begin from the date of delivery (or installation, where applicable) and cover defects in materials and workmanship.`,
+    },
+    {
+      question: "What is the average shelf life for consumable parts you supply?",
+      answer:
+        "We supply consumables with a minimum remaining shelf life of 70% or above, ensuring maximum usability and compliance.",
+    },
+    {
+      question: "How quickly can RDA deliver parts for an urgent Aircraft on Ground (AOG) situation?",
+      answer:
+        "RDA guarantees parts preparation for pickup within 90 minutes for urgent AOG situations. This is supported by our extensive UAE warehouse stocking over 400,000 parts and our dedicated 24/7 AOG response team.",
     },
   ];
 
@@ -97,15 +85,25 @@ const FAQs: React.FC = () => {
     <PageLayout>
       <div className="min-h-screen bg-black text-white">
         {/* Hero Section */}
-        <section className="relative pt-2 pb-20 px-8 ">
-          <div className="max-w-6xl mx-auto">
-            <div className="flex items-center gap-4 mb-8">
+        <section className="relative pt-40 md:pt-48 pb-20 px-8 overflow-hidden">
+          {/* Background Glow */}
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none"
+            style={{ width: "55vw", height: "55vh" }}
+          >
+            <div
+              className="w-full h-full rounded-full bg-[#5cc6d0] opacity-20"
+              style={{ filter: "blur(120px)" }}
+            ></div>
+          </div>
+          <div className="max-w-7xl mx-auto relative z-10 text-center">
+            <div className="flex flex-col items-center gap-4 mb-8">
               <HelpCircle className="w-12 h-12 text-[#5cc6d0]" />
-              <h1 className="text-5xl md:text-6xl font-bold">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-white md:whitespace-nowrap">
                 Frequently Asked Questions
               </h1>
             </div>
-            <p className="text-xl md:text-2xl text-gray-300 max-w-4xl leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
               Find answers to common questions about our services, processes,
               and how we can help optimize your aircraft parts supply chain.
             </p>
@@ -115,47 +113,39 @@ const FAQs: React.FC = () => {
         {/* FAQs Section */}
         <section className="py-20 px-8">
           <div className="max-w-4xl mx-auto">
-            {faqs.map((category, categoryIndex) => (
-              <div key={categoryIndex} className="mb-16">
-                <h2 className="text-3xl font-bold mb-8 text-[#5cc6d0]">
-                  {category.category}
-                </h2>
-                <div className="space-y-4">
-                  {category.questions.map((faq, faqIndex) => {
-                    const globalIndex = categoryIndex * 10 + faqIndex;
-                    const isOpen = openFAQ === globalIndex;
+            <div className="space-y-4">
+              {faqs.map((faq, index) => {
+                const isOpen = openFAQ === index;
 
-                    return (
-                      <div
-                        key={faqIndex}
-                        className="bg-[#0b0d10]/50 border border-[#1a1d22] rounded-xl overflow-hidden"
-                      >
-                        <button
-                          onClick={() => toggleFAQ(globalIndex)}
-                          className="w-full px-6 py-6 text-left flex items-center justify-between hover:bg-[#0b0d10]/70 transition-all duration-300"
-                        >
-                          <span className="text-lg font-semibold text-white">
-                            {faq.question}
-                          </span>
-                          {isOpen ? (
-                            <ChevronUp className="w-6 h-6 text-[#5cc6d0] flex-shrink-0" />
-                          ) : (
-                            <ChevronDown className="w-6 h-6 text-[#5cc6d0] flex-shrink-0" />
-                          )}
-                        </button>
-                        {isOpen && (
-                          <div className="px-6 pb-6">
-                            <p className="text-gray-300 leading-relaxed">
-                              {faq.answer}
-                            </p>
-                          </div>
-                        )}
+                return (
+                  <div
+                    key={index}
+                    className="bg-[#0b0d10]/50 border border-[#1a1d22] rounded-xl overflow-hidden"
+                  >
+                    <button
+                      onClick={() => toggleFAQ(index)}
+                      className="w-full px-6 py-6 text-left flex items-center justify-between hover:bg-[#0b0d10]/70 transition-all duration-300"
+                    >
+                      <span className="text-lg font-semibold text-white">
+                        {faq.question}
+                      </span>
+                      {isOpen ? (
+                        <ChevronUp className="w-6 h-6 text-[#5cc6d0] flex-shrink-0" />
+                      ) : (
+                        <ChevronDown className="w-6 h-6 text-[#5cc6d0] flex-shrink-0" />
+                      )}
+                    </button>
+                    {isOpen && (
+                      <div className="px-6 pb-6">
+                        <p className="text-gray-300 leading-relaxed whitespace-pre-line">
+                          {faq.answer}
+                        </p>
                       </div>
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </section>
 
@@ -167,16 +157,12 @@ const FAQs: React.FC = () => {
               Our team is here to help. Contact us for personalized assistance
               with your specific needs.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-[#5cc6d0] text-black px-8 py-4 text-lg font-semibold hover:bg-[#4ab5bf] transition-all duration-300 hover:scale-105">
-                Contact Support
-              </Button>
-              <Button
-                variant="outline"
-                className="border-[#5cc6d0] text-[#5cc6d0] px-8 py-4 text-lg font-semibold hover:bg-[#5cc6d0] hover:text-black transition-all duration-300"
-              >
-                Schedule Call
-              </Button>
+            <div className="flex justify-center">
+              <a href="mailto:sales@rockdoveaviation.com">
+                <Button className="bg-gradient-to-b from-[#5CC6D0] to-[#05848E] text-white px-10 py-4 text-lg font-semibold hover:scale-105 transition-all duration-300 h-auto rounded-xl shadow-[0_4px_14px_rgba(92,198,208,0.4)] border-0">
+                  sales@rockdoveaviation.com
+                </Button>
+              </a>
             </div>
           </div>
         </section>

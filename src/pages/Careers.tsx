@@ -1,7 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { PageLayout } from "../components/PageLayout";
 import { Button } from "../components/ui/button";
-import { Card, CardContent } from "../components/ui/card";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { RadioGroup, RadioGroupItem } from "../components/ui/radio-group";
@@ -56,22 +55,32 @@ const Career = (): JSX.Element => {
     <PageLayout>
       <div className="bg-black overflow-hidden w-full min-h-screen relative">
         <div className="max-w-[1440px] mx-auto">
-          <main>
+          <main className="relative">
+            {/* Background Glow */}
+            <div
+              className="absolute top-[20%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none"
+              style={{ width: "55vw", height: "55vh" }}
+            >
+              <div
+                className="w-full h-full rounded-full bg-[#5cc6d0] opacity-20"
+                style={{ filter: "blur(120px)" }}
+              ></div>
+            </div>
+
             {/* Hero Section */}
-            <section className="flex flex-col items-center px-9 py-16 translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]">
-              <h1 className="[font-family:'Poppins',Helvetica] font-bold text-[40px] text-center leading-[60px] mb-6">
-                <span className="text-[#5cc6d0]">Soar with</span>
-                <br />
+            <section className="flex flex-col items-center px-8 md:px-9 pt-40 md:pt-48 pb-16 animate-fade-in">
+              <h1 className="[font-family:'Poppins',Helvetica] font-bold text-3xl md:text-[40px] text-center leading-tight md:leading-[60px] mb-6 max-w-4xl mx-auto">
+                <span className="text-[#5cc6d0]">Soar with</span>{" "}
                 <span className="text-white">Rockdove Aviation</span>
               </h1>
-              <p className="[font-family:'Poppins',Helvetica] font-medium text-white text-[32px] text-center max-w-[931px]">
+              <p className="[font-family:'Poppins',Helvetica] font-medium text-white text-[24px] md:text-[32px] text-center max-w-[931px]">
                 Be part of a fast-growing aviation leader
               </p>
             </section>
 
             {/* Why Join Us */}
-            <section className="flex flex-col items-center px-9 py-16 translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:400ms]">
-              <h2 className="[font-family:'Poppins',Helvetica] font-bold text-white text-[40px] text-center mb-6">
+            <section className="flex flex-col items-center px-8 md:px-9 py-16 animate-fade-in">
+              <h2 className="[font-family:'Poppins',Helvetica] font-bold text-white text-[32px] md:text-[40px] text-center mb-6">
                 Why Join Us?
               </h2>
               <div className="w-[93px] h-[3px] bg-[#5cc6d0] mb-8" />
@@ -157,9 +166,9 @@ const Career = (): JSX.Element => {
             </section> */}
 
             {/* Application Form */}
-            <section className="relative px-4 sm:px-6 md:px-12 lg:px-[178px] py-24 bg-transparent">
-              <h2 className="[font-family:'Poppins',Helvetica] font-bold text-[#5cc6d0] text-[40px] mb-12 text-left">
-                Join Our Team - Employee Gallery
+            <section className="relative px-8 sm:px-10 md:px-12 lg:px-[178px] py-16 md:py-24 bg-transparent">
+              <h2 className="[font-family:'Poppins',Helvetica] font-bold text-[#5cc6d0] text-3xl md:text-[40px] mb-12 text-center md:text-left">
+                Join Our Team
               </h2>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -360,9 +369,20 @@ const Career = (): JSX.Element => {
                 </div>
 
                 {/* Right Image beside radio section */}
-                <div className="flex justify-center items-start lg:pt-[50px]">
+                <div className="flex justify-center items-start lg:pt-[50px] relative">
+                  {/* Background Glow directly behind the image */}
+                  <div
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none"
+                    style={{ width: "120%", height: "120%" }}
+                  >
+                    <div
+                      className="w-full h-full rounded-full bg-[#5cc6d0] opacity-30"
+                      style={{ filter: "blur(80px)" }}
+                    ></div>
+                  </div>
+
                   <img
-                    className="w-full max-w-[420px] object-contain"
+                    className="relative z-10 w-full max-w-[420px] object-contain"
                     alt="Hiring illustration"
                     src="https://c.animaapp.com/mh6jeg64gltCdD/img/undraw-hiring-8szx-1.svg"
                   />
@@ -371,17 +391,17 @@ const Career = (): JSX.Element => {
             </section>
 
             {/* Contact HR Section */}
-            <section className="flex flex-col items-center px-9 h-[400px] py-16 translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]">
-              <h2 className="[font-family:'Poppins',Helvetica] font-bold text-[#5cc6d0] text-[40px] text-center mb-8">
-                Grow with Rockdove Aviation - Contact HR
+            <section className="flex flex-col items-center px-8 md:px-9 py-24 animate-fade-in">
+              <h2 className="[font-family:'Poppins',Helvetica] font-bold text-[#5cc6d0] text-2xl sm:text-3xl md:text-[40px] text-center mb-8 uppercase leading-tight">
+                Grow with Rockdove Aviation <br className="block sm:hidden" /> - Contact HR
               </h2>
-              <Button className="flex items-center gap-3 h-auto rounded-[40px] bg-[linear-gradient(180deg,rgba(92,198,208,1)_0%,rgba(20,145,155,1)_100%)] border-0 [font-family:'Poppins',Helvetica] font-bold text-white text-2xl px-12 py-4 hover:opacity-90 transition-opacity">
+              <Button className="flex items-center gap-3 h-auto rounded-[40px] bg-[linear-gradient(180deg,rgba(92,198,208,1)_0%,rgba(20,145,155,1)_100%)] border-0 [font-family:'Poppins',Helvetica] font-bold text-white text-base sm:text-2xl px-6 sm:px-12 py-4 hover:opacity-90 transition-opacity w-full sm:w-auto">
                 <img
                   src="/smail.svg"
                   alt="Mail Icon"
-                  className="w-6 h-6 object-contain"
+                  className="w-5 h-5 sm:w-6 sm:h-6 object-contain"
                 />
-                HR@rockdoveaviation.com
+                <span className="truncate">HR@rockdoveaviation.com</span>
               </Button>
             </section>
           </main>

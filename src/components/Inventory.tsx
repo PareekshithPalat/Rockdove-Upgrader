@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 
 export const Inventory: React.FC = () => {
@@ -22,24 +23,26 @@ export const Inventory: React.FC = () => {
           </p>
 
           <div className="flex justify-center lg:justify-start">
-            <Button
-              className="
-                relative overflow-hidden
-                bg-gradient-to-b from-[#5CC6D0] to-[#14919B]
-                text-white
-                font-semibold
-                text-lg
-                px-8 py-3
-                rounded-xl
-                shadow-lg
-                transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]
-                hover:scale-[1.05]
-                active:scale-[0.97]
-                hover:shadow-xl
-              "
-            >
-              Know more
-            </Button>
+            <Link to="/repair-management">
+              <Button
+                className="
+                  relative overflow-hidden
+                  bg-gradient-to-b from-[#5CC6D0] to-[#14919B]
+                  text-white
+                  font-semibold
+                  text-lg
+                  px-8 py-3
+                  rounded-xl
+                  shadow-lg
+                  transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]
+                  hover:scale-[1.05]
+                  active:scale-[0.97]
+                  hover:shadow-xl
+                "
+              >
+                Know more
+              </Button>
+            </Link>
           </div>
         </div>
 

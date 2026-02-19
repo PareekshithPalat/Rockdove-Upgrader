@@ -5,26 +5,32 @@ import { ChevronDown } from "lucide-react";
 
 const faqItems = [
   {
-    question: "What kind of certificate will come with products?",
-    answer: `OEM/MFC COC
-FAA 8130
-EASA FORM1`,
+    question: "What certifications and documentation accompany the products you supply?",
+    answer: `All supplied parts come with appropriate certification, including:
+
+OEM/Manufacturer Certificate of Conformance (COC)
+Airworthiness Review Certificate(ARC)`,
   },
   {
-    question: "What is the warranty period for the unit supplied?",
-    answer: `NEW – 1YR
-SERVICEABLE 3–6 MONTH
-REPAIRED 1–3 MONTHS
-OVERHAUL 6–9 MONTHS`,
+    question: "What is the warranty period for the units you supply?",
+    answer: `Warranty periods vary by condition:
+
+New units: 1 year
+Serviceable units: 3–6 months
+Repaired units: 1–3 months
+Overhauled units: 6–9 months
+
+Warranties begin from the date of delivery (or installation, where applicable) and cover defects in materials and workmanship.`,
   },
   {
-    question: "Average self life for the consumable supplied?",
-    answer: `70% AND ABOVE`,
-  },
-  {
-    question: "How quickly can RDA deliver parts for an urgent AOG situation?",
+    question: "What is the average shelf life for consumable parts you supply?",
     answer:
-      "RDA guarantees parts preparation for pickup within 60–90 minutes for urgent AOG situations, leveraging our UAE warehouse with over 400,000 parts.",
+      "We supply consumables with a minimum remaining shelf life of 70% or above, ensuring maximum usability and compliance.",
+  },
+  {
+    question: "How quickly can RDA deliver parts for an urgent Aircraft on Ground (AOG) situation?",
+    answer:
+      "RDA guarantees parts preparation for pickup within 90 minutes for urgent AOG situations. This is supported by our extensive UAE warehouse stocking over 400,000 parts and our dedicated 24/7 AOG response team.",
   },
 ];
 
@@ -36,7 +42,7 @@ export const FAQ: React.FC = () => {
   };
 
   return (
-    <section className="bg-black text-white pt-24 pb-12">
+    <section className="bg-black text-white pt-40 pb-20">
       {/* Container with same width & side gaps as other sections */}
       <div className="w-full max-w-[1200px] mx-auto grid md:grid-cols-2 gap-12 md:gap-20 px-[5vw] items-start">
         {/* Left Section (vertical offset) */}
@@ -48,14 +54,18 @@ export const FAQ: React.FC = () => {
             ease: [0.25, 0.1, 0.25, 1],
           }}
           viewport={{ once: true }}
-          className="space-y-4 mt-10 md:mt-16"
+          className="space-y-6 mt-10 md:mt-16"
         >
-          <h2 className="text-4xl md:text-5xl font-semibold font-[Poppins]">
-            FAQS
-          </h2>
-          <p className="text-gray-300 text-lg md:text-xl font-[Poppins] font-medium leading-snug">
-            Here are answers to <br /> questions our clients ask.
-          </p>
+          <div className="space-y-4">
+            <h2 className="text-4xl md:text-5xl font-semibold font-[Poppins] leading-tight text-[#5CC6D0]">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-gray-300 text-lg md:text-xl font-[Poppins] font-medium leading-relaxed max-w-[500px]">
+              Find answers to common questions about our services, processes, and how we can help optimize your aircraft parts supply chain.
+            </p>
+          </div>
+
+
         </motion.div>
 
         {/* Right Section */}

@@ -18,28 +18,23 @@ const Features: React.FC = () => {
     if (!section || !plane || !blueLine) return;
 
     const isMobile = window.innerWidth < 768;
-    const distance = isMobile ? 1300 : 900;
+    const distance = isMobile ? 1200 : 850;
 
     // Scroll animation for plane and blue line growth
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
         start: "top center",
-        end: "bottom center",
-        scrub: 2,
+        end: `+=${distance}`, // Ends animation exactly when distance is reached
+        scrub: 1,
       },
     });
 
     // Plane movement along the line
-    tl.fromTo(plane, { y: 0 }, { y: distance, ease: "none" }, 0);
+    tl.to(plane, { y: distance, ease: "none" }, 0);
 
-    // Line growth animation
-    tl.fromTo(
-      blueLine,
-      { scaleY: 0 },
-      { scaleY: 1, transformOrigin: "top center", ease: "none" },
-      0
-    );
+    // Line growth animation - animate height for better sync
+    tl.to(blueLine, { height: distance, ease: "none" }, 0);
 
     // Fade-in animations for text blocks on scroll
     const texts = gsap.utils.toArray<HTMLElement>(".feature-block");
@@ -65,23 +60,26 @@ const Features: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[120vh] bg-black text-white flex flex-col items-center justify-start py-24 font-[Poppins]"
+      className="relative min-h-[80vh] bg-black text-white flex flex-col items-center justify-start py-24 pb-48 font-[Poppins]"
     >
       {/* Title */}
       <h2 className="text-[48px] font-semibold text-center leading-[100%] text-white mb-32">
-        Fly safe with parts you <span className="text-[#5CC6D0]">trust.</span>
+        Fly safe with parts you <span className="text-[#7DF9FF]">trust.</span>
       </h2>
 
       {/* Static White Line */}
       <div
         ref={whiteLineRef}
-        className="absolute top-[280px] left-[20px] md:left-1/2 w-[4px] md:w-[10px] h-[1300px] md:h-[900px] bg-white rounded-full -translate-x-1/2"
+        className="absolute top-[204px] md:top-[364px] left-[20px] md:left-1/2 w-[4px] md:w-[10px] h-[1200px] md:h-[850px] bg-white/10 rounded-full -translate-x-1/2"
       ></div>
 
       {/* Glowing Cyan Line (grows + glows continuously) */}
       <div
         ref={blueLineRef}
-        className="absolute top-[280px] left-[20px] md:left-1/2 w-[4px] md:w-[10px] h-[1300px] md:h-[900px] bg-[#2D7F87] rounded-full -translate-x-1/2 scale-y-0 glow-line"
+        className="absolute top-[204px] md:top-[364px] left-[20px] md:left-1/2 w-[4px] md:w-[10px] h-0 bg-[#7DF9FF] rounded-full -translate-x-1/2 will-change-transform"
+        style={{
+          boxShadow: '0 0 15px #7DF9FF, 0 0 30px #7DF9FF',
+        }}
       ></div>
 
       {/* Plane (scrolls with GSAP) */}
@@ -89,7 +87,7 @@ const Features: React.FC = () => {
         ref={planeRef}
         src="/sliderplane.png"
         alt="Plane"
-        className="absolute top-[250px] left-[20px] md:left-1/2 w-[40px] h-[40px] md:w-[120px] md:h-[120px] -translate-x-1/2 z-10"
+        className="absolute top-[164px] md:top-[324px] left-[20px] md:left-1/2 w-[40px] h-[40px] md:w-[120px] md:h-[120px] -translate-x-1/2 z-10 will-change-transform"
       />
 
       {/* Feature Blocks */}
@@ -98,7 +96,7 @@ const Features: React.FC = () => {
         {/* 01 - Mobile: Right of line, Desktop: Left */}
         <div className="feature-block flex justify-end md:justify-start md:ml-0">
           <div className="w-full pl-12 md:pl-0 max-w-none md:max-w-[480px] text-left space-y-3">
-            <div className="text-[#5CC6D0] font-bold text-[32px] md:text-[40px] leading-[100%]">
+            <div className="text-[#00E5FF] font-bold text-[32px] md:text-[40px] leading-[100%]">
               01
             </div>
             <h3 className="text-[26px] md:text-[32px] font-semibold md:font-medium leading-[110%] text-white">
@@ -116,7 +114,7 @@ const Features: React.FC = () => {
         {/* 02 - Mobile: Right of line, Desktop: Right */}
         <div className="feature-block flex justify-end">
           <div className="w-full pl-12 md:pl-0 max-w-none md:max-w-[480px] md:mt-[-15vh] text-left md:text-right space-y-3">
-            <div className="text-[#5CC6D0] font-bold text-[32px] md:text-[40px] leading-[100%]">
+            <div className="text-[#7DF9FF] font-bold text-[32px] md:text-[40px] leading-[100%]">
               02
             </div>
             <h3 className="text-[26px] md:text-[32px] font-semibold md:font-medium leading-[110%] text-white">
@@ -134,7 +132,7 @@ const Features: React.FC = () => {
         {/* 03 - Mobile: Right of line, Desktop: Left */}
         <div className="feature-block flex justify-end md:justify-start">
           <div className="w-full pl-12 md:pl-0 max-w-none md:max-w-[480px] md:mt-[-10vh] text-left space-y-3">
-            <div className="text-[#5CC6D0] font-bold text-[32px] md:text-[40px] leading-[100%]">
+            <div className="text-[#7DF9FF] font-bold text-[32px] md:text-[40px] leading-[100%]">
               03
             </div>
             <h3 className="text-[26px] md:text-[32px] font-semibold md:font-medium leading-[110%] text-white">
@@ -152,7 +150,7 @@ const Features: React.FC = () => {
         {/* 04 - Mobile: Right of line, Desktop: Right */}
         <div className="feature-block flex justify-end">
           <div className="w-full pl-12 md:pl-0 max-w-none md:max-w-[480px] md:mt-[-15vh] text-left md:text-right space-y-3">
-            <div className="text-[#5CC6D0] font-bold text-[32px] md:text-[40px] leading-[100%]">
+            <div className="text-[#7DF9FF] font-bold text-[32px] md:text-[40px] leading-[100%]">
               04
             </div>
             <h3 className="text-[26px] md:text-[32px] font-semibold md:font-medium leading-[110%] text-white">
