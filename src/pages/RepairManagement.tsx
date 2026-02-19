@@ -227,7 +227,7 @@ const RepairManagementPage = () => {
                   key={index}
                   className="group relative bg-[#d9d9d9] text-black rounded-[20px] border-none cursor-pointer transition-all duration-300 hover:-translate-y-2 overflow-hidden h-[340px] md:h-[403px]"
                 >
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-[#0097A1] transition-opacity duration-500 rounded-[20px]"></div>
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-b from-[#5CC6D0] to-[#0097A1] transition-opacity duration-500 rounded-[20px]"></div>
                   <CardContent className="relative z-10 flex flex-col items-center justify-between h-full p-6 text-center">
                     <div className="flex-1 flex items-center justify-center">
                       <img
