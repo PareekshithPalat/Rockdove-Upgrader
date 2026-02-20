@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Send, Phone, Mail, AlertCircle } from "lucide-react";
+import { Phone, Mail, AlertCircle } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { PageLayout } from "../components/PageLayout";
 import { FadeInUp } from "../components/animations";
@@ -23,27 +23,47 @@ const RFQ: React.FC = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const url = "https://script.google.com/macros/s/AKfycbxcW6jiHtOKpjmYdC6AFdmG3NYyui7weUHoNpWUTs_R3YaXiB2NDomNppCbziO9T_1r/exec";
-    fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString(),
-    })
-      .then((res) => res.text())
-      .then((data) => {
-        alert(data);
-      })
-      .catch((error) => console.log(error));
+  const [loading, setLoading] = useState(false);
 
-    // Simple professional visual effect
-    const button = document.getElementById("submit-btn");
-    if (button) {
-      button.classList.add("scale-95", "bg-[#4ab5bf]");
-      setTimeout(() => {
-        button.classList.remove("scale-95", "bg-[#4ab5bf]");
-      }, 300);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const formDataToSend = new FormData();
+      formDataToSend.append('type', 'rfq');
+      formDataToSend.append('partNumber', formData.partNumber);
+      formDataToSend.append('condition', formData.condition);
+      formDataToSend.append('description', formData.description);
+      formDataToSend.append('certificate', formData.certificate);
+      formDataToSend.append('quality', formData.quality);
+      formDataToSend.append('notes', formData.notes);
+
+      const response = await fetch("/api/submit-form", {
+        method: "POST",
+        body: formDataToSend,
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("RFQ Submitted Successfully");
+        setFormData({
+          partNumber: "",
+          condition: "",
+          description: "",
+          certificate: "",
+          quality: "",
+          notes: "",
+        });
+      } else {
+        alert("Error: " + (data.error || "Failed to submit"));
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Failed to connect to server");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -167,13 +187,10 @@ const RFQ: React.FC = () => {
                   <Button
                     id="submit-btn"
                     type="submit"
-                    className="h-[48px] px-8 rounded-xl border-0 transition-all duration-300 ease-out hover:scale-105 active:scale-[0.98] shadow-[0_4px_14px_rgba(92,198,208,0.4)] hover:shadow-[0_6px_20px_rgba(92,198,208,0.6)] text-white font-bold text-lg w-full sm:w-auto flex items-center gap-3 uppercase tracking-wider"
-                    style={{
-                      background: "linear-gradient(180deg, #5CC6D0 0%, #05848E 100%)",
-                    }}
+                    disabled={loading}
+                    className="w-full h-[60px] bg-[#5cc6d0] hover:bg-[#4ab5bf] text-white rounded-xl text-lg font-bold tracking-wide transition-all duration-300 shadow-[0_4px_20px_rgba(92,198,208,0.4)] hover:shadow-[0_8px_30px_rgba(92,198,208,0.5)] transform hover:-translate-y-1"
                   >
-                    <Send className="w-5 h-5" />
-                    SUBMIT RFQ
+                    {loading ? "SENDING SELECTION..." : "SEND SELECTION"}
                   </Button>
                   <div className="flex items-center gap-2 text-gray-400">
                     <AlertCircle className="w-5 h-5 text-[#5cc6d0]" />

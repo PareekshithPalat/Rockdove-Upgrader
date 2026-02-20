@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "./ui/button";
 import {
   MailIcon,
@@ -9,6 +9,67 @@ import {
 import { FadeInUp } from "./animations";
 
 export const ContactUs: React.FC = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setStatus({ type: null, message: "" });
+
+    try {
+      const formDataToSend = new FormData();
+      formDataToSend.append('type', 'contact');
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('phone', formData.phone);
+      formDataToSend.append('message', formData.message);
+
+      const response = await fetch("/api/submit-form", {
+        method: "POST",
+        body: formDataToSend,
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus({
+          type: "success",
+          message: "Message sent! We'll get back to you soon.",
+        });
+        setFormData({ name: "", email: "", phone: "", message: "" });
+      } else {
+        setStatus({
+          type: "error",
+          message: data.error || "Something went wrong. Please try again.",
+        });
+      }
+    } catch (error) {
+      setStatus({
+        type: "error",
+        message: "Failed to connect to the server.",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="bg-black text-white min-h-screen font-[Poppins] overflow-hidden">
       {/* ================= TITLE SECTION ================= */}
@@ -113,7 +174,7 @@ export const ContactUs: React.FC = () => {
         <div className="flex flex-col lg:flex-row justify-center items-center gap-12 lg:gap-24 mb-12 lg:mb-40 relative">
           {/* FORM */}
           <FadeInUp delay={400} className="w-full max-w-md">
-            <form className="grid gap-6 text-left z-20">
+            <form className="grid gap-6 text-left z-20" onSubmit={handleSubmit}>
               <div>
                 <label
                   htmlFor="name"
@@ -124,6 +185,10 @@ export const ContactUs: React.FC = () => {
                 <input
                   id="name"
                   type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
                   className="w-full h-12 px-4 rounded-xl bg-white/5 border border-white/10 text-white text-base focus:outline-none focus:ring-2 focus:ring-[#5cc6d0] transition-all"
                   placeholder="Your Name"
                 />
@@ -139,6 +204,10 @@ export const ContactUs: React.FC = () => {
                 <input
                   id="email"
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
                   className="w-full h-12 px-4 rounded-xl bg-white/5 border border-white/10 text-white text-base focus:outline-none focus:ring-2 focus:ring-[#5cc6d0] transition-all"
                   placeholder="email@example.com"
                 />
@@ -154,6 +223,10 @@ export const ContactUs: React.FC = () => {
                 <input
                   id="phone"
                   type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
                   className="w-full h-12 px-4 rounded-xl bg-white/5 border border-white/10 text-white text-base focus:outline-none focus:ring-2 focus:ring-[#5cc6d0] transition-all"
                   placeholder="+1 (555) 000-0000"
                 />
@@ -168,22 +241,37 @@ export const ContactUs: React.FC = () => {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
                   rows={4}
                   className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-base focus:outline-none focus:ring-2 focus:ring-[#5cc6d0] transition-all resize-none"
                   placeholder="How can we help you?"
                 />
               </div>
 
+              {/* Status Message */}
+              {status.message && (
+                <div
+                  className={`text-sm font-medium ${status.type === "success" ? "text-green-400" : "text-red-400"
+                    }`}
+                >
+                  {status.message}
+                </div>
+              )}
+
               {/* Smaller Submit Button */}
               <div className="mt-4">
                 <Button
                   type="submit"
+                  disabled={loading}
                   className="h-[48px] px-8 rounded-xl border-0 transition-all duration-300 ease-out hover:scale-105 active:scale-[0.98] shadow-[0_4px_14px_rgba(92,198,208,0.4)] hover:shadow-[0_6px_20px_rgba(92,198,208,0.6)] text-white font-semibold text-lg w-full sm:w-[160px]"
                   style={{
                     background: "linear-gradient(180deg, #5CC6D0 0%, #05848E 100%)",
                   }}
                 >
-                  SUBMIT
+                  {loading ? "SENDING..." : "SUBMIT"}
                 </Button>
               </div>
             </form>

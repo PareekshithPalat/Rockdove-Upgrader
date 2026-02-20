@@ -34,8 +34,83 @@ const positions = [
 
 const Career = (): JSX.Element => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedPosition, setSelectedPosition] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const [formData, setFormData] = useState({
+    jobType: "internship",
+    jobRole: "sales",
+    position: "",
+    name: "",
+    email: "",
+    phone: "",
+    education: "",
+    address: "",
+  });
+
+  const [files, setFiles] = useState<{ resume: File | null; photo: File | null }>({
+    resume: null,
+    photo: null,
+  });
+
+  const [loading, setLoading] = useState(false);
+
+  const handleInputChange = (key: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const handleFileChange = (key: string, file: File | null) => {
+    setFiles((prev) => ({ ...prev, [key]: file }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const data = new FormData();
+      data.append("type", "career");
+
+      // Append text fields
+      Object.entries(formData).forEach(([key, value]) => {
+        data.append(key, value);
+      });
+
+      // Append files
+      if (files.resume) data.append("resume", files.resume);
+      if (files.photo) data.append("photo", files.photo);
+
+      const response = await fetch("/api/submit-form", {
+        method: "POST",
+        body: data,
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert("Application Submitted Successfully!");
+        // Reset form
+        setFormData({
+          jobType: "internship",
+          jobRole: "sales",
+          position: "",
+          name: "",
+          email: "",
+          phone: "",
+          education: "",
+          address: "",
+        });
+        setFiles({ resume: null, photo: null });
+        // NOTE: Input file elements need to be cleared manually or via refs if needed, but for now state reset is key.
+      } else {
+        alert("Error: " + (result.error || "Submission failed"));
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Failed to connect to server");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // close dropdown when clicking outside
   useEffect(() => {
@@ -172,27 +247,31 @@ const Career = (): JSX.Element => {
               </h2>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-                {/* Left Form Section */}
-                <div className="flex flex-col space-y-8">
+                {/* Application Form */}
+                <form onSubmit={handleSubmit} className="flex flex-col space-y-8">
                   {/* Job Type */}
                   <div>
                     <Label className="[font-family:'Poppins',Helvetica] font-semibold text-white text-xl mb-3 block">
                       Select which type you are applying for{" "}
                       <span className="text-[#f50000]">*</span>
                     </Label>
-                    <RadioGroup defaultValue="internship" className="space-y-3">
+                    <RadioGroup
+                      defaultValue="internship"
+                      onValueChange={(val) => handleInputChange("jobType", val)}
+                      className="space-y-3"
+                    >
                       {jobTypes.map((type) => (
                         <div key={type.id} className="flex items-center gap-3">
                           <RadioGroupItem
                             value={type.id}
                             id={type.id}
                             className="
-                              w-4 h-4 border-2 border-[#d9d9d9]
-                              data-[state=checked]:border-[#00E0FF]
-                              data-[state=checked]:bg-[#00E0FF]
-                              data-[state=checked]:shadow-[0_0_6px_#00E0FF]
-                              rounded-full transition-all duration-200
-                            "
+                                w-4 h-4 border-2 border-[#d9d9d9]
+                                data-[state=checked]:border-[#00E0FF]
+                                data-[state=checked]:bg-[#00E0FF]
+                                data-[state=checked]:shadow-[0_0_6px_#00E0FF]
+                                rounded-full transition-all duration-200
+                              "
                           />
                           <Label
                             htmlFor={type.id}
@@ -211,19 +290,23 @@ const Career = (): JSX.Element => {
                       Select which role you are applying for{" "}
                       <span className="text-[#f50000]">*</span>
                     </Label>
-                    <RadioGroup defaultValue="sales" className="space-y-3">
+                    <RadioGroup
+                      defaultValue="sales"
+                      onValueChange={(val) => handleInputChange("jobRole", val)}
+                      className="space-y-3"
+                    >
                       {jobRoles.map((role) => (
                         <div key={role.id} className="flex items-center gap-3">
                           <RadioGroupItem
                             value={role.id}
                             id={role.id}
                             className="
-                              w-4 h-4 border-2 border-[#d9d9d9]
-                              data-[state=checked]:border-[#00E0FF]
-                              data-[state=checked]:bg-[#00E0FF]
-                              data-[state=checked]:shadow-[0_0_6px_#00E0FF]
-                              rounded-full transition-all duration-200
-                            "
+                                w-4 h-4 border-2 border-[#d9d9d9]
+                                data-[state=checked]:border-[#00E0FF]
+                                data-[state=checked]:bg-[#00E0FF]
+                                data-[state=checked]:shadow-[0_0_6px_#00E0FF]
+                                rounded-full transition-all duration-200
+                              "
                           />
                           <Label
                             htmlFor={role.id}
@@ -247,7 +330,7 @@ const Career = (): JSX.Element => {
                       onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                       className="h-[50px] w-full bg-[#e7e7e7] rounded-[8px] border border-transparent px-4 text-[#3c3c3c] text-sm [font-family:'Poppins',Helvetica] text-left focus:ring-2 focus:ring-[#00E0FF] focus:outline-none flex justify-between items-center"
                     >
-                      {selectedPosition || "Select a position"}
+                      {formData.position || "Select a position"}
                       <span
                         className={`text-[#00E0FF] ml-2 transform transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : "rotate-0"
                           }`}
@@ -267,7 +350,7 @@ const Career = (): JSX.Element => {
                           <li
                             key={pos}
                             onClick={() => {
-                              setSelectedPosition(pos);
+                              handleInputChange("position", pos);
                               setIsDropdownOpen(false);
                             }}
                             className="px-4 py-2 text-[#3c3c3c] hover:bg-[#00E0FF]/20 cursor-pointer [font-family:'Poppins',Helvetica]"
@@ -286,6 +369,7 @@ const Career = (): JSX.Element => {
                       label: "Enter your name",
                       placeholder: "Enter your full name",
                       required: true,
+                      value: formData.name, // Bind value
                     },
                     {
                       id: "email",
@@ -293,20 +377,23 @@ const Career = (): JSX.Element => {
                       placeholder: "Enter your email",
                       type: "email",
                       required: true,
+                      value: formData.email, // Bind value
                     },
                     {
-                      id: "contact",
+                      id: "phone", // Changed from 'contact' to 'phone' to match API
                       label: "Enter your contact no",
                       placeholder: "Enter your contact number",
                       required: true,
+                      value: formData.phone, // Bind value
                     },
                     {
                       id: "education",
                       label: "Enter your Educational Qualification",
                       placeholder: "Enter your educational qualification",
                       required: true,
+                      value: formData.education, // Bind value
                     },
-                  ].map(({ id, label, placeholder, type, required }) => (
+                  ].map(({ id, label, placeholder, type, required, value }) => (
                     <div key={id}>
                       <Label
                         htmlFor={id}
@@ -319,6 +406,8 @@ const Career = (): JSX.Element => {
                         id={id}
                         type={type || "text"}
                         placeholder={placeholder}
+                        value={value}
+                        onChange={(e) => handleInputChange(id, e.target.value)}
                         className="h-[50px] bg-[#e7e7e7] rounded-[8px] border border-transparent focus:ring-2 focus:ring-[#00E0FF] focus:outline-none px-4 text-[#3c3c3c] text-sm [font-family:'Poppins',Helvetica]"
                       />
                     </div>
@@ -339,6 +428,7 @@ const Career = (): JSX.Element => {
                       <input
                         type="file"
                         id={id}
+                        onChange={(e) => handleFileChange(id, e.target.files?.[0] || null)}
                         className="block w-full text-sm text-[#3c3c3c] bg-[#e7e7e7] rounded-[8px] p-2 cursor-pointer focus:ring-2 focus:ring-[#00E0FF]"
                       />
                     </div>
@@ -356,17 +446,23 @@ const Career = (): JSX.Element => {
                     <Textarea
                       id="address"
                       placeholder="Enter your current address"
+                      value={formData.address}
+                      onChange={(e) => handleInputChange("address", e.target.value)}
                       className="min-h-[100px] bg-[#e7e7e7] rounded-[8px] border border-transparent focus:ring-2 focus:ring-[#00E0FF] focus:outline-none px-4 py-2 text-[#3c3c3c] text-sm [font-family:'Poppins',Helvetica] resize-none"
                     />
                   </div>
 
                   {/* Submit Button */}
                   <div className="pt-4">
-                    <Button className="w-[160px] rounded-[40px] bg-gradient-to-b from-[#5cc6d0] to-[#14919b] [font-family:'Poppins',Helvetica] font-bold text-white text-lg py-3 hover:opacity-90 transition-all duration-200">
-                      SUBMIT
+                    <Button
+                      type="submit"
+                      disabled={loading}
+                      className="w-[160px] rounded-[40px] bg-gradient-to-b from-[#5cc6d0] to-[#14919b] [font-family:'Poppins',Helvetica] font-bold text-white text-lg py-3 hover:opacity-90 transition-all duration-200 disabled:opacity-50"
+                    >
+                      {loading ? "SENDING..." : "SUBMIT"}
                     </Button>
                   </div>
-                </div>
+                </form>
 
                 {/* Right Image beside radio section */}
                 <div className="flex justify-center items-start lg:pt-[50px] relative">
@@ -407,7 +503,7 @@ const Career = (): JSX.Element => {
           </main>
         </div>
       </div>
-    </PageLayout>
+    </PageLayout >
   );
 };
 
